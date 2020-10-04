@@ -14,16 +14,16 @@ class OauthController extends Controller
 {
     public function login()
     {
-        $authorizationUrl = app(OauthManager::class)->driver('helix')->getAuthorizationUrl();
+        $authorizationUrl = app(OauthManager::class)->driver('vertisan')->getAuthorizationUrl();
 
         return Redirect::to($authorizationUrl);
     }
 
     public function consume(ConsumeOauthRequest $request)
     {
-        app(OauthManager::class)->driver('helix')->checkAuthorizationToken($request->get('state'));
+        app(OauthManager::class)->driver('vertisan')->checkAuthorizationToken($request->get('state'));
 
-        $resourceOwner = app(OauthManager::class)->driver('helix')->consume($request->get('code'));
+        $resourceOwner = app(OauthManager::class)->driver('vertisan')->consume($request->get('code'));
 
         dd($resourceOwner);
 

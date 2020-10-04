@@ -16,6 +16,15 @@ class OauthManager extends Manager
 
         return $this->getRepository($driver);
     }
+
+    public function createVertisanDriver()
+    {
+        $config = Config::get('manager.oauth.drivers.vertisan');
+
+        $driver = new Drivers\Vertisan($config);
+
+        return $this->getRepository($driver);
+    }
    
     public function getRepository(Driver $driver)
     {
