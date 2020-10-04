@@ -25,8 +25,6 @@ class OauthController extends Controller
 
         $resourceOwner = app(OauthManager::class)->driver('vertisan')->consume($request->get('code'));
 
-        dd($resourceOwner);
-
         $user = app(AuthentificationService::class)->getUserByResource($resourceOwner);
 
         Auth::login($user);

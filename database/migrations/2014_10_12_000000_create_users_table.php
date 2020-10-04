@@ -16,10 +16,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tracking_id')->unique();
-            $table->string('name');
+            $table->string('login');
             $table->string('display_name');
-            $table->string('channel_url');
-            $table->string('logo');
+            $table->string('profile_image_url');
+            $table->string('email');
             $table->timestamps();
         });
     }

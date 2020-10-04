@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-// Route::prefix('oauth')->as('oauth.')->group(function () {
+Route::get('logout', function () {
+    Auth::logout();
+})->name('logout');
+
 Route::prefix('oauth')->middleware('guest')->as('oauth.')->group(function () {
     Route::get('login', 'OauthController@login')->name('login');
     Route::get('consume', 'OauthController@consume')->name('consume');
