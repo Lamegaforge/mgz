@@ -1,8 +1,6 @@
-## Installation
-- `composer update`
-- `php artisan key:generate`
-## Configuration
-### BDD
+# Megasaurus
+
+## Configurer BDD
 Configurer une connexion dans le `.env`
 ```
 DB_CONNECTION=
@@ -12,7 +10,11 @@ DB_DATABASE=
 DB_USERNAME=
 DB_PASSWORD=
 ```
-### Oauth
+## Installation
+- `composer update`
+- `php artisan key:generate`
+- `php artisan db:seed`
+## Oauth
 Créer une nouvelle application sur le [Twitch Console](https://dev.twitch.tv/console/apps/create).
 - *Nom* : "we don't care"
 - *URL de redirection OAuth* : Twitch redirigera vers cette url apres l'authentification, ex http://megasaurus.vagrant/oauth/consume
@@ -21,3 +23,7 @@ Créer une nouvelle application sur le [Twitch Console](https://dev.twitch.tv/co
 Une fois enregistré il faut se rendre sur *Gérer* pour récuperer des valeurs à placer dans le `.env`
 - *Identifiant client* à renseigner pour `HELIX_CLIENT_ID=`
 - *Secret du client* à renseigner pour `HELIX_CLIENT_SECRET=`
+### Remise à zero du projet
+- `php artisan migrate:reset`
+- `php artisan migrate`
+- `php artisan db:seed`
