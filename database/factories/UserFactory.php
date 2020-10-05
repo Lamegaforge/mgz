@@ -23,7 +23,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'tracking_id' => $this->faker->unique()->numberBetween(1000, 10000),
+            'login' => $this->faker->name,
+            'display_name' => $this->faker->name,
+            'profile_image_url' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
             'email' => $this->faker->unique()->safeEmail,
         ];
     }
