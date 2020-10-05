@@ -2,33 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use View;
 use Illuminate\Http\Request;
+use App\Repositories\ClipRepository;
 
 class ClipController extends Controller
 {
-    public function __construct()
+    protected $clipRepository;
+
+    public function __construct(ClipRepository $clipRepository)
     {
-        //
+        $this->clipRepository = $clipRepository;
     }
 
     public function index(Request $request)
     {
-        return View::make('clips.index');
+        $clips = $this->clipRepository->paginate($limit = null, $columns = ['*']);
+
+        return View::make('clips.index', [
+            'clips' => $clips,
+        ]);
     }
 
     public function show(Request $request)
     {
-        $clip = [
-            'tracking_id' => $faker->unique()->numberBetween(1000, 10000),
-            'curator_id' => factory(Curator::class)->create()->id,
-            'game_id' => factory(Game::class)->create()->id,
-            'slug' => 'aight_imma_head_out',
-            'title' => 'Aight Imma head out',
-            'url' => $faker->unique()->url,
-            'game' => $faker->unique()->sentence($nbWords = 2),
-            'views' => $faker->numberBetween($min = 100, $max = 500),
-            'active' => true,   
-        ];
+        $clip = $this->clipRepository->find($request->id);
 
         return View::make('clips.show', [
             'clip' => $clip,
