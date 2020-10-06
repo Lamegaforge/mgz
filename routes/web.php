@@ -31,7 +31,7 @@ Route::prefix('clips')->as('clips.')->group(function () {
 	Route::get('{id}', 'ClipController@show')->name('show');
 });
 
-// Route::prefix('cards')->as('cards.')->group(function () {
-// 	Route::get('/', 'ClipController@index')->name('index');
-// 	Route::get('{id}', 'ClipController@show')->name('show');
-// });
+Route::prefix('cards')->as('cards.')->group(function () {
+	Route::get('/', 'CardController@index')->name('index');
+	Route::get('{id}', 'CardController@show')->name('show');
+});

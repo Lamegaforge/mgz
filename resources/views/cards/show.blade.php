@@ -1,0 +1,1 @@
+{{dd($card->toArray())}}
