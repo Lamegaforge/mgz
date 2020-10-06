@@ -26,7 +26,9 @@ class ClipController extends Controller
 
     public function show(Request $request)
     {
-        $clip = $this->clipRepository->find($request->id);
+        $clip = $this->clipRepository
+            ->with(['user', 'card'])
+            ->find($request->id);
 
         return View::make('clips.show', [
             'clip' => $clip,
