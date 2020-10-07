@@ -24,6 +24,4 @@ Une fois enregistré il faut se rendre sur *Gérer* pour récuperer des valeurs 
 - *Identifiant client* à renseigner pour `HELIX_CLIENT_ID=`
 - *Secret du client* à renseigner pour `HELIX_CLIENT_SECRET=`
 ### Remise à zero du projet
-- `php artisan migrate:reset`
-- `php artisan migrate`
-- `php artisan db:seed`
+- `php artisan reset`
