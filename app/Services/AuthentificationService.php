@@ -9,6 +9,13 @@ use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 class AuthentificationService
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function getUserByResource(ResourceOwnerInterface $resourceOwner): User
     {
         $concret = $resourceOwner->toArray();
@@ -21,6 +28,6 @@ class AuthentificationService
             'email' => $concret['email'],
         ];
 
-        return app(UserService::class)->firstOrCreate($concret['id'], $attributes);
+        return $this->userService->firstOrCreate($concret['id'], $attributes);
     }
 }
