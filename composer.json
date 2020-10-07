@@ -17,8 +17,15 @@
         "laravel/tinker": "^2.0",
         "league/oauth2-client": "^2.5 ",
         "prettus/l5-repository": "^2.7",
-        "vertisan/oauth2-twitch-helix": "^1.0"
+        "vertisan/oauth2-twitch-helix": "^1.0",
+        "nicklaw5/twitch-api-php": "*"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:Lamegaforge/twitch-api-php.git"
+        }
+    ],
     "require-dev": {
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",

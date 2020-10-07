@@ -5,7 +5,7 @@ return [
         'default_driver' => 'api',
         'drivers' => [
             'api' => [
-                'client_id' => env('TWITCH_CLIENT_ID'),
+                'client_id' => env('HELIX_CLIENT_ID'),
                 'channel' => 'lamegaforgelive',
             ],
         ],

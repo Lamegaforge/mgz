@@ -2,7 +2,8 @@
 
 namespace App\Managers\Twitch;
 
-use Illuminate\Support\Manager;
+use Config;
+use DeGraciaMathieu\Manager\Manager;
 use App\Managers\Twitch\Contracts\Former;
 use App\Managers\Twitch\Contracts\Driver;
 
@@ -10,7 +11,7 @@ class TwitchManager extends Manager
 {
     public function createApiDriver()
     {
-        $config = $this->app['config']['manager']['twitch']['drivers']['api'];
+        $config = Config::get('manager.twitch.drivers.api');
 
         $driver = new Drivers\Api($config);
         $former = new Formers\Api();
@@ -25,6 +26,6 @@ class TwitchManager extends Manager
 
     public function getDefaultDriver()
     {
-        return $this->app['config']['manager']['twitch']['default_driver'];
+        return Config::get('manager.twitch.default_driver');
     }
 }

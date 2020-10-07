@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('tracking_id')->unique();
             $table->string('login');
             $table->string('display_name');
-            $table->string('profile_image_url');
-            $table->string('email');
+            $table->string('profile_image_url')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

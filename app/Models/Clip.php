@@ -11,6 +11,16 @@ class Clip extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'tracking_id',
+        'user_id',
+        'slug',
+        'title',
+        'thumbnail',
+        'views',
+        'url',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

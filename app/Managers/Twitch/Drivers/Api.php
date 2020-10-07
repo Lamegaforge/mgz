@@ -14,16 +14,24 @@ class Api implements Driver
         $this->config = $config;
     }
 
-    public function getLastClips() :array
+    public function getLastClips(): array
     {
         $client = $this->getClient();
 
-        $response = $client->getTopClips($this->config['channel'], $cursor = null, $game = null, $limit = 50, $period = 'week');
+        $parameters = [
+            $this->config['channel'],
+            $cursor = null,
+            $game = null,
+            $limit = 50,
+            $period = 'week',
+        ];
+
+        $response = $client->getTopClips(... $parameters);
 
         return $response['clips'];
     }
 
-    public function get(string $slug) :array
+    public function get(string $slug): array
     {
         $client = $this->getClient();
 
@@ -32,7 +40,7 @@ class Api implements Driver
         return $response;
     }    
 
-    protected function getClient() :TwitchApi
+    protected function getClient(): TwitchApi
     {
         $options = [
             'client_id' => $this->config['client_id'],

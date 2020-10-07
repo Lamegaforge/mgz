@@ -17,7 +17,7 @@ class CreateClipsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('tracking_id')->unique();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('card_id');
+            $table->unsignedBigInteger('card_id')->nullable();
             $table->string('slug');
             $table->string('title')->nullable();
             $table->string('thumbnail')->nullable();
