@@ -48,7 +48,7 @@ class ClipsViewsUpdater extends Command
 
             $views = $this->getViews($clip);
 
-            $this->update($clip, $views);
+            $this->updateClip($clip, $views);
         }
     }
 
@@ -68,7 +68,7 @@ class ClipsViewsUpdater extends Command
         return $concret['views'];
     }
 
-    protected function update(Clip $clip, int $views)
+    protected function updateClip(Clip $clip, int $views)
     {
         app(ClipRepository::class)->update([
             'views' => $views,
