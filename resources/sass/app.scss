@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:100,200,300,400,500,600,700&display=swap");
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+.section {
+    @apply px-4 py-16 mx-auto max-w-7xl;
+
+    @screen sm {
+        @apply px-6;
+    }
+
+    @screen md {
+        @apply py-20;
+    }
+
+    @screen lg {
+        @apply px-8 py-24
+    }
+}
+
+@import "tailwindcss/utilities";

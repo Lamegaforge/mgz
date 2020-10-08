@@ -20,7 +20,7 @@ class CardController extends Controller
         $cards = $this->cardRepository->paginate($limit = null, $columns = ['*']);
 
         return View::make('cards.index', [
-            'cards' => $cards,
+            'cards' => $cards->toArray(),
         ]);
     }
 
