@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tracking_id')->unique();
+            $table->string('tracking_id')->unique();
             $table->string('login');
             $table->string('display_name');
             $table->string('profile_image_url')->nullable();

@@ -16,7 +16,7 @@ class UserServiceTest extends TestCase
      */
     public function create_user()
     {
-        $trackingId = 1;
+        $trackingId = '1';
 
         $attributes = [
             'tracking_id' => $trackingId,
@@ -33,5 +33,22 @@ class UserServiceTest extends TestCase
         $this->assertEquals($user->display_name, $attributes['display_name']);
         $this->assertEquals($user->profile_image_url, $attributes['profile_image_url']);
         $this->assertEquals($user->login, $attributes['login']);
+    }
+
+    /**
+     * @test
+     */
+    public function first_user()
+    {
+        $user = User::factory()->create();
+
+        $userRetrieved = app(UserService::class)->firstOrCreate($user->tracking_id, $attributes = []);
+
+        $this->assertInstanceOf(User::class, $userRetrieved);
+
+        $this->assertEquals($user->tracking_id, $userRetrieved->tracking_id);
+        $this->assertEquals($user->display_name, $userRetrieved->display_name);
+        $this->assertEquals($user->profile_image_url, $userRetrieved->profile_image_url);
+        $this->assertEquals($user->login, $userRetrieved->login);
     }
 }
