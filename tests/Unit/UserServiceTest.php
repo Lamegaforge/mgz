@@ -45,10 +45,6 @@ class UserServiceTest extends TestCase
         $userRetrieved = app(UserService::class)->firstOrCreate($user->tracking_id, $attributes = []);
 
         $this->assertInstanceOf(User::class, $userRetrieved);
-
-        $this->assertEquals($user->tracking_id, $userRetrieved->tracking_id);
-        $this->assertEquals($user->display_name, $userRetrieved->display_name);
-        $this->assertEquals($user->profile_image_url, $userRetrieved->profile_image_url);
-        $this->assertEquals($user->login, $userRetrieved->login);
+        $this->assertEquals($user->toArray(), $userRetrieved->toArray());
     }
 }
