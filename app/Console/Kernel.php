@@ -24,7 +24,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('clips:aggregate')
+            ->hourly()
+            ->between('17:00', '01:00');
+
+        $schedule->command('clips:aggregate')->dailyAt('10:00');
+        $schedule->command('clips:aggregate')->dailyAt('14:00');
+
+        $schedule->command('clips:views-update')->daily();
     }
 
     /**
