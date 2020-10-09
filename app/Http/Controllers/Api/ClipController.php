@@ -28,11 +28,11 @@ class ClipController extends Controller
             $this->clipRepository->pushCriteria(new Where('card_id', $cardId));
         }
 
-        if ($request->has('search')) {
+        if ($request->has('title')) {
 
-            $search = $request->get('search');
+            $title = $request->get('title');
 
-            $this->clipRepository->pushCriteria(new WhereLike('title', $search));
+            $this->clipRepository->pushCriteria(new WhereLike('title', $title));
         }
 
         $clips = $this->clipRepository->paginate($limit = null, $columns = ['*']);
