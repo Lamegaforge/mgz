@@ -15,8 +15,6 @@ class ClipTest extends TestCase
      */
     public function get_clips()
     {
-        Clip::factory()->count(10)->create();
-
         $response = $this->get('clips');
 
         $response->assertStatus(200);

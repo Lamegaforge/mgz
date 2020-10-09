@@ -19,9 +19,7 @@ class ClipController extends Controller
 
     public function index(Request $request)
     {
-        return View::make('clips.index', [
-            'clips' => $clips,
-        ]);
+        return View::make('clips.index');
     }
 
     public function show(Request $request)
