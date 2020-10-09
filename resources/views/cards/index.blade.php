@@ -1,30 +1,22 @@
 @extends('app')
 @section('content')
-<section class="section">
+<div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="relative items-center hidden text-white sm:flex">
+        <div class="flex items-center"><a href="" class="font-light hover:text-indigo-400">Home</a><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg></div>
+        <div class="flex items-center"><a href="" class="font-light hover:text-indigo-400">Clips</a><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg></div>
+        <div class="flex items-center"><a href="" class="font-light hover:text-indigo-400">Doom Eternal</a><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg></div>
+        <div class="font-semibold">C'était quoi ?!</div>
+    </div>
+</div>
+<section class="-mt-6 section">
     <h1 class="text-3xl font-semibold leading-8 tracking-tight text-white md:text-4xl sm:text-3xl sm:leading-9">Toutes les fiches</h1>
-    <div class="flex flex-col items-start mt-4 space-y-3 md:mt-6 sm:space-y-0 sm:space-x-3 sm:items-center sm:flex-row">
-        <input class="w-full bg-gray-800 border-transparent rounded-full sm:w-64 sm:ml-auto form-input" id="search" placeholder="Rechercher" type="search" />
-    </div>
-
-    <div class="grid grid-cols-2 mt-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10">
-        @foreach ($cards['data'] as $card)
-        @component('components.card')
-
-        @slot('title')
-        {{$card['title']}}
-        @endslot
-
-        @slot('url')
-        url
-        @endslot
-
-        @slot('cover')
-        Pouet
-        @endslot
-
-        @endcomponent
-        @endforeach
-    </div>
+    <grid grid-class="grid grid-cols-2 mt-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10" type="card" />
 </section>
 
 @endsection

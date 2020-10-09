@@ -9,9 +9,9 @@
 </head>
 
 <body class="antialiased">
-    <div id="app">
+    <div id="app" class="flex flex-col font-sans text-white bg-black">
         <primary-nav></primary-nav>
-        <main class="flex flex-col min-h-screen font-sans text-white bg-black">
+        <main class="min-h-screen">
             @yield('content')
         </main>
         <footer class="bg-gray-900">
