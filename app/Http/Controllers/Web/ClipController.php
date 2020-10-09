@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use View;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use App\Repositories\ClipRepository;
 use App\Repositories\Criterias\Where;
 use App\Repositories\Criterias\WhereLike;
