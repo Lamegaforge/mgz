@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use View;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
 use App\Repositories\CardRepository;
 
 class CardController extends Controller
@@ -17,11 +19,7 @@ class CardController extends Controller
 
     public function index(Request $request)
     {
-        $cards = $this->cardRepository->paginate($limit = null, $columns = ['*']);
-
-        return View::make('cards.index', [
-            'cards' => $cards->toArray(),
-        ]);
+        return View::make('cards.index');
     }
 
     public function show(Request $request)

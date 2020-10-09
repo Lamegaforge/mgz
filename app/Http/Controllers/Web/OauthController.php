@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use Auth;
 use View;
 use Redirect;
-use Illuminate\Routing\Controller;
 use App\Managers\Oauth\OauthManager;
+use App\Http\Controllers\Controller;
 use App\Services\AuthentificationService;
-use App\Http\Requests\ConsumeOauthRequest;
+use App\Http\Requests\Web\ConsumeOauthRequest;
 
 class OauthController extends Controller
 {
