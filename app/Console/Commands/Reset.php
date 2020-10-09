@@ -40,6 +40,7 @@ class Reset extends Command
         $commands = [
             'migrate:reset',
             'migrate',
+            'db:seed',
         ];
 
         $this->info('in progress...');

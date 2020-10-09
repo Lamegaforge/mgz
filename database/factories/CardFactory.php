@@ -21,8 +21,13 @@ class CardFactory extends Factory
      */
     public function definition()
     {
+        $variableNbWords = true;
+
         return [
-            'title' => $this->faker->unique()->sentence($nbWords = 3, $variableNbWords = true),
+            'title' => $this->faker->unique()->sentence($nbWords = 4, $variableNbWords),
+            'short_title' => $this->faker->unique()->sentence($nbWords = 2, $variableNbWords),
+            'image_url' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
+            'description' => $this->faker->unique()->sentence($nbWords = 10, $variableNbWords),
         ];
     }
 }
