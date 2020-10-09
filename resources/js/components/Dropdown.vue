@@ -2,7 +2,7 @@
   <span class="relative">
     <button
       ref="trigger"
-      class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
+      :class="buttonClass"
       @click="handleClick()"
       v-click-outside="handleClose"
     >
@@ -24,6 +24,9 @@
 <script>
 import { ref } from "vue";
 export default {
+  props: {
+    buttonClass: String,
+  },
   setup() {
     const isOpened = ref(false);
     const trigger = ref(null);
@@ -33,7 +36,7 @@ export default {
     }
 
     function handleClose() {
-        isOpened.value = false;
+      isOpened.value = false;
     }
 
     return { isOpened, handleClick, handleClose };

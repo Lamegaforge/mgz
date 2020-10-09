@@ -18,7 +18,6 @@ app.component('card', Card)
 app.directive('click-outside', {
     beforeMount(el, binding, vnode) {
         el.clickOutsideEvent = function (event) {
-            console.log(!(el == event.target || el.contains(event.target)))
             // here I check that click was outside the el and his children
             if (!(el == event.target || el.contains(event.target))) {
                 binding.value(event)

@@ -29417,6 +29417,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    buttonClass: String
+  },
+
   setup() {
     const isOpened = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(false);
     const trigger = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(null);
@@ -29461,7 +29465,7 @@ __webpack_require__.r(__webpack_exports__);
     const items = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])([]);
     Object(vue__WEBPACK_IMPORTED_MODULE_0__["onMounted"])(async () => {
       try {
-        const response = await axios.get("https://staging.megasaurus.fr/clips/api");
+        const response = await axios.get("/clips/api");
         items.value = response.data.data;
       } catch (err) {
         console.log(err);
@@ -29490,21 +29494,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   setup() {
     const isMobileOpen = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(false);
-    const isProfileOpen = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(false);
 
     function toggleMobileMenu() {
       isMobileOpen.value = !isMobileOpen.value;
     }
 
-    function toggleProfileMenu() {
-      isProfileOpen.value = !isProfileOpen.value;
-    }
-
     return {
       isMobileOpen,
-      isProfileOpen,
-      toggleMobileMenu,
-      toggleProfileMenu
+      toggleMobileMenu
     };
   }
 
@@ -29654,10 +29651,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={\"isOpened\":\"setup\",\"handleClick\":\"setup\",\"handleClose\":\"setup\"}":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/dist/templateLoader.js??ref--6!./node_modules/vue-loader/dist??ref--28-0!./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={"isOpened":"setup","handleClick":"setup","handleClose":"setup"} ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={\"buttonClass\":\"props\",\"isOpened\":\"setup\",\"handleClick\":\"setup\",\"handleClose\":\"setup\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/dist/templateLoader.js??ref--6!./node_modules/vue-loader/dist??ref--28-0!./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={"buttonClass":"props","isOpened":"setup","handleClick":"setup","handleClose":"setup"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -29677,10 +29674,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("span", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["withDirectives"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("button", {
     ref: "trigger",
-    class: "inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800",
+    class: $props.buttonClass,
     onClick: _cache[1] || (_cache[1] = $event => $setup.handleClick())
-  }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["renderSlot"])(_ctx.$slots, "trigger")], 512
-  /* NEED_PATCH */
+  }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["renderSlot"])(_ctx.$slots, "trigger")], 2
+  /* CLASS */
   ), [[_directive_click_outside, $setup.handleClose]]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", {
     class: [{
       'opacity-100 scale-100': $setup.isOpened,
@@ -29742,7 +29739,7 @@ const _hoisted_5 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createV
 
 const _hoisted_6 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("span", {
   class: "ml-2"
-}, "Sort by", -1
+}, "Trier par", -1
 /* HOISTED */
 );
 
@@ -29767,11 +29764,11 @@ const _hoisted_8 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createV
   href: "#",
   class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
   role: "menuitem"
-}, "Name"), /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
+}, "Date"), /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
   class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
   role: "menuitem"
-}, "Date")], -1
+}, "Vues")], -1
 /* HOISTED */
 );
 
@@ -29784,7 +29781,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_card = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("card");
 
-  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_1, [$props.type === 'clip' ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("div", _hoisted_2, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_select_menu)])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_4, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_dropdown, null, {
+  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_1, [$props.type === 'clip' ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("div", _hoisted_2, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_select_menu)])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_4, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_dropdown, {
+    "button-class": "inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
+  }, {
     trigger: Object(vue__WEBPACK_IMPORTED_MODULE_0__["withCtx"])(() => [_hoisted_5, _hoisted_6, _hoisted_7]),
     content: Object(vue__WEBPACK_IMPORTED_MODULE_0__["withCtx"])(() => [_hoisted_8]),
     _: 1
@@ -29815,10 +29814,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={\"isMobileOpen\":\"setup\",\"isProfileOpen\":\"setup\",\"toggleMobileMenu\":\"setup\",\"toggleProfileMenu\":\"setup\"}":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/dist/templateLoader.js??ref--6!./node_modules/vue-loader/dist??ref--28-0!./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={"isMobileOpen":"setup","isProfileOpen":"setup","toggleMobileMenu":"setup","toggleProfileMenu":"setup"} ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={\"isMobileOpen\":\"setup\",\"toggleMobileMenu\":\"setup\"}":
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/dist/templateLoader.js??ref--6!./node_modules/vue-loader/dist??ref--28-0!./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={"isMobileOpen":"setup","toggleMobileMenu":"setup"} ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -29842,44 +29841,41 @@ const _hoisted_4 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createS
 const _hoisted_5 = {
   class: "hidden sm:ml-6 sm:flex sm:items-center"
 };
-const _hoisted_6 = {
-  class: "relative ml-3"
-};
 
-const _hoisted_7 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("img", {
+const _hoisted_6 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("img", {
   class: "object-cover w-8 h-8 rounded-full",
-  src: "https://assets1.ignimgs.com/2019/06/03/cropped-3-1559596858674.jpg",
+  src: "https://cdn.discordapp.com/emojis/761566071151919104.png?v=1",
   alt: ""
 }, null, -1
 /* HOISTED */
 );
 
-const _hoisted_8 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", {
-  class: "py-1 bg-white rounded-md shadow-xs",
+const _hoisted_7 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", {
+  class: "py-1",
   role: "menu",
   "aria-orientation": "vertical",
-  "aria-labelledby": "user-menu"
+  "aria-labelledby": "sort-menu"
 }, [/*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
-  class: "block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100",
+  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
   role: "menuitem"
 }, "Mon profil"), /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
-  class: "block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100",
+  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
   role: "menuitem"
 }, "Paramètres"), /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
-  class: "block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100",
+  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
   role: "menuitem"
 }, "Déconnexion")], -1
 /* HOISTED */
 );
 
-const _hoisted_9 = {
+const _hoisted_8 = {
   class: "flex items-center -mr-2 sm:hidden"
 };
 
-const _hoisted_10 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("path", {
+const _hoisted_9 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("path", {
   "stroke-linecap": "round",
   "stroke-linejoin": "round",
   "stroke-width": "2",
@@ -29888,7 +29884,7 @@ const _hoisted_10 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["create
 /* HOISTED */
 );
 
-const _hoisted_11 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("path", {
+const _hoisted_10 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("path", {
   "stroke-linecap": "round",
   "stroke-linejoin": "round",
   "stroke-width": "2",
@@ -29897,27 +29893,23 @@ const _hoisted_11 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["create
 /* HOISTED */
 );
 
-const _hoisted_12 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createStaticVNode"])("<div class=\"pt-2 pb-3\"><!-- &lt;a\n          href=&quot;#&quot;\n          class=&quot;block py-2 pl-3 pr-4 text-base font-medium text-indigo-500 transition duration-150 ease-in-out border-l-4 border-indigo-500 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700&quot;\n          &gt;Clips&lt;/a\n        &gt; --><a href=\"#\" class=\"block py-2 pl-3 pr-4 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out border-l-4 border-transparent hover:text-white hover:bg-gray-800 hover:border-gray-300 focus:outline-none focus:text-white focus:bg-gray-50 focus:border-gray-300\">Clips</a><a href=\"#\" class=\"block py-2 pl-3 pr-4 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out border-l-4 border-transparent hover:text-white hover:bg-gray-800 hover:border-gray-300 focus:outline-none focus:text-white focus:bg-gray-50 focus:border-gray-300\">Fiches</a></div><div class=\"pt-4 pb-3 border-t border-gray-800\"><div class=\"flex items-center px-4\"><div class=\"flex-shrink-0\"><img class=\"object-cover w-10 h-10 rounded-full\" src=\"https://assets1.ignimgs.com/2019/06/03/cropped-3-1559596858674.jpg\" alt=\"\"></div><div class=\"ml-3\"><div class=\"text-base font-medium leading-6 text-white\"> Basalte </div></div></div><div class=\"mt-3\"><a href=\"#\" class=\"block px-4 py-2 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800\">Mon profil</a><a href=\"#\" class=\"block px-4 py-2 mt-1 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800\">Paramètres</a><a href=\"#\" class=\"block px-4 py-2 mt-1 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800\">Déconnexion</a></div></div>", 2);
+const _hoisted_11 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createStaticVNode"])("<div class=\"pt-2 pb-3\"><!-- &lt;a\n          href=&quot;#&quot;\n          class=&quot;block py-2 pl-3 pr-4 text-base font-medium text-indigo-500 transition duration-150 ease-in-out border-l-4 border-indigo-500 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700&quot;\n          &gt;Clips&lt;/a\n        &gt; --><a href=\"#\" class=\"block py-2 pl-3 pr-4 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out border-l-4 border-transparent hover:text-white hover:bg-gray-800 hover:border-gray-300 focus:outline-none focus:text-white focus:bg-gray-50 focus:border-gray-300\">Clips</a><a href=\"#\" class=\"block py-2 pl-3 pr-4 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out border-l-4 border-transparent hover:text-white hover:bg-gray-800 hover:border-gray-300 focus:outline-none focus:text-white focus:bg-gray-50 focus:border-gray-300\">Fiches</a></div><div class=\"pt-4 pb-3 border-t border-gray-800\"><div class=\"flex items-center px-4\"><div class=\"flex-shrink-0\"><img class=\"object-cover w-10 h-10 rounded-full\" src=\"https://cdn.discordapp.com/emojis/761566071151919104.png?v=1\" alt=\"\"></div><div class=\"ml-3\"><div class=\"text-base font-medium leading-6 text-white\"> Basalte </div></div></div><div class=\"mt-3\"><a href=\"#\" class=\"block px-4 py-2 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800\">Mon profil</a><a href=\"#\" class=\"block px-4 py-2 mt-1 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800\">Paramètres</a><a href=\"#\" class=\"block px-4 py-2 mt-1 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800\">Déconnexion</a></div></div>", 2);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("nav", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_2, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_3, [_hoisted_4, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_5, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])(" Profile dropdown "), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_6, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("button", {
-    class: "flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300",
-    id: "user-menu",
-    "aria-label": "User menu",
-    "aria-haspopup": "true",
-    onClick: _cache[1] || (_cache[1] = $event => $setup.toggleProfileMenu())
-  }, [_hoisted_7])]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", {
-    class: ["absolute right-0 w-48 mt-2 transition duration-200 ease-out origin-top-right transform rounded-md shadow-lg", {
-      'opacity-100 scale-100': $setup.isProfileOpen,
-      'opacity-0 scale-95': !$setup.isProfileOpen
-    }]
-  }, [_hoisted_8], 2
-  /* CLASS */
-  )])]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_9, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])(" Mobile menu button "), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("button", {
+  const _component_dropdown = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("dropdown");
+
+  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("nav", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_2, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_3, [_hoisted_4, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_5, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_dropdown, {
+    class: "ml-3",
+    "button-class": "flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
+  }, {
+    trigger: Object(vue__WEBPACK_IMPORTED_MODULE_0__["withCtx"])(() => [_hoisted_6]),
+    content: Object(vue__WEBPACK_IMPORTED_MODULE_0__["withCtx"])(() => [_hoisted_7]),
+    _: 1
+  })]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_8, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])(" Mobile menu button "), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("button", {
     class: "inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-800 focus:outline-none focus:bg-gray-800 focus:text-white",
     "aria-label": "Main menu",
     "aria-expanded": "false",
-    onClick: _cache[2] || (_cache[2] = $event => $setup.toggleMobileMenu())
+    onClick: _cache[1] || (_cache[1] = $event => $setup.toggleMobileMenu())
   }, [(Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("svg", {
     class: ["w-6 h-6", {
       hidden: $setup.isMobileOpen,
@@ -29927,7 +29919,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     fill: "none",
     viewBox: "0 0 24 24",
     stroke: "currentColor"
-  }, [_hoisted_10], 2
+  }, [_hoisted_9], 2
   /* CLASS */
   )), (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("svg", {
     class: ["w-6 h-6", {
@@ -29938,14 +29930,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     fill: "none",
     viewBox: "0 0 24 24",
     stroke: "currentColor"
-  }, [_hoisted_11], 2
+  }, [_hoisted_10], 2
   /* CLASS */
   ))])])])]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", {
     class: ["sm:hidden", {
       block: $setup.isMobileOpen,
       hidden: !$setup.isMobileOpen
     }]
-  }, [_hoisted_12], 2
+  }, [_hoisted_11], 2
   /* CLASS */
   )]);
 }
@@ -48069,8 +48061,7 @@ app.component('card', _components_Card__WEBPACK_IMPORTED_MODULE_5__["default"]);
 app.directive('click-outside', {
   beforeMount(el, binding, vnode) {
     el.clickOutsideEvent = function (event) {
-      console.log(!(el == event.target || el.contains(event.target))); // here I check that click was outside the el and his children
-
+      // here I check that click was outside the el and his children
       if (!(el == event.target || el.contains(event.target))) {
         binding.value(event);
       }
@@ -48241,12 +48232,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Dropdown_vue_vue_type_template_id_ef782e08_bindings_isOpened_setup_handleClick_setup_handleClose_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dropdown.vue?vue&type=template&id=ef782e08&bindings={"isOpened":"setup","handleClick":"setup","handleClose":"setup"} */ "./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={\"isOpened\":\"setup\",\"handleClick\":\"setup\",\"handleClose\":\"setup\"}");
+/* harmony import */ var _Dropdown_vue_vue_type_template_id_ef782e08_bindings_buttonClass_props_isOpened_setup_handleClick_setup_handleClose_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dropdown.vue?vue&type=template&id=ef782e08&bindings={"buttonClass":"props","isOpened":"setup","handleClick":"setup","handleClose":"setup"} */ "./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={\"buttonClass\":\"props\",\"isOpened\":\"setup\",\"handleClick\":\"setup\",\"handleClose\":\"setup\"}");
 /* harmony import */ var _Dropdown_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dropdown.vue?vue&type=script&lang=js */ "./resources/js/components/Dropdown.vue?vue&type=script&lang=js");
 /* empty/unused harmony star reexport */
 
 
-_Dropdown_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].render = _Dropdown_vue_vue_type_template_id_ef782e08_bindings_isOpened_setup_handleClick_setup_handleClose_setup___WEBPACK_IMPORTED_MODULE_0__["render"]
+_Dropdown_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].render = _Dropdown_vue_vue_type_template_id_ef782e08_bindings_buttonClass_props_isOpened_setup_handleClick_setup_handleClose_setup___WEBPACK_IMPORTED_MODULE_0__["render"]
 /* hot reload */
 if (false) {}
 
@@ -48272,17 +48263,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={\"isOpened\":\"setup\",\"handleClick\":\"setup\",\"handleClose\":\"setup\"}":
-/*!******************************************************************************************************************************************************!*\
-  !*** ./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={"isOpened":"setup","handleClick":"setup","handleClose":"setup"} ***!
-  \******************************************************************************************************************************************************/
+/***/ "./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={\"buttonClass\":\"props\",\"isOpened\":\"setup\",\"handleClick\":\"setup\",\"handleClose\":\"setup\"}":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={"buttonClass":"props","isOpened":"setup","handleClick":"setup","handleClose":"setup"} ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: render */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_6_node_modules_vue_loader_dist_index_js_ref_28_0_Dropdown_vue_vue_type_template_id_ef782e08_bindings_isOpened_setup_handleClick_setup_handleClose_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/dist/templateLoader.js??ref--6!../../../node_modules/vue-loader/dist??ref--28-0!./Dropdown.vue?vue&type=template&id=ef782e08&bindings={"isOpened":"setup","handleClick":"setup","handleClose":"setup"} */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={\"isOpened\":\"setup\",\"handleClick\":\"setup\",\"handleClose\":\"setup\"}");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_6_node_modules_vue_loader_dist_index_js_ref_28_0_Dropdown_vue_vue_type_template_id_ef782e08_bindings_isOpened_setup_handleClick_setup_handleClose_setup___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_6_node_modules_vue_loader_dist_index_js_ref_28_0_Dropdown_vue_vue_type_template_id_ef782e08_bindings_buttonClass_props_isOpened_setup_handleClick_setup_handleClose_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/dist/templateLoader.js??ref--6!../../../node_modules/vue-loader/dist??ref--28-0!./Dropdown.vue?vue&type=template&id=ef782e08&bindings={"buttonClass":"props","isOpened":"setup","handleClick":"setup","handleClose":"setup"} */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&bindings={\"buttonClass\":\"props\",\"isOpened\":\"setup\",\"handleClick\":\"setup\",\"handleClose\":\"setup\"}");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_6_node_modules_vue_loader_dist_index_js_ref_28_0_Dropdown_vue_vue_type_template_id_ef782e08_bindings_buttonClass_props_isOpened_setup_handleClick_setup_handleClose_setup___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 
 
@@ -48353,12 +48344,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PrimaryNav_vue_vue_type_template_id_cb63a028_bindings_isMobileOpen_setup_isProfileOpen_setup_toggleMobileMenu_setup_toggleProfileMenu_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={"isMobileOpen":"setup","isProfileOpen":"setup","toggleMobileMenu":"setup","toggleProfileMenu":"setup"} */ "./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={\"isMobileOpen\":\"setup\",\"isProfileOpen\":\"setup\",\"toggleMobileMenu\":\"setup\",\"toggleProfileMenu\":\"setup\"}");
+/* harmony import */ var _PrimaryNav_vue_vue_type_template_id_cb63a028_bindings_isMobileOpen_setup_toggleMobileMenu_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={"isMobileOpen":"setup","toggleMobileMenu":"setup"} */ "./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={\"isMobileOpen\":\"setup\",\"toggleMobileMenu\":\"setup\"}");
 /* harmony import */ var _PrimaryNav_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrimaryNav.vue?vue&type=script&lang=js */ "./resources/js/components/PrimaryNav.vue?vue&type=script&lang=js");
 /* empty/unused harmony star reexport */
 
 
-_PrimaryNav_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].render = _PrimaryNav_vue_vue_type_template_id_cb63a028_bindings_isMobileOpen_setup_isProfileOpen_setup_toggleMobileMenu_setup_toggleProfileMenu_setup___WEBPACK_IMPORTED_MODULE_0__["render"]
+_PrimaryNav_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].render = _PrimaryNav_vue_vue_type_template_id_cb63a028_bindings_isMobileOpen_setup_toggleMobileMenu_setup___WEBPACK_IMPORTED_MODULE_0__["render"]
 /* hot reload */
 if (false) {}
 
@@ -48384,17 +48375,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={\"isMobileOpen\":\"setup\",\"isProfileOpen\":\"setup\",\"toggleMobileMenu\":\"setup\",\"toggleProfileMenu\":\"setup\"}":
-/*!***********************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={"isMobileOpen":"setup","isProfileOpen":"setup","toggleMobileMenu":"setup","toggleProfileMenu":"setup"} ***!
-  \***********************************************************************************************************************************************************************************************/
+/***/ "./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={\"isMobileOpen\":\"setup\",\"toggleMobileMenu\":\"setup\"}":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={"isMobileOpen":"setup","toggleMobileMenu":"setup"} ***!
+  \*******************************************************************************************************************************************/
 /*! exports provided: render */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_6_node_modules_vue_loader_dist_index_js_ref_28_0_PrimaryNav_vue_vue_type_template_id_cb63a028_bindings_isMobileOpen_setup_isProfileOpen_setup_toggleMobileMenu_setup_toggleProfileMenu_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/dist/templateLoader.js??ref--6!../../../node_modules/vue-loader/dist??ref--28-0!./PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={"isMobileOpen":"setup","isProfileOpen":"setup","toggleMobileMenu":"setup","toggleProfileMenu":"setup"} */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={\"isMobileOpen\":\"setup\",\"isProfileOpen\":\"setup\",\"toggleMobileMenu\":\"setup\",\"toggleProfileMenu\":\"setup\"}");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_6_node_modules_vue_loader_dist_index_js_ref_28_0_PrimaryNav_vue_vue_type_template_id_cb63a028_bindings_isMobileOpen_setup_isProfileOpen_setup_toggleMobileMenu_setup_toggleProfileMenu_setup___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_6_node_modules_vue_loader_dist_index_js_ref_28_0_PrimaryNav_vue_vue_type_template_id_cb63a028_bindings_isMobileOpen_setup_toggleMobileMenu_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/dist/templateLoader.js??ref--6!../../../node_modules/vue-loader/dist??ref--28-0!./PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={"isMobileOpen":"setup","toggleMobileMenu":"setup"} */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/PrimaryNav.vue?vue&type=template&id=cb63a028&bindings={\"isMobileOpen\":\"setup\",\"toggleMobileMenu\":\"setup\"}");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_6_node_modules_vue_loader_dist_index_js_ref_28_0_PrimaryNav_vue_vue_type_template_id_cb63a028_bindings_isMobileOpen_setup_toggleMobileMenu_setup___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 
 

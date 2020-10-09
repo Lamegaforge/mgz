@@ -12,7 +12,7 @@
       type="search"
     />
     <div className="ml-auto sm:ml-3">
-      <dropdown>
+      <dropdown button-class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800">
         <template #trigger>
           <svg
             class="w-5 h-5"
@@ -26,7 +26,7 @@
               stroke-width="2"
               d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"
             ></path></svg
-          ><span class="ml-2">Sort by</span
+          ><span class="ml-2">Trier par</span
           ><svg
             class="w-5 h-5 ml-2 -mr-1"
             viewBox="0 0 20 20"
@@ -50,12 +50,12 @@
               href="#"
               class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
               role="menuitem"
-              >Name</a
+              >Date</a
             ><a
               href="#"
               class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
               role="menuitem"
-              >Date</a
+              >Nombre de vues</a
             >
           </div>
         </template>
@@ -80,7 +80,7 @@ export default {
     const items = ref([]);
     onMounted(async () => {
         try {
-          const response = await axios.get("https://staging.megasaurus.fr/clips/api");
+          const response = await axios.get("/clips/api");
           items.value = response.data.data;
         } catch (err) {
           console.log(err);

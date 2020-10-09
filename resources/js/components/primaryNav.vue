@@ -32,57 +32,41 @@
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
-          <!-- Profile dropdown -->
-          <div class="relative ml-3">
-            <div>
-              <button
-                class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
-                id="user-menu"
-                aria-label="User menu"
-                aria-haspopup="true"
-                @click="toggleProfileMenu()"
-              >
-                <img
-                  class="object-cover w-8 h-8 rounded-full"
-                  src="https://assets1.ignimgs.com/2019/06/03/cropped-3-1559596858674.jpg"
-                  alt=""
-                />
-              </button>
-            </div>
-            <div
-              class="absolute right-0 w-48 mt-2 transition duration-200 ease-out origin-top-right transform rounded-md shadow-lg"
-              :class="{
-                'opacity-100 scale-100': isProfileOpen,
-                'opacity-0 scale-95': !isProfileOpen,
-              }"
-            >
+          <dropdown class="ml-3" button-class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+            <template #trigger>
+              <img
+                class="object-cover w-8 h-8 rounded-full"
+                src="https://cdn.discordapp.com/emojis/761566071151919104.png?v=1"
+                alt=""
+              />
+            </template>
+            <template #content>
               <div
-                class="py-1 bg-white rounded-md shadow-xs"
+                class="py-1"
                 role="menu"
                 aria-orientation="vertical"
-                aria-labelledby="user-menu"
+                aria-labelledby="sort-menu"
               >
                 <a
                   href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
                   role="menuitem"
                   >Mon profil</a
-                >
-                <a
+                ><a
                   href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
                   role="menuitem"
                   >Paramètres</a
                 >
                 <a
                   href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
                   role="menuitem"
                   >Déconnexion</a
                 >
               </div>
-            </div>
-          </div>
+            </template>
+          </dropdown>
         </div>
         <div class="flex items-center -mr-2 sm:hidden">
           <!-- Mobile menu button -->
@@ -152,7 +136,7 @@
           <div class="flex-shrink-0">
             <img
               class="object-cover w-10 h-10 rounded-full"
-              src="https://assets1.ignimgs.com/2019/06/03/cropped-3-1559596858674.jpg"
+              src="https://cdn.discordapp.com/emojis/761566071151919104.png?v=1"
               alt=""
             />
           </div>
@@ -188,15 +172,15 @@ import { ref } from "vue";
 export default {
   setup() {
     const isMobileOpen = ref(false);
-    const isProfileOpen = ref(false);
 
     function toggleMobileMenu() {
       isMobileOpen.value = !isMobileOpen.value;
     }
-    function toggleProfileMenu() {
-      isProfileOpen.value = !isProfileOpen.value;
-    }
-    return { isMobileOpen, isProfileOpen, toggleMobileMenu, toggleProfileMenu };
+  
+    return {
+      isMobileOpen,
+      toggleMobileMenu,
+    };
   },
 };
 </script>
