@@ -1,5 +1,5 @@
 require('./bootstrap');
-import PrimaryNav from "./components/PrimaryNav"
+import PrimaryNav from "./components/primaryNav"
 import { createApp } from 'vue'
 
 const app = createApp({})
