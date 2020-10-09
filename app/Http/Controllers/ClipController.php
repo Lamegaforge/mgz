@@ -24,6 +24,13 @@ class ClipController extends Controller
         ]);
     }
 
+    public function api(Request $request)
+    {
+        $clips = $this->clipRepository->paginate($limit = null, $columns = ['*']);
+
+        return response()->json($clips->toArray());
+    }
+
     public function show(Request $request)
     {
         $clip = $this->clipRepository
