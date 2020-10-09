@@ -7,6 +7,7 @@ use DateTime;
 use App\Repositories\ClipRepository;
 use App\Http\Controllers\Controller;
 use App\Repositories\Criterias\Where;
+use App\Repositories\Criterias\Active;
 use App\Repositories\Criterias\WhereLike;
 use App\Http\Requests\Api\SearchClipsRequest;
 
@@ -21,6 +22,8 @@ class ClipController extends Controller
 
     public function search(SearchClipsRequest $request)
     {
+        $this->clipRepository->pushCriteria(new Active());
+
         if ($request->has('card_id')) {
 
             $cardId = $request->get('card_id');
