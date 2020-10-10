@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Clip;
+use App\Models\Card;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,8 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-	    Clip::factory()
-			->times(50)
-			->create();
+        $cards = Card::factory()->times(20)->create();
+
+        $cards->map(function ($card) {
+
+            Clip::factory()
+                ->times(15)
+                ->create([
+                    'card_id' => $card->id,
+                ]);
+        });
     }
 }
