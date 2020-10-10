@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Clip;
+use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,6 +25,8 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
+            'clip_id' => Clip::factory()->create(),
+            'user_id' => User::factory()->create(),
             'content' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
             'active' => true,
             'approved_at' => $this->faker->dateTimeInInterval($startDate = '-30 years', $interval = '+ 5 days'),

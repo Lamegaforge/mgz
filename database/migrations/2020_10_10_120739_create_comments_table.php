@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('clip_id');
-            $table->unsignedBigInteger('sub_comment_id')->nullable();
+            $table->unsignedBigInteger('parent_comment_id')->nullable();
             $table->text('content');
             $table->boolean('active')->default(false);
             $table->timestamp('approved_at')->nullable();
@@ -25,7 +25,7 @@ class CreateCommentsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('clip_id')->references('id')->on('clips');
-            $table->foreign('sub_comment_id')->references('id')->on('comments');
+            $table->foreign('parent_comment_id')->references('id')->on('comments');
         });
     }
 
