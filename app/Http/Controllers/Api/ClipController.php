@@ -38,7 +38,7 @@ class ClipController extends Controller
             $this->clipRepository->pushCriteria(new WhereLike('title', $title));
         }
 
-        $clips = $this->clipRepository->paginate($limit = null, $columns = ['*']);
+        $clips = $this->clipRepository->paginate(12, $columns = ['*']);
 
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),

@@ -78,13 +78,14 @@ export default {
       type: Array,
       default: [
         {
+          id: 1,
           name: "Grounded",
           cover: "https://static-cdn.jtvnw.net/ttv-boxart/Grounded-jpg",
         },
       ],
     },
   },
-  setup(props) {
+  setup(props, context) {
     const fileredItems = ref([]);
     const selectedItem = ref(null);
 
@@ -101,11 +102,13 @@ export default {
 
     function handleClick(item) {
       selectedItem.value = item;
+      context.emit('onSelected', selectedItem.value.id)
     }
 
     function reset() {
       selectedItem.value = null;
       fileredItems.value = [];
+      context.emit('onSelected', null)
     }
 
     return { fileredItems, selectedItem, handleSearch, handleClick, reset };

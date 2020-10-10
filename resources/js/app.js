@@ -1,7 +1,9 @@
 require('./bootstrap');
 import PrimaryNav from "./components/PrimaryNav"
 import Grid from "./components/Grid"
+import Pagination from "./components/Pagination"
 import SelectMenu from "./components/SelectMenu"
+import DebounceInput from "./components/DebounceInput"
 import Dropdown from "./components/Dropdown"
 import Clip from "./components/Clip"
 import Card from "./components/Card"
@@ -10,7 +12,9 @@ import { createApp } from 'vue'
 const app = createApp({})
 app.component('primary-nav', PrimaryNav)
 app.component('grid', Grid)
+app.component('pagination', Pagination)
 app.component('select-menu', SelectMenu)
+app.component('debounce-input', DebounceInput)
 app.component('dropdown', Dropdown)
 app.component('clip', Clip)
 app.component('card', Card)

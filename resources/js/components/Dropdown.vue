@@ -1,7 +1,6 @@
 <template>
   <span class="relative">
     <button
-      ref="trigger"
       :class="buttonClass"
       @click="handleClick()"
       v-click-outside="handleClose"
