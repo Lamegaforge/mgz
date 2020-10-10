@@ -4,17 +4,18 @@ namespace Database\Factories;
 
 use App\Models\Clip;
 use App\Models\User;
-use App\Models\Card;
+use App\Models\Comment;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ClipFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Clip::class;
+    protected $model = Comment::class;
 
     /**
      * Define the model's default state.
@@ -24,15 +25,10 @@ class ClipFactory extends Factory
     public function definition()
     {
         return [
-            'tracking_id' => $this->faker->unique()->numberBetween(1000, 100000),
+            'clip_id' => Clip::factory()->create(),
             'user_id' => User::factory()->create(),
-            'card_id' => Card::factory()->create(),
-            'slug' => $this->faker->slug,
-            'title' => $this->faker->unique()->sentence($nbWords = 6, $variableNbWords = true),
-            'thumbnail' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
-            'url' => $this->faker->unique()->url,
+            'content' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
             'active' => true,
-            'views' => $this->faker->numberBetween($min = 100, $max = 500),
             'approved_at' => $this->faker->dateTimeInInterval($startDate = '-30 years', $interval = '+ 5 days'),
         ];
     }

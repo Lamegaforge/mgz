@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Clip;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Card extends Model
 {
     use HasFactory;
+
+    public function clips()
+    {
+        return $this->hasMany(Clip::class);
+    }
 }
