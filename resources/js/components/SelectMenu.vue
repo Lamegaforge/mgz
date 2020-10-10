@@ -5,19 +5,19 @@
       @input="handleSearch($event)"
       type="text"
       placeholder="Filtrer par fiche"
-      class="w-full bg-gray-800 border-transparent form-input"
+      class="w-full bg-gray-900 border-transparent form-input"
     />
     <div
       v-if="selectedItem"
-      class="relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md sm:text-sm sm:leading-5"
+      class="relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md sm:text-sm sm:leading-5"
     >
       <div class="flex items-center space-x-3 text-white">
         <img
-          :src="selectedItem.cover"
+          :src="selectedItem.image_url"
           alt=""
           class="flex-shrink-0 w-6 h-6 rounded-full"
         />
-        <span class="block truncate">{{ selectedItem.name }}</span>
+        <span class="block truncate">{{ selectedItem.title }}</span>
       </div>
       <span
         class="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
@@ -40,7 +40,7 @@
     </div>
     <div
       v-if="fileredItems.length && !selectedItem"
-      class="absolute w-full mt-1 bg-gray-800 rounded-md shadow-lg"
+      class="absolute w-full mt-1 bg-gray-900 rounded-md shadow-lg"
     >
       <ul
         tabIndex="-1"
@@ -55,15 +55,15 @@
           @click="handleClick(item)"
           id="listbox-item-0"
           role="option"
-          class="relative py-2 pl-3 text-gray-200 cursor-pointer select-none hover:bg-gray-700 pr-9"
+          class="relative py-2 pl-3 text-gray-200 cursor-pointer select-none hover:bg-gray-800 pr-9"
         >
           <div class="flex items-center space-x-3">
             <img
-              :src="item.cover"
+              :src="item.image_url"
               alt=""
               class="flex-shrink-0 w-6 h-6 rounded-full"
             />
-            <span class="block font-normal truncate">{{ item.name }}</span>
+            <span class="block font-normal truncate">{{ item.title }}</span>
           </div>
         </li>
       </ul>
@@ -79,7 +79,7 @@ export default {
       default: [
         {
           id: 1,
-          name: "Grounded",
+          title: "Grounded",
           cover: "https://static-cdn.jtvnw.net/ttv-boxart/Grounded-jpg",
         },
       ],
@@ -92,9 +92,9 @@ export default {
     function handleSearch(q) {
       let search = q.target.value;
       let result = [];
-      if (search) {
+      if (search && search.length > 3) {
         result = props.items.filter((item) => {
-          return item.name.toLowerCase().includes(search.toLowerCase());
+          return item.title.toLowerCase().includes(search.toLowerCase());
         });
       }
       fileredItems.value = result;
@@ -102,13 +102,13 @@ export default {
 
     function handleClick(item) {
       selectedItem.value = item;
-      context.emit('onSelected', selectedItem.value.id)
+      context.emit("onSelected", selectedItem.value.id);
     }
 
     function reset() {
       selectedItem.value = null;
       fileredItems.value = [];
-      context.emit('onSelected', null)
+      context.emit("onSelected", null);
     }
 
     return { fileredItems, selectedItem, handleSearch, handleClick, reset };

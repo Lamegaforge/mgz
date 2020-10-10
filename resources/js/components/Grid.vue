@@ -3,7 +3,7 @@
     class="flex flex-col items-start mt-4 space-y-3 md:mt-6 sm:space-y-0 sm:items-center sm:flex-row"
   >
     <div v-if="type === 'clip'" class="w-full sm:w-56">
-      <select-menu @onSelected="handleSelectedCard" />
+      <select-menu :items="cards" @onSelected="handleSelectedCard" />
     </div>
     <div class="relative w-full sm:ml-auto sm:w-64">
       <div
@@ -18,7 +18,7 @@
         </svg>
       </div>
       <debounce-input
-        class="w-full pl-10 bg-gray-800 border-transparent rounded-full form-input"
+        class="w-full pl-10 bg-gray-900 border-transparent rounded-full form-input"
         placeholder="Rechercher"
         type="search"
         @onDebounced="handleSearch"
@@ -26,7 +26,7 @@
     </div>
     <div className="ml-auto sm:ml-3">
       <dropdown
-        button-class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
+        button-class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
       >
         <template #trigger>
           <svg
@@ -56,19 +56,19 @@
         </template>
         <template #content>
           <div
-            class="py-1"
+            class="py-1 shadow"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="sort-menu"
           >
             <a
               href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+              class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
               role="menuitem"
               >Date</a
             ><a
               href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+              class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
               role="menuitem"
               >Nombre de vues</a
             >
@@ -104,37 +104,27 @@ export default {
     type: String,
     gridClass: String,
     fetchUrl: String,
+    cards: Array,
   },
   setup(props) {
-    // const search = ref(null);
-    const awaitingSearch = ref(false);
     const grid = ref(null);
     const items = ref([]);
     const isLoading = ref(false);
     const links = ref([]);
     const prevPageUrl = ref(null);
     const nextPageUrl = ref(null);
-    const timeout = ref(null);
+    const search = ref(null);
+    const cardId = ref(null);
 
     onMounted(async () => {
-      fetchItems(props.fetchUrl);
+      fetchItems();
     });
-
-    // watch((search) => {
-    //   if (!awaitingSearch.value) {
-    //     setTimeout(() => {
-    //       fetchItems(`${props.fetchUrl}?title=${search.value}`);
-    //       awaitingSearch.value = false;
-    //     }, 1000);
-    //   }
-    //   awaitingSearch.value = true;
-    // });
 
     async function fetchItems(url) {
       isLoading.value = true;
       window.scrollTo(0, grid.offsetTop - 100);
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(constructUrl(url));
         links.value = response.data?.clips.links;
         items.value = response.data?.clips?.data;
         prevPageUrl.value = response.data?.clips.prev_page_url;
@@ -145,16 +135,31 @@ export default {
       isLoading.value = false;
     }
 
-    function handleSelectedCard(cardId) {
-      if (!cardId) {
-        fetchItems(props.fetchUrl);
-      } else {
-        fetchItems(`${props.fetchUrl}?card_id=${cardId}`);
+    function constructUrl(url) {
+      if (search.value && cardId.value) {
+        return `${props.fetchUrl}?title=${search.value}&card_id=${cardId.value}`;
       }
+      if (cardId.value) {
+        return `${props.fetchUrl}?card_id=${cardId.value}`;
+      }
+      if (search.value) {
+        return `${props.fetchUrl}?title=${search.value}`;
+      }
+      if (url) {
+        return url;
+      }
+
+      return props.fetchUrl;
     }
 
-    function handleSearch(search) {
-      fetchItems(`${props.fetchUrl}?title=${search}`);
+    function handleSelectedCard(id) {
+      cardId.value = id;
+      fetchItems();
+    }
+
+    function handleSearch(query) {
+      search.value = query;
+      fetchItems();
     }
 
     return {

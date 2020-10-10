@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed z-50 w-full bg-gray-900 shadow">
+  <nav class="sticky top-0 z-50 w-full bg-gray-900 shadow">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
@@ -49,18 +49,18 @@
               >
                 <a
                   href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
                   role="menuitem"
                   >Mon profil</a
                 ><a
                   href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
                   role="menuitem"
                   >Paramètres</a
                 >
                 <a
                   href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                  class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
                   role="menuitem"
                   >Déconnexion</a
                 >

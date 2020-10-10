@@ -15,8 +15,12 @@
     }
 
     @screen lg {
-        @apply px-8 py-24
+        @apply px-8 py-24;
     }
 }
 
 @import "tailwindcss/utilities";
+.blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}

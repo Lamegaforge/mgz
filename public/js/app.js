@@ -29496,30 +29496,22 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     type: String,
     gridClass: String,
-    fetchUrl: String
+    fetchUrl: String,
+    cards: Array
   },
 
   setup(props) {
-    // const search = ref(null);
-    const awaitingSearch = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(false);
     const grid = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(null);
     const items = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])([]);
     const isLoading = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(false);
     const links = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])([]);
     const prevPageUrl = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(null);
     const nextPageUrl = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(null);
-    const timeout = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(null);
+    const search = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(null);
+    const cardId = Object(vue__WEBPACK_IMPORTED_MODULE_0__["ref"])(null);
     Object(vue__WEBPACK_IMPORTED_MODULE_0__["onMounted"])(async () => {
-      fetchItems(props.fetchUrl);
-    }); // watch((search) => {
-    //   if (!awaitingSearch.value) {
-    //     setTimeout(() => {
-    //       fetchItems(`${props.fetchUrl}?title=${search.value}`);
-    //       awaitingSearch.value = false;
-    //     }, 1000);
-    //   }
-    //   awaitingSearch.value = true;
-    // });
+      fetchItems();
+    });
 
     async function fetchItems(url) {
       isLoading.value = true;
@@ -29528,7 +29520,7 @@ __webpack_require__.r(__webpack_exports__);
       try {
         var _response$data, _response$data2, _response$data2$clips, _response$data3, _response$data4;
 
-        const response = await axios.get(url);
+        const response = await axios.get(constructUrl(url));
         links.value = (_response$data = response.data) === null || _response$data === void 0 ? void 0 : _response$data.clips.links;
         items.value = (_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$clips = _response$data2.clips) === null || _response$data2$clips === void 0 ? void 0 : _response$data2$clips.data;
         prevPageUrl.value = (_response$data3 = response.data) === null || _response$data3 === void 0 ? void 0 : _response$data3.clips.prev_page_url;
@@ -29540,16 +29532,34 @@ __webpack_require__.r(__webpack_exports__);
       isLoading.value = false;
     }
 
-    function handleSelectedCard(cardId) {
-      if (!cardId) {
-        fetchItems(props.fetchUrl);
-      } else {
-        fetchItems(`${props.fetchUrl}?card_id=${cardId}`);
+    function constructUrl(url) {
+      if (search.value && cardId.value) {
+        return `${props.fetchUrl}?title=${search.value}&card_id=${cardId.value}`;
       }
+
+      if (cardId.value) {
+        return `${props.fetchUrl}?card_id=${cardId.value}`;
+      }
+
+      if (search.value) {
+        return `${props.fetchUrl}?title=${search.value}`;
+      }
+
+      if (url) {
+        return url;
+      }
+
+      return props.fetchUrl;
     }
 
-    function handleSearch(search) {
-      fetchItems(`${props.fetchUrl}?title=${search}`);
+    function handleSelectedCard(id) {
+      cardId.value = id;
+      fetchItems();
+    }
+
+    function handleSearch(query) {
+      search.value = query;
+      fetchItems();
     }
 
     return {
@@ -29655,7 +29665,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Array,
       default: [{
         id: 1,
-        name: "Grounded",
+        title: "Grounded",
         cover: "https://static-cdn.jtvnw.net/ttv-boxart/Grounded-jpg"
       }]
     }
@@ -29669,9 +29679,9 @@ __webpack_require__.r(__webpack_exports__);
       let search = q.target.value;
       let result = [];
 
-      if (search) {
+      if (search && search.length > 3) {
         result = props.items.filter(item => {
-          return item.name.toLowerCase().includes(search.toLowerCase());
+          return item.title.toLowerCase().includes(search.toLowerCase());
         });
       }
 
@@ -29680,13 +29690,13 @@ __webpack_require__.r(__webpack_exports__);
 
     function handleClick(item) {
       selectedItem.value = item;
-      context.emit('onSelected', selectedItem.value.id);
+      context.emit("onSelected", selectedItem.value.id);
     }
 
     function reset() {
       selectedItem.value = null;
       fileredItems.value = [];
-      context.emit('onSelected', null);
+      context.emit("onSelected", null);
     }
 
     return {
@@ -29822,7 +29832,7 @@ const _hoisted_1 = {
   class: "relative"
 };
 const _hoisted_2 = {
-  class: "bg-gray-800 rounded-md shadow-xs"
+  class: "bg-gray-900 rounded-md shadow-xs"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _directive_click_outside = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveDirective"])("click-outside");
@@ -29844,10 +29854,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={\"type\":\"props\",\"gridClass\":\"props\",\"fetchUrl\":\"props\",\"items\":\"setup\",\"links\":\"setup\",\"prevPageUrl\":\"setup\",\"nextPageUrl\":\"setup\",\"isLoading\":\"setup\",\"fetchItems\":\"setup\",\"handleSelectedCard\":\"setup\",\"handleSearch\":\"setup\"}":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/dist/templateLoader.js??ref--7!./node_modules/vue-loader/dist??ref--30-0!./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={"type":"props","gridClass":"props","fetchUrl":"props","items":"setup","links":"setup","prevPageUrl":"setup","nextPageUrl":"setup","isLoading":"setup","fetchItems":"setup","handleSelectedCard":"setup","handleSearch":"setup"} ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={\"type\":\"props\",\"gridClass\":\"props\",\"fetchUrl\":\"props\",\"cards\":\"props\",\"items\":\"setup\",\"links\":\"setup\",\"prevPageUrl\":\"setup\",\"nextPageUrl\":\"setup\",\"isLoading\":\"setup\",\"fetchItems\":\"setup\",\"handleSelectedCard\":\"setup\",\"handleSearch\":\"setup\"}":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/dist/templateLoader.js??ref--7!./node_modules/vue-loader/dist??ref--30-0!./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={"type":"props","gridClass":"props","fetchUrl":"props","cards":"props","items":"setup","links":"setup","prevPageUrl":"setup","nextPageUrl":"setup","isLoading":"setup","fetchItems":"setup","handleSelectedCard":"setup","handleSearch":"setup"} ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -29918,17 +29928,17 @@ const _hoisted_8 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createV
 );
 
 const _hoisted_9 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", {
-  class: "py-1",
+  class: "py-1 shadow",
   role: "menu",
   "aria-orientation": "vertical",
   "aria-labelledby": "sort-menu"
 }, [/*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
-  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
+  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700",
   role: "menuitem"
 }, "Date"), /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
-  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
+  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700",
   role: "menuitem"
 }, "Nombre de vues")], -1
 /* HOISTED */
@@ -29955,18 +29965,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_pagination = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("pagination");
 
   return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_1, [$props.type === 'clip' ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("div", _hoisted_2, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_select_menu, {
+    items: $props.cards,
     onOnSelected: $setup.handleSelectedCard
   }, null, 8
   /* PROPS */
-  , ["onOnSelected"])])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_3, [_hoisted_4, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_debounce_input, {
-    class: "w-full pl-10 bg-gray-800 border-transparent rounded-full form-input",
+  , ["items", "onOnSelected"])])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_3, [_hoisted_4, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_debounce_input, {
+    class: "w-full pl-10 bg-gray-900 border-transparent rounded-full form-input",
     placeholder: "Rechercher",
     type: "search",
     onOnDebounced: $setup.handleSearch
   }, null, 8
   /* PROPS */
   , ["onOnDebounced"])]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_5, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_dropdown, {
-    "button-class": "inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
+    "button-class": "inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
   }, {
     trigger: Object(vue__WEBPACK_IMPORTED_MODULE_0__["withCtx"])(() => [_hoisted_6, _hoisted_7, _hoisted_8]),
     content: Object(vue__WEBPACK_IMPORTED_MODULE_0__["withCtx"])(() => [_hoisted_9]),
@@ -30103,7 +30114,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 const _hoisted_1 = {
-  class: "fixed z-50 w-full bg-gray-900 shadow"
+  class: "sticky top-0 z-50 w-full bg-gray-900 shadow"
 };
 const _hoisted_2 = {
   class: "px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"
@@ -30133,15 +30144,15 @@ const _hoisted_7 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createV
   "aria-labelledby": "sort-menu"
 }, [/*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
-  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
+  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800",
   role: "menuitem"
 }, "Mon profil"), /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
-  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
+  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800",
   role: "menuitem"
 }, "Paramètres"), /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("a", {
   href: "#",
-  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700",
+  class: "block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800",
   role: "menuitem"
 }, "Déconnexion")], -1
 /* HOISTED */
@@ -30237,7 +30248,7 @@ const _hoisted_1 = {
 };
 const _hoisted_2 = {
   key: 1,
-  class: "relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md sm:text-sm sm:leading-5"
+  class: "relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md sm:text-sm sm:leading-5"
 };
 const _hoisted_3 = {
   class: "flex items-center space-x-3 text-white"
@@ -30262,7 +30273,7 @@ const _hoisted_5 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createV
 
 const _hoisted_6 = {
   key: 2,
-  class: "absolute w-full mt-1 bg-gray-800 rounded-md shadow-lg"
+  class: "absolute w-full mt-1 bg-gray-900 rounded-md shadow-lg"
 };
 const _hoisted_7 = {
   tabIndex: "-1",
@@ -30283,16 +30294,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onInput: _cache[1] || (_cache[1] = $event => $setup.handleSearch($event)),
     type: "text",
     placeholder: "Filtrer par fiche",
-    class: "w-full bg-gray-800 border-transparent form-input"
+    class: "w-full bg-gray-900 border-transparent form-input"
   }, null, 32
   /* HYDRATE_EVENTS */
   )) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $setup.selectedItem ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])("div", _hoisted_2, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_3, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("img", {
-    src: $setup.selectedItem.cover,
+    src: $setup.selectedItem.image_url,
     alt: "",
     class: "flex-shrink-0 w-6 h-6 rounded-full"
   }, null, 8
   /* PROPS */
-  , ["src"]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("span", _hoisted_4, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($setup.selectedItem.name), 1
+  , ["src"]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("span", _hoisted_4, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($setup.selectedItem.title), 1
   /* TEXT */
   )]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("span", {
     class: "absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer",
@@ -30303,14 +30314,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: $event => $setup.handleClick(item),
       id: "listbox-item-0",
       role: "option",
-      class: "relative py-2 pl-3 text-gray-200 cursor-pointer select-none hover:bg-gray-700 pr-9"
+      class: "relative py-2 pl-3 text-gray-200 cursor-pointer select-none hover:bg-gray-800 pr-9"
     }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("div", _hoisted_8, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("img", {
-      src: item.cover,
+      src: item.image_url,
       alt: "",
       class: "flex-shrink-0 w-6 h-6 rounded-full"
     }, null, 8
     /* PROPS */
-    , ["src"]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("span", _hoisted_9, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(item.name), 1
+    , ["src"]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("span", _hoisted_9, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(item.title), 1
     /* TEXT */
     )])], 8
     /* PROPS */
@@ -48626,12 +48637,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Grid_vue_vue_type_template_id_92d6219e_bindings_type_props_gridClass_props_fetchUrl_props_items_setup_links_setup_prevPageUrl_setup_nextPageUrl_setup_isLoading_setup_fetchItems_setup_handleSelectedCard_setup_handleSearch_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Grid.vue?vue&type=template&id=92d6219e&bindings={"type":"props","gridClass":"props","fetchUrl":"props","items":"setup","links":"setup","prevPageUrl":"setup","nextPageUrl":"setup","isLoading":"setup","fetchItems":"setup","handleSelectedCard":"setup","handleSearch":"setup"} */ "./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={\"type\":\"props\",\"gridClass\":\"props\",\"fetchUrl\":\"props\",\"items\":\"setup\",\"links\":\"setup\",\"prevPageUrl\":\"setup\",\"nextPageUrl\":\"setup\",\"isLoading\":\"setup\",\"fetchItems\":\"setup\",\"handleSelectedCard\":\"setup\",\"handleSearch\":\"setup\"}");
+/* harmony import */ var _Grid_vue_vue_type_template_id_92d6219e_bindings_type_props_gridClass_props_fetchUrl_props_cards_props_items_setup_links_setup_prevPageUrl_setup_nextPageUrl_setup_isLoading_setup_fetchItems_setup_handleSelectedCard_setup_handleSearch_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Grid.vue?vue&type=template&id=92d6219e&bindings={"type":"props","gridClass":"props","fetchUrl":"props","cards":"props","items":"setup","links":"setup","prevPageUrl":"setup","nextPageUrl":"setup","isLoading":"setup","fetchItems":"setup","handleSelectedCard":"setup","handleSearch":"setup"} */ "./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={\"type\":\"props\",\"gridClass\":\"props\",\"fetchUrl\":\"props\",\"cards\":\"props\",\"items\":\"setup\",\"links\":\"setup\",\"prevPageUrl\":\"setup\",\"nextPageUrl\":\"setup\",\"isLoading\":\"setup\",\"fetchItems\":\"setup\",\"handleSelectedCard\":\"setup\",\"handleSearch\":\"setup\"}");
 /* harmony import */ var _Grid_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Grid.vue?vue&type=script&lang=js */ "./resources/js/components/Grid.vue?vue&type=script&lang=js");
 /* empty/unused harmony star reexport */
 
 
-_Grid_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].render = _Grid_vue_vue_type_template_id_92d6219e_bindings_type_props_gridClass_props_fetchUrl_props_items_setup_links_setup_prevPageUrl_setup_nextPageUrl_setup_isLoading_setup_fetchItems_setup_handleSelectedCard_setup_handleSearch_setup___WEBPACK_IMPORTED_MODULE_0__["render"]
+_Grid_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].render = _Grid_vue_vue_type_template_id_92d6219e_bindings_type_props_gridClass_props_fetchUrl_props_cards_props_items_setup_links_setup_prevPageUrl_setup_nextPageUrl_setup_isLoading_setup_fetchItems_setup_handleSelectedCard_setup_handleSearch_setup___WEBPACK_IMPORTED_MODULE_0__["render"]
 /* hot reload */
 if (false) {}
 
@@ -48657,17 +48668,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={\"type\":\"props\",\"gridClass\":\"props\",\"fetchUrl\":\"props\",\"items\":\"setup\",\"links\":\"setup\",\"prevPageUrl\":\"setup\",\"nextPageUrl\":\"setup\",\"isLoading\":\"setup\",\"fetchItems\":\"setup\",\"handleSelectedCard\":\"setup\",\"handleSearch\":\"setup\"}":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={"type":"props","gridClass":"props","fetchUrl":"props","items":"setup","links":"setup","prevPageUrl":"setup","nextPageUrl":"setup","isLoading":"setup","fetchItems":"setup","handleSelectedCard":"setup","handleSearch":"setup"} ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={\"type\":\"props\",\"gridClass\":\"props\",\"fetchUrl\":\"props\",\"cards\":\"props\",\"items\":\"setup\",\"links\":\"setup\",\"prevPageUrl\":\"setup\",\"nextPageUrl\":\"setup\",\"isLoading\":\"setup\",\"fetchItems\":\"setup\",\"handleSelectedCard\":\"setup\",\"handleSearch\":\"setup\"}":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={"type":"props","gridClass":"props","fetchUrl":"props","cards":"props","items":"setup","links":"setup","prevPageUrl":"setup","nextPageUrl":"setup","isLoading":"setup","fetchItems":"setup","handleSelectedCard":"setup","handleSearch":"setup"} ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_7_node_modules_vue_loader_dist_index_js_ref_30_0_Grid_vue_vue_type_template_id_92d6219e_bindings_type_props_gridClass_props_fetchUrl_props_items_setup_links_setup_prevPageUrl_setup_nextPageUrl_setup_isLoading_setup_fetchItems_setup_handleSelectedCard_setup_handleSearch_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/dist/templateLoader.js??ref--7!../../../node_modules/vue-loader/dist??ref--30-0!./Grid.vue?vue&type=template&id=92d6219e&bindings={"type":"props","gridClass":"props","fetchUrl":"props","items":"setup","links":"setup","prevPageUrl":"setup","nextPageUrl":"setup","isLoading":"setup","fetchItems":"setup","handleSelectedCard":"setup","handleSearch":"setup"} */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={\"type\":\"props\",\"gridClass\":\"props\",\"fetchUrl\":\"props\",\"items\":\"setup\",\"links\":\"setup\",\"prevPageUrl\":\"setup\",\"nextPageUrl\":\"setup\",\"isLoading\":\"setup\",\"fetchItems\":\"setup\",\"handleSelectedCard\":\"setup\",\"handleSearch\":\"setup\"}");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_7_node_modules_vue_loader_dist_index_js_ref_30_0_Grid_vue_vue_type_template_id_92d6219e_bindings_type_props_gridClass_props_fetchUrl_props_items_setup_links_setup_prevPageUrl_setup_nextPageUrl_setup_isLoading_setup_fetchItems_setup_handleSelectedCard_setup_handleSearch_setup___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_7_node_modules_vue_loader_dist_index_js_ref_30_0_Grid_vue_vue_type_template_id_92d6219e_bindings_type_props_gridClass_props_fetchUrl_props_cards_props_items_setup_links_setup_prevPageUrl_setup_nextPageUrl_setup_isLoading_setup_fetchItems_setup_handleSelectedCard_setup_handleSearch_setup___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/dist/templateLoader.js??ref--7!../../../node_modules/vue-loader/dist??ref--30-0!./Grid.vue?vue&type=template&id=92d6219e&bindings={"type":"props","gridClass":"props","fetchUrl":"props","cards":"props","items":"setup","links":"setup","prevPageUrl":"setup","nextPageUrl":"setup","isLoading":"setup","fetchItems":"setup","handleSelectedCard":"setup","handleSearch":"setup"} */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/dist/templateLoader.js?!./node_modules/vue-loader/dist/index.js?!./resources/js/components/Grid.vue?vue&type=template&id=92d6219e&bindings={\"type\":\"props\",\"gridClass\":\"props\",\"fetchUrl\":\"props\",\"cards\":\"props\",\"items\":\"setup\",\"links\":\"setup\",\"prevPageUrl\":\"setup\",\"nextPageUrl\":\"setup\",\"isLoading\":\"setup\",\"fetchItems\":\"setup\",\"handleSelectedCard\":\"setup\",\"handleSearch\":\"setup\"}");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_dist_templateLoader_js_ref_7_node_modules_vue_loader_dist_index_js_ref_30_0_Grid_vue_vue_type_template_id_92d6219e_bindings_type_props_gridClass_props_fetchUrl_props_cards_props_items_setup_links_setup_prevPageUrl_setup_nextPageUrl_setup_isLoading_setup_fetchItems_setup_handleSelectedCard_setup_handleSearch_setup___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 
 

@@ -25,7 +25,7 @@ class ClipController extends Controller
     {
         $cards = $this->cardRepository->all();
 
-        return View::make('clips.index', $cards);
+        return View::make('clips.index', ['cards' => $cards]);
     }
 
     public function show(Request $request)

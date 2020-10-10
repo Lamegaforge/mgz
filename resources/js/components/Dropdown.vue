@@ -14,7 +14,7 @@
       }"
       class="absolute right-0 z-10 w-56 mt-2 transition duration-75 ease-in origin-top-right transform rounded-md shadow-lg"
     >
-      <div class="bg-gray-800 rounded-md shadow-xs">
+      <div class="bg-gray-900 rounded-md shadow-xs">
         <slot name="content" />
       </div>
     </div>
