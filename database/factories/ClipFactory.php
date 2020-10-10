@@ -24,7 +24,7 @@ class ClipFactory extends Factory
     public function definition()
     {
         return [
-            'tracking_id' => $this->faker->unique()->numberBetween(1000, 10000),
+            'tracking_id' => $this->faker->unique()->numberBetween(1000, 100000),
             'user_id' => User::factory()->create(),
             'card_id' => Card::factory()->create(),
             'slug' => $this->faker->slug,
