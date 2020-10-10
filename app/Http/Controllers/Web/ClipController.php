@@ -6,21 +6,26 @@ use View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Repositories\ClipRepository;
+use App\Repositories\CardRepository;
 use App\Repositories\Criterias\Where;
 use App\Repositories\Criterias\WhereLike;
 
 class ClipController extends Controller
 {
     protected $clipRepository;
+    protected $cardRepository;
 
-    public function __construct(ClipRepository $clipRepository)
+    public function __construct(ClipRepository $clipRepository, CardRepository $cardRepository)
     {
         $this->clipRepository = $clipRepository;
+        $this->cardRepository = $cardRepository;
     }
 
     public function index(Request $request)
     {
-        return View::make('clips.index');
+        $cards = $this->cardRepository->all();
+
+        return View::make('clips.index', $cards);
     }
 
     public function show(Request $request)
