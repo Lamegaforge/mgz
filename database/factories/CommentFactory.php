@@ -25,8 +25,8 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'clip_id' => Clip::factory()->create(),
-            'user_id' => User::factory()->create(),
+            'clip_id' => Clip::factory(),
+            'user_id' => User::factory(),
             'content' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
             'active' => true,
             'approved_at' => $this->faker->dateTimeInInterval($startDate = '-30 years', $interval = '+ 5 days'),
