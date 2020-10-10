@@ -15,6 +15,21 @@ class CommentTest extends TestCase
     /**
      * @test
      */
+    public function guest_cannot_store_comment()
+    {
+        $clip = Clip::factory()->create();
+
+        $response = $this->post('api/comments/store', [
+            'clip_id' => $clip->id,
+            'content' => 'content',
+        ]);
+
+        $response->assertStatus(403);
+    }
+
+    /**
+     * @test
+     */
     public function auth_can_store_comment()
     {
         $user = User::factory()->create();
