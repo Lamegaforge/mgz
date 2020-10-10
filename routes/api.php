@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('clips')->as('clips.')->group(function () {
 	Route::get('search', 'ClipController@search')->name('search');
 });
+
+Route::prefix('comments')->as('comments.')->group(function () {
+	Route::get('store', 'CommentController@store')->name('store');
+});
