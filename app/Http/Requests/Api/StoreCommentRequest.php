@@ -36,10 +36,4 @@ class StoreCommentRequest extends FormRequest
             'content' => 'required|filled|string',
         ];
     }
-
-    protected function failedValidation(Validator $validator)
-    {
-        // todo : add custom exception
-        dd($validator->errors());
-    }
 }
