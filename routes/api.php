@@ -19,5 +19,5 @@ Route::prefix('clips')->as('clips.')->group(function () {
 });
 
 Route::prefix('comments')->as('comments.')->group(function () {
-	Route::get('store', 'CommentController@store')->name('store');
+	Route::post('store', 'CommentController@store')->name('store');
 });
