@@ -8,6 +8,7 @@ use App\Repositories\ClipRepository;
 use App\Http\Controllers\Controller;
 use App\Repositories\Criterias\Where;
 use App\Repositories\Criterias\Active;
+use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereLike;
 use App\Http\Requests\Api\SearchClipsRequest;
 
@@ -23,6 +24,10 @@ class ClipController extends Controller
     public function search(SearchClipsRequest $request)
     {
         $this->clipRepository->pushCriteria(new Active());
+
+        $order = $request->get('order');
+        
+        $this->clipRepository->pushCriteria(new OrderBy($order));
 
         if ($request->has('card_id')) {
 

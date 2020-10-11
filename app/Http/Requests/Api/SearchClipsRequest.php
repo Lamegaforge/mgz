@@ -26,6 +26,21 @@ class SearchClipsRequest extends FormRequest
         return [
             'card_id' => 'integer',
             'search' => 'string',
+            'order' => 'string',
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $valid = in_array($this->order, ['approved_at', 'views'], true);
+
+        $this->merge([
+            'order' => $valid ? $this->order : 'approved_at',
+        ]);
     }
 }

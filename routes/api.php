@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('clips')->as('clips.')->group(function () {
-	Route::get('search', 'ClipController@search')->name('search');
-});
-
-Route::prefix('cards')->as('cards.')->group(function () {
-	Route::get('search', 'CardController@search')->name('search');
-});
-
-Route::prefix('comments')->as('comments.')->group(function () {
-	Route::post('store', 'CommentController@store')->name('store');
+Route::as('api.')->group(function () {
+	Route::prefix('clips')->as('clips.')->group(function () {
+		Route::get('search', 'ClipController@search')->name('search');
+	});
+	Route::prefix('cards')->as('cards.')->group(function () {
+		Route::get('search', 'CardController@search')->name('search');
+	});
+	Route::prefix('comments')->as('comments.')->group(function () {
+		Route::post('store', 'CommentController@store')->name('store');
+	});
 });
