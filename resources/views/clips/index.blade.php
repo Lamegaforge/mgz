@@ -3,9 +3,7 @@
 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
     @include('layouts.breadcrumbs', [
     'breadcrumbs' => ['Home',
-    'Clips',
-    'Doom Eternal',
-    "C'était quoi ?!"]
+    'Clips']
     ])
 </div>
 <section class="-mt-6 section">

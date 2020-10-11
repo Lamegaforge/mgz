@@ -30114,7 +30114,7 @@ const _hoisted_6 = {
   class: "flex justify-end flex-1 w-0"
 };
 
-const _hoisted_7 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(" Next ");
+const _hoisted_7 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(" Suivant ");
 
 const _hoisted_8 = /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])("svg", {
   class: "w-5 h-5 ml-3 text-gray-400",

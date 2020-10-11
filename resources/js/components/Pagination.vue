@@ -44,7 +44,7 @@
         @click="handleClick(nextPageUrl)"
         class="inline-flex items-center pt-4 pl-1 -mt-px text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out border-t-2 border-transparent hover:text-gray-400 hover:border-gray-500 focus:outline-none focus:border-gray-500"
       >
-        Next
+        Suivant
         <svg
           class="w-5 h-5 ml-3 text-gray-400"
           viewBox="0 0 20 20"
