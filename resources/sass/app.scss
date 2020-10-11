@@ -4,7 +4,7 @@
 @import "tailwindcss/components";
 
 .section {
-    @apply px-4 py-16 mx-auto max-w-7xl;
+    @apply px-4 py-16 mx-auto max-w-7xl w-full;
 
     @screen sm {
         @apply px-6;
@@ -15,8 +15,12 @@
     }
 
     @screen lg {
-        @apply px-8 py-24
+        @apply px-8 py-24;
     }
 }
 
 @import "tailwindcss/utilities";
+.blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}

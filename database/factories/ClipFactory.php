@@ -25,8 +25,8 @@ class ClipFactory extends Factory
     {
         return [
             'tracking_id' => $this->faker->unique()->numberBetween(1000, 100000),
-            'user_id' => User::factory()->create(),
-            'card_id' => Card::factory()->create(),
+            'user_id' => User::factory(),
+            'card_id' => Card::factory(),
             'slug' => $this->faker->slug,
             'title' => $this->faker->unique()->sentence($nbWords = 6, $variableNbWords = true),
             'thumbnail' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
