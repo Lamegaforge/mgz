@@ -45,7 +45,7 @@ class ClipController extends Controller
 
         $this->clipRepository->with(['card']);
 
-        $clips = $this->clipRepository->paginate($limit = null, $columns = ['*']);
+        $clips = $this->clipRepository->paginate(12, $columns = ['*']);
 
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),

@@ -14,11 +14,18 @@ require("laravel-mix-vue3");
  */
 
 mix.webpackConfig({
-    resolve: {
-        alias: {
-            'vue': 'vue/dist/vue.esm-bundler.js'
-        },
+  resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.esm-bundler.js'
     },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"
+      }
+    ]
+  }
 })
 
 
@@ -27,5 +34,5 @@ mix.vue3("resources/js/app.js", "public/js")
 mix.sass('resources/sass/app.scss', 'public/css')
   .options({
     processCssUrls: false,
-    postCss: [ tailwindcss('./tailwind.config.js') ],
+    postCss: [tailwindcss('./tailwind.config.js')],
   })

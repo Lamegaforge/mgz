@@ -859,6 +859,7 @@ video {
   margin-left: auto;
   margin-right: auto;
   max-width: 80rem;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
@@ -18963,6 +18964,11 @@ video {
 .animate-bounce{
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
+}
+
+.blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
 }
 
 @media (min-width: 640px){
