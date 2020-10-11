@@ -1,5 +1,5 @@
 require('./bootstrap');
-import PrimaryNav from "./components/PrimaryNav"
+import PrimaryNav from "./components/primaryNav"
 import Grid from "./components/Grid"
 import Pagination from "./components/Pagination"
 import SelectMenu from "./components/SelectMenu"
