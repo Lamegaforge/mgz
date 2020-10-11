@@ -86,9 +86,9 @@ class ClipTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonPath('clips.data.0.id', $sorted[0]->id)
+            ->assertJsonPath('clips.data.0.id', $sorted[2]->id)
             ->assertJsonPath('clips.data.1.id', $sorted[1]->id)
-            ->assertJsonPath('clips.data.2.id', $sorted[2]->id);
+            ->assertJsonPath('clips.data.2.id', $sorted[0]->id);
     }
 
     /**
@@ -111,9 +111,9 @@ class ClipTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonPath('clips.data.0.id', $sorted[0]->id)
+            ->assertJsonPath('clips.data.0.id', $sorted[2]->id)
             ->assertJsonPath('clips.data.1.id', $sorted[1]->id)
-            ->assertJsonPath('clips.data.2.id', $sorted[2]->id);
+            ->assertJsonPath('clips.data.2.id', $sorted[0]->id);
     }
 
     /**
