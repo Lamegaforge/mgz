@@ -20,6 +20,17 @@ class Clip extends Model
         'thumbnail',
         'views',
         'url',
+        'active',
+        'approved_at',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'approved_at',
     ];
 
     public function user()

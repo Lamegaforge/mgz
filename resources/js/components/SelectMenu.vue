@@ -92,7 +92,7 @@ export default {
     function handleSearch(q) {
       let search = q.target.value;
       let result = [];
-      if (search && search.length > 3) {
+      if (search && search.length > 2) {
         result = props.items.filter((item) => {
           return item.title.toLowerCase().includes(search.toLowerCase());
         });

@@ -10,6 +10,6 @@
 </div>
 <section class="-mt-6 section">
     <h1 class="text-3xl font-semibold leading-8 tracking-tight text-white md:text-4xl sm:text-3xl sm:leading-9">Tous les clips</h1>
-    <grid :cards="{{json_encode($cards)}}" grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('clips.search')}}" type="clip" />
+    <grid :cards="{{json_encode($cards)}}" grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.clips.search')}}" type="clip" />
 </section>
 @endsection

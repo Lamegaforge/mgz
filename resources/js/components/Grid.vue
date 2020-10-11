@@ -61,17 +61,56 @@
             aria-orientation="vertical"
             aria-labelledby="sort-menu"
           >
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
-              role="menuitem"
-              >Date</a
-            ><a
-              href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
-              role="menuitem"
-              >Nombre de vues</a
+            <button
+              type="button"
+              class="relative inline-flex w-full px-4 py-2 pr-8 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+              @click="handleSort('approved_at')"
             >
+              <span>Date</span>
+              {{ sort.value }}
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-500"
+              >
+                <svg
+                  class="w-5 h-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  v-if="sort === 'approved_at'"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
+            <button
+              v-if="type === 'clip'"
+              type="button"
+              class="relative inline-flex w-full px-4 py-2 pr-8 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+              @click="handleSort('views')"
+            >
+              <span>Nombre de vues</span>
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-500"
+              >
+                <svg
+                  class="w-5 h-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  v-if="sort === 'views'"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </template>
       </dropdown>
@@ -115,6 +154,7 @@ export default {
     const nextPageUrl = ref(null);
     const search = ref(null);
     const cardId = ref(null);
+    const sort = ref("approved_at");
 
     onMounted(async () => {
       fetchItems();
@@ -137,19 +177,19 @@ export default {
 
     function constructUrl(url) {
       if (search.value && cardId.value) {
-        return `${props.fetchUrl}?title=${search.value}&card_id=${cardId.value}`;
+        return `${props.fetchUrl}?title=${search.value}&card_id=${cardId.value}&order=${sort.value}`;
       }
       if (cardId.value) {
-        return `${props.fetchUrl}?card_id=${cardId.value}`;
+        return `${props.fetchUrl}?card_id=${cardId.value}&order=${sort.value}`;
       }
       if (search.value) {
-        return `${props.fetchUrl}?title=${search.value}`;
+        return `${props.fetchUrl}?title=${search.value}&order=${sort.value}`;
       }
       if (url) {
         return url;
       }
 
-      return props.fetchUrl;
+      return `${props.fetchUrl}?order=${sort.value}`;
     }
 
     function handleSelectedCard(id) {
@@ -162,15 +202,22 @@ export default {
       fetchItems();
     }
 
+    function handleSort(order) {
+      sort.value = order;
+      fetchItems();
+    }
+
     return {
       items,
       links,
+      sort,
       prevPageUrl,
       nextPageUrl,
       isLoading,
       fetchItems,
       handleSelectedCard,
       handleSearch,
+      handleSort,
     };
   },
 };
