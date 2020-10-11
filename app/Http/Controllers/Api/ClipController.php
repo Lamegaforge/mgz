@@ -27,7 +27,7 @@ class ClipController extends Controller
 
         $order = $request->get('order');
         
-        $this->clipRepository->pushCriteria(new OrderBy($order));
+        $this->clipRepository->pushCriteria(new OrderBy($order, 'DESC'));
 
         if ($request->has('card_id')) {
 
