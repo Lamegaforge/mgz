@@ -20,6 +20,7 @@ class Clip extends Model
         'thumbnail',
         'views',
         'url',
+        'active',
     ];
 
     public function user()

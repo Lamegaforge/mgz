@@ -38,6 +38,8 @@ class ClipController extends Controller
             $this->clipRepository->pushCriteria(new WhereLike('title', $title));
         }
 
+        $this->clipRepository->with(['card']);
+
         $clips = $this->clipRepository->paginate($limit = null, $columns = ['*']);
 
         return Response::json([
