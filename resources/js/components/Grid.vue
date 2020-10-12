@@ -165,7 +165,7 @@ export default {
 
     async function fetchItems(url) {
       isLoading.value = true;
-      window.scrollTo(0, grid.offsetTop - 100);
+      window.scrollTo(0, grid.value.offsetTop - 200);
       try {
         const response = await axios.get(constructUrl(url));
         links.value = response.data[props.type].links;
@@ -180,6 +180,9 @@ export default {
     }
 
     function constructUrl(url) {
+      if (url) {
+        return url;
+      }
       if (search.value && cardId.value) {
         return `${props.fetchUrl}?title=${search.value}&card_id=${cardId.value}&order=${selectedOrder.value}`;
       }
@@ -188,9 +191,6 @@ export default {
       }
       if (search.value) {
         return `${props.fetchUrl}?title=${search.value}&order=${selectedOrder.value}`;
-      }
-      if (url) {
-        return url;
       }
 
       return `${props.fetchUrl}?order=${selectedOrder.value}`;
@@ -213,6 +213,7 @@ export default {
 
     return {
       items,
+      grid,
       links,
       selectedOrder,
       sorts,
