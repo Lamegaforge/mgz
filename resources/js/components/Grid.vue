@@ -1,8 +1,9 @@
 <template>
   <div
+    v-if="filters"
     class="flex flex-col items-start mt-4 space-y-3 md:mt-6 sm:space-y-0 sm:items-center sm:flex-row"
   >
-    <div v-if="type === 'clip'" class="w-full sm:w-56">
+    <div v-if="type === 'clips'" class="w-full sm:w-56">
       <select-menu :items="cards" @onSelected="handleSelectedCard" />
     </div>
     <div class="relative w-full sm:ml-auto sm:w-64">
@@ -64,10 +65,11 @@
             <button
               type="button"
               class="relative inline-flex w-full px-4 py-2 pr-8 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
-              @click="handleSort('approved_at')"
+              @click="handleSort(order.value)"
+              v-for="(order, index) in sorts[type]"
+              :key="index"
             >
-              <span>Date</span>
-              {{ sort.value }}
+              <span>{{ order.label }}</span>
               <span
                 class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-500"
               >
@@ -76,32 +78,7 @@
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  v-if="sort === 'approved_at'"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </span>
-            </button>
-            <button
-              v-if="type === 'clip'"
-              type="button"
-              class="relative inline-flex w-full px-4 py-2 pr-8 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
-              @click="handleSort('views')"
-            >
-              <span>Nombre de vues</span>
-              <span
-                class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-500"
-              >
-                <svg
-                  class="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  v-if="sort === 'views'"
+                  v-if="selectedOrder == order.value"
                 >
                   <path
                     fill-rule="evenodd"
@@ -122,14 +99,15 @@
       class="absolute top-0 z-50 w-full h-full transition-opacity duration-150 bg-black opacity-75 left-O"
     ></div>
     <div v-for="(item, index) in items" :key="index">
-      <clip :item="item" v-if="type === 'clip'" />
-      <card :item="item" v-if="type === 'card'" />
+      <clip :item="item" v-if="type === 'clips'" />
+      <card :item="item" v-if="type === 'cards'" />
     </div>
   </div>
   <div v-if="!items.length && !isLoading" class="py-16 text-center">
     Aucun résultat 🦕
   </div>
   <pagination
+    v-if="lastPage > 1"
     :links="links"
     :prev-page-url="prevPageUrl"
     :next-page-url="nextPageUrl"
@@ -138,12 +116,36 @@
 </template>
 <script>
 import { ref, onMounted, watch } from "vue";
+const sorts = {
+  clips: [
+    {
+      label: "Date",
+      value: "approved_at",
+    },
+    {
+      label: "Nombre de vues",
+      value: "views",
+    },
+  ],
+  cards: [
+    {
+      label: "Nom",
+      value: "title",
+    },
+    {
+      label: "Date",
+      value: "created_at",
+    },
+  ],
+};
 export default {
   props: {
     type: String,
     gridClass: String,
     fetchUrl: String,
     cards: Array,
+    cardId: Number,
+    filters: Boolean,
   },
   setup(props) {
     const grid = ref(null);
@@ -153,8 +155,9 @@ export default {
     const prevPageUrl = ref(null);
     const nextPageUrl = ref(null);
     const search = ref(null);
-    const cardId = ref(null);
-    const sort = ref("approved_at");
+    const cardId = ref(props.cardId ? props.cardId : null);
+    const selectedOrder = ref(sorts[props.type][0].value);
+    const lastPage = ref(null);
 
     onMounted(async () => {
       fetchItems();
@@ -165,10 +168,11 @@ export default {
       window.scrollTo(0, grid.offsetTop - 100);
       try {
         const response = await axios.get(constructUrl(url));
-        links.value = response.data?.clips.links;
-        items.value = response.data?.clips?.data;
-        prevPageUrl.value = response.data?.clips.prev_page_url;
-        nextPageUrl.value = response.data?.clips.next_page_url;
+        links.value = response.data[props.type].links;
+        items.value = response.data[props.type]?.data;
+        prevPageUrl.value = response.data[props.type].prev_page_url;
+        nextPageUrl.value = response.data[props.type].next_page_url;
+        lastPage.value = response.data[props.type].last_page;
       } catch (err) {
         console.log(err);
       }
@@ -177,19 +181,19 @@ export default {
 
     function constructUrl(url) {
       if (search.value && cardId.value) {
-        return `${props.fetchUrl}?title=${search.value}&card_id=${cardId.value}&order=${sort.value}`;
+        return `${props.fetchUrl}?title=${search.value}&card_id=${cardId.value}&order=${selectedOrder.value}`;
       }
       if (cardId.value) {
-        return `${props.fetchUrl}?card_id=${cardId.value}&order=${sort.value}`;
+        return `${props.fetchUrl}?card_id=${cardId.value}&order=${selectedOrder.value}`;
       }
       if (search.value) {
-        return `${props.fetchUrl}?title=${search.value}&order=${sort.value}`;
+        return `${props.fetchUrl}?title=${search.value}&order=${selectedOrder.value}`;
       }
       if (url) {
         return url;
       }
 
-      return `${props.fetchUrl}?order=${sort.value}`;
+      return `${props.fetchUrl}?order=${selectedOrder.value}`;
     }
 
     function handleSelectedCard(id) {
@@ -203,16 +207,18 @@ export default {
     }
 
     function handleSort(order) {
-      sort.value = order;
+      selectedOrder.value = order;
       fetchItems();
     }
 
     return {
       items,
       links,
-      sort,
+      selectedOrder,
+      sorts,
       prevPageUrl,
       nextPageUrl,
+      lastPage,
       isLoading,
       fetchItems,
       handleSelectedCard,

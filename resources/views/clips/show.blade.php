@@ -23,7 +23,7 @@
                 <p class="mt-2 text-gray-300">par <a href="" class="font-medium text-white hover:text-indigo-300">{{$clip->user->display_name}}</a></p>
                 <div class="flex items-start justify-start mt-3 md:mt-6">
                     <div>
-                        <p class="text-sm text-gray-300">Publiée le 23 septembre 2020</p>
+                        <p class="text-sm text-gray-300">Publié le @datetime($clip->approved_at)</p>
                         <p class="text-sm text-gray-300">{comments} commentaires</p>
                         <p class="text-sm text-gray-300">{{$clip->views}} vues</p>
                         <a href="{{route('cards.show', $clip->card->id)}}" class="font-semibold text-white hover:text-indigo-400">{{$clip->card->title}}</a>
