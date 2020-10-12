@@ -20,6 +20,7 @@ class CreateClipsTable extends Migration
             $table->unsignedBigInteger('card_id')->nullable();
             $table->string('slug');
             $table->string('title')->nullable();
+            $table->string('game')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('url')->unique();
             $table->boolean('active')->default(false);

@@ -17,6 +17,7 @@ class Clip extends Model
         'user_id',
         'slug',
         'title',
+        'game',
         'thumbnail',
         'views',
         'url',

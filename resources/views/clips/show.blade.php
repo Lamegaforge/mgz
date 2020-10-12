@@ -7,15 +7,15 @@
         @include('layouts.breadcrumbs', [
         'breadcrumbs' => ['Home',
         'Clips',
-        'Doom Eternal',
-        "C'était quoi ?!"]
+        $clip->card->title,
+        $clip->title]
         ])
     </div>
     <div class="relative px-4 py-16 mx-auto -mt-6 overflow-hidden max-w-7xl sm:px-6 lg:px-8 md:py-20 lg:py-24">
         <div class="flex flex-col md:items-center md:justify-start md:flex-row md:space-x-12">
             <div class="w-full">
                 <div class="relative pt-16/9">
-                    <iframe class="absolute top-0 left-0 w-full h-full" width="550" height="275" src="https://www.youtube-nocookie.com/embed/FkklG9MA0vM"></iframe>
+                    <iframe class="absolute top-0 left-0 w-full h-full" width="550" height="275" src="{{'https://clips.twitch.tv/embed?clip='.$clip->slug.'&parent=megasaurus.fr&parent=staging.megasaurus.fr&autoplay=false'}}"></iframe>
                 </div>
             </div>
             <div class="flex-grow w-full max-w-sm mt-6 md:w-auto md:mt-0 md:min-w-350px">

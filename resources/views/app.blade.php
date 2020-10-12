@@ -1,16 +1,31 @@
+@php
+$links = [
+    [
+    "Clips",
+    "/clips",
+    request()->routeIs('clips.index')
+    ],
+    [
+    "Fiches",
+    "/cards",
+    request()->routeIs('cards.index')
+    ]
+];
+@endphp
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
     <title>Megasaurus</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="antialiased">
     <div id="app" class="flex flex-col font-sans text-white bg-black">
-        <primary-nav></primary-nav>
+        <primary-nav :links="{{json_encode($links)}}"></primary-nav>
         <main class="min-h-screen">
             @yield('content')
         </main>

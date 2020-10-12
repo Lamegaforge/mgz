@@ -10,6 +10,13 @@ class Card extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+		'title',
+		'short_title',
+		'media',
+		'description',
+    ];
+
     public function clips()
     {
         return $this->hasMany(Clip::class);

@@ -84,6 +84,7 @@ class ClipsAggregator extends Command
             'tracking_id',
             'slug',
             'title',
+            'game',
             'thumbnail',
             'views',
             'url',

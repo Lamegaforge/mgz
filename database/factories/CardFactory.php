@@ -26,7 +26,7 @@ class CardFactory extends Factory
         return [
             'title' => $this->faker->unique()->sentence($nbWords = 4, $variableNbWords),
             'short_title' => $this->faker->unique()->sentence($nbWords = 2, $variableNbWords),
-            'image_url' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
+            'media' => null,
             'description' => $this->faker->unique()->sentence($nbWords = 10, $variableNbWords),
         ];
     }
