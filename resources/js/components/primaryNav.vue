@@ -5,34 +5,31 @@
         <div class="flex">
           <div class="flex items-center flex-shrink-0">
             <a
-              href=""
+              href="/"
               class="text-xl font-bold tracking-tight text-white uppercase"
               >LaMegaforge</a
             >
           </div>
           <div class="hidden sm:ml-6 sm:flex">
-            <!-- <a
-              href="#"
-              class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out border-b-2 border-indigo-500 focus:outline-none focus:border-indigo-700"
-            >
-              Clips
-            </a> -->
             <a
-              href="#"
-              class="inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-white hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300"
+              :href="link[1]"
+              v-for="(link, index) in links"
+              :key="index"
+              :class="{
+                'text-white border-indigo-500 focus:border-indigo-700':
+                  link[2],
+                'text-gray-300 border-transparent hover:text-white hover:border-gray-300 focus:text-gray-700 focus:border-gray-300': !link[2],
+              }"
+              class="inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 transition duration-150 ease-in-out border-b-2 first:ml-0 focus:outline-none focus:text-gray-700"
+              >{{ link[0] }}</a
             >
-              Clips
-            </a>
-            <a
-              href="#"
-              class="inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-white hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300"
-            >
-              Fiches
-            </a>
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
-          <dropdown class="ml-3" button-class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+          <dropdown
+            class="ml-3"
+            button-class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
+          >
             <template #trigger>
               <img
                 class="object-cover w-8 h-8 rounded-full"
@@ -115,20 +112,17 @@
       :class="{ block: isMobileOpen, hidden: !isMobileOpen }"
     >
       <div class="pt-2 pb-3">
-        <!-- <a
-          href="#"
-          class="block py-2 pl-3 pr-4 text-base font-medium text-indigo-500 transition duration-150 ease-in-out border-l-4 border-indigo-500 bg-indigo-50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700"
-          >Clips</a
-        > -->
         <a
-          href="#"
-          class="block py-2 pl-3 pr-4 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out border-l-4 border-transparent hover:text-white hover:bg-gray-800 hover:border-gray-300 focus:outline-none focus:text-white focus:bg-gray-50 focus:border-gray-300"
-          >Clips</a
-        >
-        <a
-          href="#"
-          class="block py-2 pl-3 pr-4 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out border-l-4 border-transparent hover:text-white hover:bg-gray-800 hover:border-gray-300 focus:outline-none focus:text-white focus:bg-gray-50 focus:border-gray-300"
-          >Fiches</a
+          :href="link[1]"
+          v-for="(link, index) in links"
+          :key="index"
+          :class="{
+            'text-indigo-500 border-indigo-500 focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700':
+              link[2],
+            'text-gray-300 border-transparent hover:text-white hover:bg-gray-800 hover:border-gray-300 focus:text-white focus:bg-gray-50 focus:border-gray-300': !link[2],
+          }"
+          class="block py-2 pl-3 pr-4 mt-1 text-base font-medium transition duration-150 ease-in-out border-l-4 focus:outline-none"
+          >{{ link[0] }}</a
         >
       </div>
       <div class="pt-4 pb-3 border-t border-gray-800">
@@ -170,13 +164,17 @@
 <script>
 import { ref } from "vue";
 export default {
-  setup() {
+  props: {
+    links: Array,
+  },
+  setup(props) {
+    console.log(props.links);
     const isMobileOpen = ref(false);
 
     function toggleMobileMenu() {
       isMobileOpen.value = !isMobileOpen.value;
     }
-  
+
     return {
       isMobileOpen,
       toggleMobileMenu,

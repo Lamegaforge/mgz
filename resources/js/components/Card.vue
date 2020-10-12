@@ -1,5 +1,5 @@
 <template>
-  <a href="" class="block group">
+  <a :href="`/cards/${item.id}`" class="block group">
     <div class="relative pt-2/3">
       <img
         class="absolute top-0 left-0 object-cover object-center w-full h-full duration-200 ease-in-out transform rounded group-hover:scale-105"
