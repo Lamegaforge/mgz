@@ -35,5 +35,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('cardVignette', function ($media) {
             return app(MediaService::class)->vignette($media);
         });
+
+        Blade::directive('cardLogo', function ($media) {
+            return app(MediaService::class)->logo($media);
+        });
     }
 }
