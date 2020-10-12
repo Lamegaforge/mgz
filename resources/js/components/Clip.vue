@@ -1,5 +1,5 @@
 <template>
-  <a :href="item.url" className="block rounded group">
+  <a :href="`/clips/${item.id}`" className="block rounded group">
     <div
       className="relative transition duration-200 ease-in-out transform shadow-md pt-16/9 group-hover:scale-105"
     >
