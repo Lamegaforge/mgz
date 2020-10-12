@@ -165,7 +165,13 @@ export default {
 
     async function fetchItems(url) {
       isLoading.value = true;
-      window.scrollTo(0, grid.value.offsetTop - 200);
+      if (url) {
+        if (!props.filters) {
+          window.scrollTo(0, grid.value.offsetTop - 200);
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }
       try {
         const response = await axios.get(constructUrl(url));
         links.value = response.data[props.type].links;
