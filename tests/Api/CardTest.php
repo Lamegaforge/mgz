@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api;
+namespace Tests\Api;
 
 use Tests\TestCase;
 use App\Models\Card;
