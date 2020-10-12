@@ -27,7 +27,7 @@ class CardController extends Controller
             $this->cardRepository->pushCriteria(new WhereLike('title', $title));
         }
 
-        $cards = $this->cardRepository->paginate($limit = null, $columns = ['*']);
+        $cards = $this->cardRepository->paginate(12, $columns = ['*']);
 
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),
