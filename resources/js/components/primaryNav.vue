@@ -167,8 +167,7 @@ export default {
   props: {
     links: Array,
   },
-  setup(props) {
-    console.log(props.links);
+  setup() {
     const isMobileOpen = ref(false);
 
     function toggleMobileMenu() {
