@@ -4,8 +4,10 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use App\Services\UserService;
+use App\Services\CardSniffer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use App\Repositories\CardRepository;
 use App\Repositories\ClipRepository;
 use App\Managers\Twitch\TwitchManager;
 
@@ -51,8 +53,9 @@ class ClipsAggregator extends Command
             }
 
             $user = $this->retrieveUser($clip['curator']);
-
-            $this->storeClip($clip, $user);
+            $card = $this->retrieveCard($clip);
+          
+            $this->storeClip($clip, $user, $card);
         }
     }
 
@@ -78,7 +81,12 @@ class ClipsAggregator extends Command
         return $user;
     }
 
-    protected function storeClip(array $clip, User $user): void
+    protected function retrieveCard(array $clip): ?string
+    {
+        return app(CardSniffer::class)->retrieve($clip['game']);
+    }
+
+    protected function storeClip(array $clip, User $user, ?Card $card): void
     {
         $attributes = (new Collection($clip))->only([
             'tracking_id',
@@ -91,6 +99,7 @@ class ClipsAggregator extends Command
         ]);
 
         $attributes['user_id'] = $user->id;
+        $attributes['card_id'] = $card->id ?? null;
 
         app(ClipRepository::class)->create($attributes->toArray());
     }
