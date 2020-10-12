@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use App\Services\MediaService;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('datetime', function ($carbon) {
             return "<?php echo ($carbon)->isoFormat('LL'); ?>";
+        });
+
+        Blade::directive('cardVignette', function ($media) {
+            return app(MediaService::class)->vignette($media);
         });
     }
 }
