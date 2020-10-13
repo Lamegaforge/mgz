@@ -18,12 +18,12 @@ class Repository
         $this->driver->checkAuthorizationToken($token);
     }
 
-    public function getAuthorizationUrl() :string
+    public function getAuthorizationUrl(): string
     {
         return $this->driver->getAuthorizationUrl();
     }
 
-    public function consume(string $code)
+    public function consume(string $code): array
     {
         return $this->driver->consume($code);
     }

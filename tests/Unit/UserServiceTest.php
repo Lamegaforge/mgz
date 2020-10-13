@@ -25,7 +25,7 @@ class UserServiceTest extends TestCase
             'login' => 'alan_grant',
         ];
 
-        $user = app(UserService::class)->firstOrCreate($trackingId, $attributes);
+        $user = app(UserService::class)->findOrCreateUser($trackingId, $attributes);
 
         $this->assertInstanceOf(User::class, $user);
 
@@ -42,7 +42,7 @@ class UserServiceTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $userRetrieved = app(UserService::class)->firstOrCreate($user->tracking_id, $attributes = []);
+        $userRetrieved = app(UserService::class)->findOrCreateUser($user->tracking_id, $attributes = []);
 
         $this->assertInstanceOf(User::class, $userRetrieved);
         $this->assertEquals($user->toArray(), $userRetrieved->toArray());

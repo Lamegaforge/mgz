@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Carbon\Carbon;
 use Tests\TestCase;
 use App\Models\User;
 use App\Services\AuthentificationService;
@@ -15,29 +16,43 @@ class AuthentificationServiceTest extends TestCase
     /**
      * @test
      */
-    public function get_user_by_resource()
+    public function get_user()
     {
-        $resourceOwner = new class() implements ResourceOwnerInterface {
+        $attributes = [
+            'tracking_id' => '1',
+            'login' => 'aloy',
+            'display_name' => 'Aloy',
+            'profile_image_url' => 'url',
+            'email' => 'email',
+        ];
 
-            public function getId()
-            {
-                //
-            }
-
-            public function toArray()
-            {
-                return [
-                    'id' => '1',
-                    'login' => 'aloy',
-                    'display_name' => 'Aloy',
-                    'profile_image_url' => 'url',
-                    'email' => 'email',
-                ];
-            }
-        };
-
-        $user = app(AuthentificationService::class)->getUserByResource($resourceOwner);
+        $user = app(AuthentificationService::class)->getUser($attributes);
 
         $this->assertInstanceOf(User::class, $user);
+    }
+
+    /**
+     * @test
+     */
+    public function get_outdated_user()
+    {
+        $user = User::factory()->create([
+            'created_at' => Carbon::yesterday(),
+            'profile_image_url' => null,
+            'email' => null,
+        ]);
+
+        $attributes = $user->only('login', 'display_name');
+
+        $attributes['tracking_id'] = $user->id;
+        $attributes['profile_image_url'] = 'profile_image_url';
+        $attributes['email'] = 'email';
+
+        $user = app(AuthentificationService::class)->getUser($attributes);
+
+        $this->assertInstanceOf(User::class, $user);
+        
+        $this->assertEquals($user->profile_image_url, 'profile_image_url');
+        $this->assertEquals($user->email, 'email');
     }
 }

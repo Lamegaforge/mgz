@@ -36,7 +36,7 @@ class Vertisan implements Driver
         return $authorizationUrl;
     }
 
-    public function consume(string $code): ResourceOwnerInterface
+    public function consume(string $code): array
     {
         $client = $this->getClient();
 
@@ -44,7 +44,17 @@ class Vertisan implements Driver
             'code' => $code,
         ]);
 
-        return $client->getResourceOwner($accessToken);
+        $resourceOwner = $client->getResourceOwner($accessToken);
+
+        $content = $resourceOwner->toArray();
+
+        return [
+            'tracking_id' => $content['id'],
+            'login' => $content['login'],
+            'display_name' => $content['display_name'],
+            'profile_image_url' => $content['profile_image_url'],
+            'email' => $content['email'],
+        ];
     }
 
     protected function getClient(): TwitchHelix
