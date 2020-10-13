@@ -4,7 +4,9 @@ module.exports = {
         removeDeprecatedGapUtilities: true,
         purgeLayersByDefault: true,
     },
-    purge: [],
+    purge: {
+        content: ['./resources/views/**/*.blade.php', './resources/js/components/*.vue']
+    },
     theme: {
         fontFamily: {
             sans: ['"Titillium Web"'],

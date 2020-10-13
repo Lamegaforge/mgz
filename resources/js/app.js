@@ -7,6 +7,7 @@ import DebounceInput from "./components/DebounceInput"
 import Dropdown from "./components/Dropdown"
 import Clip from "./components/Clip"
 import Card from "./components/Card"
+import Carousel from "./components/Carousel"
 import { createApp } from 'vue'
 
 const app = createApp({})
@@ -18,6 +19,7 @@ app.component('debounce-input', DebounceInput)
 app.component('dropdown', Dropdown)
 app.component('clip', Clip)
 app.component('card', Card)
+app.component('carousel', Carousel)
 
 app.directive('click-outside', {
     beforeMount(el, binding, vnode) {

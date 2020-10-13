@@ -40,7 +40,17 @@
     <div>
         <h2 class="text-2xl font-light leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">Clips récents</h2>
         <div class="mt-6">
-
+            @if(count($clips) > 0)
+            <carousel :items="{{json_encode($clips)}}" :options="{responsive: [{end: 640, size: 1}, {start: 640, end: 768, size: 2}, {start: 768, end: 1024, size: 3},{size: 4}]}">
+                @verbatim
+                <template #default="{item}">
+                    <clip :item="item" />
+                </template>
+                @endverbatim
+            </carousel>
+            @else
+            <p class="text-center">Pas encore de clips 🦕</p>
+            @endif
         </div>
     </div>
     <div class="mt-16">
