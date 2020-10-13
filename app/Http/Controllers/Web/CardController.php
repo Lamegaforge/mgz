@@ -37,7 +37,7 @@ class CardController extends Controller
 
         $countClips = $this->clipRepository->count();
 
-        $this->clipRepository->pushCriteria(new Limit(5));
+        $this->clipRepository->pushCriteria(new Limit(8));
         $this->clipRepository->pushCriteria(new OrderBy('views', 'DESC'));
 
         $clips = $this->clipRepository->all();

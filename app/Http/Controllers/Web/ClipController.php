@@ -36,7 +36,7 @@ class ClipController extends Controller
 
         $clip = $this->clipRepository->find($request->id);
 
-        $this->clipRepository->pushCriteria(new Limit(5));
+        $this->clipRepository->pushCriteria(new Limit(8));
         $this->clipRepository->pushCriteria(new OrderBy('approved_at', 'DESC'));
 
         $clips = $this->clipRepository->all();

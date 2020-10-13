@@ -14,7 +14,7 @@
       >
         {{ item.title }}
       </p>
-      <p className="text-sm text-gray-300">{{ item.card.title }}</p>
+      <p className="text-sm text-gray-300">{{ item.card?.title }}</p>
     </div>
   </a>
 </template>
