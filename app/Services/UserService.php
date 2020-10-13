@@ -15,7 +15,7 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function firstOrCreate($trackingId, array $attributes): User
+    public function findOrCreateUser($trackingId, array $attributes): User
     {
         $user = $this->findByTracking($trackingId);
 

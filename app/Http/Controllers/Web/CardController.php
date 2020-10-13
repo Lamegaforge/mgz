@@ -30,17 +30,19 @@ class CardController extends Controller
 
     public function show(Request $request)
     {
-        $card = $this->cardRepository->find($request->id);
+        $card = app(CardRepository::class)->find($request->id);
 
-        $this->clipRepository->pushCriteria(new Active());
-        $this->clipRepository->pushCriteria(new Where('card_id', $card->id));
+        $countClips = app(ClipRepository::class)
+            ->pushCriteria(new Active())
+            ->pushCriteria(new Where('card_id', $card->id))
+            ->count();
 
-        $countClips = $this->clipRepository->count();
-
-        $this->clipRepository->pushCriteria(new Limit(5));
-        $this->clipRepository->pushCriteria(new OrderBy('views', 'DESC'));
-
-        $clips = $this->clipRepository->all();
+        $clips = app(ClipRepository::class)
+            ->pushCriteria(new Active())
+            ->pushCriteria(new Where('card_id', $card->id))
+            ->pushCriteria(new Limit(8))
+            ->pushCriteria(new OrderBy('views', 'DESC'))
+            ->all();
 
         return View::make('cards.show', [
             'card' => $card,
