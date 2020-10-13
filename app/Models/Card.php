@@ -13,7 +13,7 @@ class Card extends Model
     protected $fillable = [
 		'title',
 		'short_title',
-		'media',
+		'media_folder',
 		'description',
     ];
 

@@ -32,20 +32,20 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo ($carbon)->isoFormat('LL'); ?>";
         });
 
-        Blade::directive('cardVignette', function ($media) {
-            return app(MediaService::class)->vignette($media);
+        Blade::directive('cardVignette', function ($name) {
+            return app(MediaService::class)->vignette($name);
         });
 
-        Blade::directive('cardLogo', function ($media) {
-            return app(MediaService::class)->logo($media);
+        Blade::directive('cardLogo', function ($name) {
+            return app(MediaService::class)->logo($name);
         });
 
-        Blade::directive('cardSmallLogo', function ($media) {
-            return app(MediaService::class)->smallLogo($media);
+        Blade::directive('cardSmallLogo', function ($name) {
+            return app(MediaService::class)->smallLogo($name);
         });
 
-        Blade::directive('cardVignette', function ($media) {
-            return app(MediaService::class)->vignette($media);
+        Blade::directive('cardVignette', function ($name) {
+            return app(MediaService::class)->vignette($name);
         });
     }
 }
