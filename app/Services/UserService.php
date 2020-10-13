@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\UserRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserService
 {
@@ -16,12 +17,20 @@ class UserService
 
     public function firstOrCreate($trackingId, array $attributes): User
     {
-        $user = $this->userRepository->findByField('tracking_id', $trackingId);
+        $user = $this->findByTracking($trackingId);
 
         if ($user->isEmpty()) {
-            $user = $this->userRepository->create($attributes);
+
+            $this->userRepository->create($attributes);
+
+            $user = $this->findByTracking($trackingId);
         }
 
         return $user->first();
+    }
+
+    protected function findByTracking(string $trackingId): Collection
+    {
+        return $this->userRepository->findByField('tracking_id', $trackingId);
     }
 }
