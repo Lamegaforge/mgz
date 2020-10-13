@@ -6,27 +6,27 @@ use Storage;
 
 class MediaService
 {
-    public function background(string $name): string
+    public function background(?string $name): string
     {
         return $this->get($name, 'background');
     }
 
-    public function logo(string $name): string
+    public function logo(?string $name): string
     {
         return $this->get($name, 'logo');
     }
 
-    public function smallLogo(string $name): string
+    public function smallLogo(?string $name): string
     {
         return $this->get($name, 'small-logo');
     }
 
-    public function vignette(string $name): string
+    public function vignette(?string $name): string
     {
         return $this->get($name, 'vignette');
     }
 
-    public function all(string $name): array
+    public function all(?string $name): array
     {
         return [
             'background' => $this->background($name),
@@ -36,7 +36,7 @@ class MediaService
         ];
     }
 
-    protected function get(string $name, string $type)
+    protected function get(?string $name, string $type)
     {
         list($path, $placeholder) = $this->paths($name, $type);
 
@@ -47,7 +47,7 @@ class MediaService
         return Storage::disk('cards')->url($path);
     }
 
-    protected function paths(string $name, string $type): array
+    protected function paths(?string $name, string $type): array
     {
         return [
             $name . '/' . $type . '.png',

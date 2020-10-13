@@ -29,7 +29,7 @@
                         <a href="{{route('cards.show', $clip->card->id)}}" class="font-semibold text-white hover:text-indigo-400">{{$clip->card->title}}</a>
                     </div>
                     <a href="{{route('cards.show', $clip->card->id)}}" class="ml-auto">
-                        <img class="w-16 rounded" src="@cardVignette($clip->card->media)" />
+                        <img class="w-16 rounded" src="@cardVignette($clip->card->media_folder)" />
                     </a>
                 </div>
             </div>
