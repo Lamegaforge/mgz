@@ -38,6 +38,7 @@ class CardController extends Controller
             ->count();
 
         $clips = app(ClipRepository::class)
+            ->with(['card'])
             ->pushCriteria(new Active())
             ->pushCriteria(new Where('card_id', $card->id))
             ->pushCriteria(new Limit(8))
