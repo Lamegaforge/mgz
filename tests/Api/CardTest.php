@@ -4,6 +4,7 @@ namespace Tests\Api;
 
 use Tests\TestCase;
 use App\Models\Card;
+use App\Models\Clip;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -16,7 +17,9 @@ class CardTest extends TestCase
      */
     public function get_cards()
     {
-        $card = Card::factory()->create();
+        $card = Card::factory()
+            ->has(Clip::factory()->count(3))
+            ->create();
 
         $response = $this->get('api/cards/search');
 
@@ -30,7 +33,9 @@ class CardTest extends TestCase
      */
     public function get_cards_with_title_search()
     {
-        $card = Card::factory()->create();
+        $card = Card::factory()
+            ->has(Clip::factory()->count(3))
+            ->create();
 
         $truncatedTitle = Str::limit($card->title, 5, $end = null);
 
