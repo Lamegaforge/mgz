@@ -71,7 +71,6 @@ class CardsAggregator extends Command
         $attributes = [
             'title' => $game,
             'slug' => $slug,
-            'media_folder' => $slug,
         ];
 
         Card::factory()->create($attributes);
