@@ -43,7 +43,7 @@ class CardController extends Controller
 
         $attributes['data'] = $paginator->map(function ($card) {
             return $card->toArray() + [
-                'medias' => app(MediaService::class)->all($card['media']),
+                'medias' => app(MediaService::class)->all($card['slug']),
             ];
         })->toArray();
 

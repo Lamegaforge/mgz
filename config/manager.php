@@ -7,6 +7,7 @@ return [
             'api' => [
                 'client_id' => env('HELIX_CLIENT_ID'),
                 'channel' => 'lamegaforgelive',
+                'channel_id' => '50119422',
             ],
         ],
     ],

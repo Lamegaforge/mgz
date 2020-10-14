@@ -16,14 +16,21 @@ class Repository
         $this->former = $former;
     }
 
-    public function getLastClips() :array
+    public function getLastClips(): array
     {
         $clips = $this->driver->getLastClips();
 
         return $this->former->clips($clips);
     }
 
-    public function get(string $slug) :array
+    public function getLastVideos(int $limit = 100, int $offset = 0): array
+    {
+        $videos = $this->driver->getLastVideos($limit, $offset);
+
+        return $this->former->videos($videos);
+    }
+
+    public function get(string $slug): array
     {
         $clip = $this->driver->get($slug);
 

@@ -11,9 +11,8 @@ class Card extends Model
     use HasFactory;
 
     protected $fillable = [
-		'title',
-		'short_title',
-		'media_folder',
+        'title',
+		'slug',
 		'description',
     ];
 
