@@ -28,8 +28,10 @@
                         <p class="text-sm text-gray-300">{{$clip->views}} vues</p>
                         <a href="{{route('cards.show', $clip->card->id)}}" class="font-semibold text-white hover:text-indigo-400">{{$clip->card->title}}</a>
                     </div>
-                    <a href="{{route('cards.show', $clip->card->id)}}" class="ml-auto">
-                        <img class="w-16 rounded" src="@cardVignette($clip->card->media_folder)" />
+                    <a href="{{route('cards.show', $clip->card->id)}}" class="w-16 ml-auto">
+                        <div class="relative shadow-md pt-3/4">
+                            <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded-sm" src="@cardVignette($card->media_folder)" />
+                        </div>
                     </a>
                 </div>
             </div>

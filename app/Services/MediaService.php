@@ -11,16 +11,6 @@ class MediaService
         return $this->get($name, 'background');
     }
 
-    public function logo(?string $name): string
-    {
-        return $this->get($name, 'logo');
-    }
-
-    public function smallLogo(?string $name): string
-    {
-        return $this->get($name, 'small-logo');
-    }
-
     public function vignette(?string $name): string
     {
         return $this->get($name, 'vignette');
@@ -30,8 +20,6 @@ class MediaService
     {
         return [
             'background' => $this->background($name),
-            'logo' => $this->logo($name),
-            'small_logo' => $this->smallLogo($name),
             'vignette' => $this->vignette($name),
         ];
     }
@@ -50,8 +38,8 @@ class MediaService
     protected function paths(?string $name, string $type): array
     {
         return [
-            $name . '/' . $type . '.png',
-            'placeholders/' . $type . '.png',
+            $name . '/' . $type . '.jpg',
+            'placeholders/' . $type . '.jpg',
         ];
     }
 }

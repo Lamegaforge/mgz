@@ -1,7 +1,7 @@
 <template>
   <div class="relative" ref="container">
     <div
-      class="absolute top-0 left-0 z-10 flex items-center h-full -ml-5 text-gray-800"
+      class="absolute top-0 left-0 z-10 items-center hidden h-full -ml-5 text-gray-800 lg:flex"
       @click="prev"
       v-if="hasPrev"
     >
@@ -21,7 +21,7 @@
       </svg>
     </div>
     <div
-      class="absolute top-0 right-0 z-10 flex items-center h-full -mr-5 text-gray-800"
+      class="absolute top-0 right-0 z-10 items-center hidden h-full -mr-5 text-gray-800 lg:flex"
       @click="next"
       v-if="hasNext"
     >
