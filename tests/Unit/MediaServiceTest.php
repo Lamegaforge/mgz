@@ -29,10 +29,8 @@ class MediaServiceTest extends TestCase
     public function provider(): array
     {
         return [
-            ['background', 'background.png', '/storage/stalker2/background.png'],
-            ['logo', 'logo.png', '/storage/stalker2/logo.png'],
-            ['smallLogo', 'small-logo.png', '/storage/stalker2/small-logo.png'],
-            ['vignette', 'vignette.png', '/storage/stalker2/vignette.png'],
+            ['background', 'background.jpg', '/storage/stalker2/background.jpg'],
+            ['vignette', 'vignette.jpg', '/storage/stalker2/vignette.jpg'],
         ];
     }
 
@@ -52,10 +50,8 @@ class MediaServiceTest extends TestCase
     public function placeholdersProvider(): array
     {
         return [
-            ['background', 'background.png', '/storage/placeholders/background.png'],
-            ['logo', 'logo.png', '/storage/placeholders/logo.png'],
-            ['smallLogo', 'small-logo.png', '/storage/placeholders/small-logo.png'],
-            ['vignette', 'vignette.png', '/storage/placeholders/vignette.png'],
+            ['background', 'background.jpg', '/storage/placeholders/background.jpg'],
+            ['vignette', 'vignette.jpg', '/storage/placeholders/vignette.jpg'],
         ];
     }
 }
