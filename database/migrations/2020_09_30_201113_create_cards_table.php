@@ -17,7 +17,6 @@ class CreateCardsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('media_folder')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });
