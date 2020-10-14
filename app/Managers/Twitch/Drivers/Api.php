@@ -3,6 +3,7 @@
 namespace App\Managers\Twitch\Drivers;
 
 use TwitchApi\TwitchApi;
+use Illuminate\Support\Collection;
 use App\Managers\Twitch\Contracts\Driver;
 
 class Api implements Driver
@@ -29,6 +30,24 @@ class Api implements Driver
         $response = $client->getTopClips(... $parameters);
 
         return $response['clips'];
+    }
+
+    public function getLastVideos(int $limit = 100, int $offset = 0): array
+    {
+        $client = $this->getClient();
+
+        $parameters = [
+            $this->config['channel_id'],
+            $limit,
+            $offset,
+            $broadcastType = 'highlight',
+            $language = null,
+            $sort = 'time',
+        ];
+
+        $response = $client->getChannelVideos(... $parameters);
+
+        return $response['videos'];
     }
 
     public function get(string $slug): array

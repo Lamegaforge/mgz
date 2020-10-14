@@ -7,14 +7,14 @@ use App\Managers\Twitch\Contracts\Former;
 
 class Api implements Former
 {
-    public function clips($clips) :array
+    public function clips(array $clips) :array
     {
         return array_map(function($clip) {
             return $this->clip($clip);
         }, $clips);
     }
 
-    public function clip($clip)
+    public function clip(array $clip): array
     {
         return [
             'slug' => $clip['slug'],
@@ -31,6 +31,22 @@ class Api implements Former
                 'channel_url' => $clip['curator']['channel_url'],    
                 'logo' => $clip['curator']['logo'],    
             ],
+        ];
+    }
+
+    public function videos(array $videos) :array
+    {
+        return array_map(function($video) {
+            return $this->video($video);
+        }, $videos);
+    }
+
+    public function video(array $video): array
+    {
+        return [
+            'title' => $video['title'],
+            'game' => $video['game'],
+            'created_at' => $video['created_at'],
         ];
     }
 }
