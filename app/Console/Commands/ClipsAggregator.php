@@ -76,7 +76,7 @@ class ClipsAggregator extends Command
 
         $attributes['login'] = $curator['name'];
 
-        $user = app(UserService::class)->firstOrCreate($curator['tracking_id'], $attributes->toArray());
+        $user = app(UserService::class)->findOrCreateUser($curator['tracking_id'], $attributes->toArray());
 
         return $user;
     }

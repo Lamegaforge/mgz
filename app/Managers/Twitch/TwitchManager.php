@@ -18,6 +18,14 @@ class TwitchManager extends Manager
 
         return $this->getRepository($driver, $former);
     }
+
+    public function createMockDriver()
+    {
+        $driver = new Drivers\Mock();
+        $former = new Formers\Api();
+
+        return $this->getRepository($driver, $former);
+    }
    
     public function getRepository(Driver $driver, Former $former)
     {

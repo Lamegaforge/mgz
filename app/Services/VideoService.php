@@ -36,7 +36,7 @@ class VideoService
         $offsets = [0, 100, 200];
 
         return array_map(function ($offset) {
-            return $this->twitchManager->driver('api')->getLastVideos($limit = 100, $offset);
+            return $this->twitchManager->getLastVideos($limit = 100, $offset);
         }, $offsets);
     }
 }

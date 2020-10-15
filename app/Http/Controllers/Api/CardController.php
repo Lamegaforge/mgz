@@ -29,6 +29,10 @@ class CardController extends Controller
             $this->cardRepository->pushCriteria(new WhereLike('title', $title));
         }
 
+        $this->cardRepository->has('clips', function () {
+            $query->where('active', true); 
+        });
+
         $paginator = $this->cardRepository->paginate(12, $columns = ['*']);
 
         return Response::json([
