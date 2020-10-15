@@ -22,7 +22,7 @@ Route::as('api.')->group(function () {
 		Route::get('search', 'CardController@search')->name('search');
 	});
 	Route::prefix('comments')->as('comments.')->group(function () {
-		Route::get('list/{clip_id}', 'CommentController@list')->name('list');
+		Route::get('search/{clip_id}', 'CommentController@search')->name('search');
 		Route::post('store', 'CommentController@store')->name('store');
 	});
 });

@@ -39,7 +39,7 @@ class Comment extends Model
         return $this->belongsTo(Clip::class);
     }
 
-    public function childs()
+    public function children()
     {
         return $this->hasMany(Comment::class, 'parent_comment_id');
     }

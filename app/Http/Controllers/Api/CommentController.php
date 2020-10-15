@@ -22,10 +22,10 @@ class CommentController extends Controller
         $this->commentRepository = $commentRepository;
     }
 
-    public function list(Request $request)
+    public function search(Request $request)
     {
         $comments = app(CommentRepository::class)
-            ->with(['user', 'childs' => function ($query) {
+            ->with(['user', 'children' => function ($query) {
                 $query->where('active', true)
                     ->orderBy('approved_at', 'DESC');
             }])
