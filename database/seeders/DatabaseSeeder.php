@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $cards = Card::factory()->times(20)->create();
+        $cards = Card::factory()->times(6)->create();
 
         $cards->map(function ($card) {
 
@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
 
                 Comment::factory()
                     ->times(5)
+                    ->has(Comment::factory()->count(3), 'childs')
                     ->create([
                         'user_id' => User::inRandomOrder()->first(),
                         'clip_id' => $clip->id,
