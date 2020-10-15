@@ -28,12 +28,12 @@ class CommentController extends Controller
         $comments = app(CommentRepository::class)
             ->with(['user', 'children' => function ($query) {
                 $query->where('active', true)
-                    ->orderBy('approved_at', 'DESC');
+                    ->orderBy('created_at', 'ASC');
             }, 'children.user'])
             ->pushCriteria(new Active())
             ->pushCriteria(new Where('clip_id', $request->clip_id))
             ->pushCriteria(new WhereNull('parent_comment_id'))
-            ->pushCriteria(new OrderBy('approved_at', 'DESC'))
+            ->pushCriteria(new OrderBy('created_at', 'DESC'))
             ->all();
 
         return Response::json([
