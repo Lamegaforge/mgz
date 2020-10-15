@@ -31,9 +31,8 @@ class DatabaseSeeder extends Seeder
 
                 Comment::factory()
                     ->times(5)
-                    ->has(Comment::factory()->count(3), 'childs')
+                    ->has(Comment::factory()->count(3), 'children')
                     ->create([
-                        'user_id' => User::inRandomOrder()->first(),
                         'clip_id' => $clip->id,
                     ]);
             });
