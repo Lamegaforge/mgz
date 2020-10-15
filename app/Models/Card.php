@@ -13,7 +13,8 @@ class Card extends Model
     protected $fillable = [
         'title',
 		'slug',
-		'description',
+        'description',
+		'game',
     ];
 
     public function clips()
