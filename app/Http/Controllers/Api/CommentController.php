@@ -25,7 +25,7 @@ class CommentController extends Controller
     public function list(Request $request)
     {
         $comments = app(CommentRepository::class)
-            ->with(['childs' => function ($query) {
+            ->with(['user', 'childs' => function ($query) {
                 $query->where('active', true)
                     ->orderBy('approved_at', 'DESC');
             }])
