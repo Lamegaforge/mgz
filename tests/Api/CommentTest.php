@@ -35,6 +35,7 @@ class CommentTest extends TestCase
             ->assertStatus(200)
             ->assertJsonPath('comments.0.id', $comment->id)
             ->assertJsonPath('comments.0.children.0.id', $children->last()->id)
+            ->assertJsonPath('comments.0.children.0.user.id', $children->last()->user->id)
             ->assertJsonPath('comments.0.children.1.id', $children->first()->id);
     }
 }

@@ -11,6 +11,7 @@ use App\Repositories\Criterias\Where;
 use App\Repositories\Criterias\Active;
 use App\Repositories\CommentRepository;
 use App\Repositories\Criterias\OrderBy;
+use App\Repositories\Criterias\WhereNull;
 use App\Http\Requests\Api\StoreCommentRequest;
 
 class CommentController extends Controller
@@ -28,9 +29,10 @@ class CommentController extends Controller
             ->with(['user', 'children' => function ($query) {
                 $query->where('active', true)
                     ->orderBy('approved_at', 'DESC');
-            }])
+            }, 'children.user'])
             ->pushCriteria(new Active())
             ->pushCriteria(new Where('clip_id', $request->clip_id))
+            ->pushCriteria(new WhereNull('parent_comment_id'))
             ->pushCriteria(new OrderBy('approved_at', 'DESC'))
             ->all();
 
