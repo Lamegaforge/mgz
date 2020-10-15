@@ -47,4 +47,18 @@ class CardTest extends TestCase
             ->assertStatus(200)
             ->assertJsonPath('cards.data.0.id', $card->id);
     }
+
+    /**
+     * @test
+     */
+    public function cannot_get_card_without_active_clips()
+    {
+        $card = Card::factory()->create();
+
+        $response = $this->get('api/cards/search');
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonPath('cards.total', 0);
+    }
 }
