@@ -2,9 +2,13 @@
 
 namespace App\Console\Commands;
 
+use Storage;
 use App\Models\User;
+use App\Models\Card;
+use Illuminate\Support\Str;
 use App\Services\UserService;
 use App\Services\CardSniffer;
+use App\Services\CardService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use App\Repositories\CardRepository;
@@ -56,7 +60,10 @@ class ClipsAggregator extends Command
             $card = $this->retrieveCard($clip);
           
             $this->storeClip($clip, $user, $card);
+            $this->makeCardDirectory($card);
         }
+
+        return 0;
     }
 
     protected function alreadySave(array $clip): bool
@@ -81,9 +88,16 @@ class ClipsAggregator extends Command
         return $user;
     }
 
-    protected function retrieveCard(array $clip): ?string
+    protected function retrieveCard(array $clip): Card
     {
-        return app(CardSniffer::class)->retrieve($clip['game']);
+        $attributes = [
+            'title' => $clip['game'],
+            'slug' => Str::slug($clip['game'], '_'),
+            'description' => '',
+            'game' => $clip['game'],
+        ];
+
+        return app(CardService::class)->findOrCreateCard($attributes['game'], $attributes);
     }
 
     protected function storeClip(array $clip, User $user, ?Card $card): void
@@ -102,5 +116,10 @@ class ClipsAggregator extends Command
         $attributes['card_id'] = $card->id ?? null;
 
         app(ClipRepository::class)->create($attributes->toArray());
+    }
+
+    protected function makeCardDirectory(Card $card): void
+    {
+        Storage::disk('cards')->makeDirectory($card->slug);
     }
 }

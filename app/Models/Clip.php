@@ -15,6 +15,7 @@ class Clip extends Model
     protected $fillable = [
         'tracking_id',
         'user_id',
+        'card_id',
         'slug',
         'title',
         'game',
