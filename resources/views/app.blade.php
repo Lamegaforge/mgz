@@ -1,15 +1,15 @@
 @php
 $links = [
     [
-    "Clips",
-    "/clips",
-    request()->routeIs('clips.index')
+        'Clips',
+        '/clips',
+        request()->routeIs('clips.index'),
     ],
     [
-    "Fiches",
-    "/cards",
-    request()->routeIs('cards.index')
-    ]
+        'Fiches',
+        '/cards',
+        request()->routeIs('cards.index')
+    ],
 ];
 @endphp
 <!DOCTYPE html>
