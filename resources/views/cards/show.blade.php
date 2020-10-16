@@ -3,7 +3,7 @@
 @extends('app')
 @section('content')
 <section class="relative overflow-hidden">
-    <img class="absolute top-0 left-0 object-cover object-center w-full h-full blur" src="@cardBackground($card->slug)" />
+    <img class="absolute top-0 left-0 object-cover object-center w-full h-full blur" src="{{$mediaService->background($card->slug)}}" />
     <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25"></div>
     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         @include('layouts.breadcrumbs', [
