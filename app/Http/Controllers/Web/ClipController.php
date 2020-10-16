@@ -9,6 +9,7 @@ use App\Repositories\ClipRepository;
 use App\Repositories\CardRepository;
 use App\Repositories\Criterias\Limit;
 use App\Repositories\Criterias\Where;
+use App\Repositories\Criterias\Active;
 use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereLike;
 
@@ -25,10 +26,12 @@ class ClipController extends Controller
     {
         $clip = app(ClipRepository::class)
             ->with(['user', 'card'])
+            ->pushCriteria(new Active())
             ->find($request->id);
 
         $clips = app(ClipRepository::class)
             ->with(['user', 'card'])
+            ->pushCriteria(new Active())
             ->pushCriteria(new Limit(8))
             ->pushCriteria(new OrderBy('approved_at', 'DESC'))
             ->all();
