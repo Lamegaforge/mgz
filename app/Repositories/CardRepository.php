@@ -12,7 +12,7 @@ class CardRepository extends BaseRepository {
      *
      * @return string
      */
-    function model()
+    public function model()
     {
         return Card::class;
     }

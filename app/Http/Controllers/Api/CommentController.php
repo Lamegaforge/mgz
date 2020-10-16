@@ -25,7 +25,7 @@ class CommentController extends Controller
 
     public function search(Request $request)
     {
-        $comments = app(CommentRepository::class)
+        $comments = $this->commentRepository
             ->with(['user', 'children' => function ($query) {
                 $query->where('active', true)
                     ->orderBy('created_at', 'ASC');
