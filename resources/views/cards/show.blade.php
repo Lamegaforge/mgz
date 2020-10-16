@@ -1,7 +1,9 @@
+@inject('mediaService', 'App\Services\MediaService')
+
 @extends('app')
 @section('content')
 <section class="relative overflow-hidden">
-    <img class="absolute top-0 left-0 object-cover object-center w-full h-full blur" src="@cardBackground($card->media_folder)" />
+    <img class="absolute top-0 left-0 object-cover object-center w-full h-full blur" src="{{$mediaService->background($card->slug)}}" />
     <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25"></div>
     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         @include('layouts.breadcrumbs', [
@@ -14,7 +16,7 @@
         <div class="flex flex-col items-center space-y-6 md:flex-row md:space-y-0 md:space-x-12">
             <div class="w-full max-w-sm">
                 <div class="relative shadow-md pt-3/4">
-                    <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded" src="@cardVignette($card->media_folder)" />
+                    <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded" src="{{$mediaService->vignette($card->slug)}}" />
                 </div>
             </div>
             <div class="relative flex-grow max-w-xl md:w-auto">
