@@ -36,8 +36,11 @@ class ClipController extends Controller
             ->pushCriteria(new OrderBy('approved_at', 'DESC'))
             ->all();
 
+        $commentCount = $clip->comments->where('active', true)->count();
+
         return View::make('clips.show', [
             'clip' => $clip,
+            'comment_count' => $commentCount,
             'clips' => $clips,
         ]);
     }
