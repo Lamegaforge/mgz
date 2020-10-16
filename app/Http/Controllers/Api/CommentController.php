@@ -47,6 +47,7 @@ class CommentController extends Controller
         $attributes = $request->validated();
 
         $attributes['user_id'] = Auth::id();
+        $attributes['active'] = true;
 
         $this->commentRepository->create($attributes);
 
