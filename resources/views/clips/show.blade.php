@@ -32,7 +32,7 @@
                     </div>
                     <a href="{{route('cards.show', $clip->card->id)}}" class="w-16 ml-auto">
                         <div class="relative shadow-md pt-3/4">
-                            <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded-sm" src="{{$mediaService->vignette($card->slug)}}" />
+                            <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded-sm" src="{{$mediaService->vignette($clip->card->slug)}}" />
                         </div>
                     </a>
                 </div>
