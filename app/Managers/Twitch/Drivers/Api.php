@@ -23,8 +23,8 @@ class Api implements Driver
             $this->config['channel'],
             $cursor = null,
             $game = null,
-            $limit = 50,
-            $period = 'week',
+            $limit = 100,
+            $period = 'all',
         ];
 
         $response = $client->getTopClips(... $parameters);
