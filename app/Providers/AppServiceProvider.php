@@ -31,13 +31,5 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('datetime', function ($carbon) {
             return "<?php echo ($carbon)->isoFormat('LL'); ?>";
         });
-
-        Blade::directive('cardVignette', function ($name) {
-            return app(MediaService::class)->vignette($name);
-        });
-
-        Blade::directive('cardBackground', function ($name) {
-            return app(MediaService::class)->background($name);
-        });
     }
 }

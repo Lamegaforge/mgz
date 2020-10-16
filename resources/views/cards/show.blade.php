@@ -1,3 +1,5 @@
+@inject('mediaService', 'App\Services\MediaService')
+
 @extends('app')
 @section('content')
 <section class="relative overflow-hidden">
@@ -14,7 +16,7 @@
         <div class="flex flex-col items-center space-y-6 md:flex-row md:space-y-0 md:space-x-12">
             <div class="w-full max-w-sm">
                 <div class="relative shadow-md pt-3/4">
-                    <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded" src="@cardVignette($card->slug)" />
+                    <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded" src="{{$mediaService->vignette($card->slug)}}" />
                 </div>
             </div>
             <div class="relative flex-grow max-w-xl md:w-auto">
