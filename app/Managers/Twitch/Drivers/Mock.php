@@ -42,7 +42,22 @@ class Mock implements Driver
     public function get(string $slug): array
     {
         return [
-            //
+            'slug' => '',
+            'tracking_id' => '',
+            'title' => '',
+            'url' => '',
+            'game' => '',
+            'views' => 500,
+            'thumbnails' => [
+                'medium' => '',
+            ],
+            'curator' => [
+                'id' => '', 
+                'name' => '', 
+                'display_name' => '', 
+                'channel_url' => '', 
+                'logo' => '', 
+            ],
         ];
     }    
 }

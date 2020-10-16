@@ -63,7 +63,7 @@ class ClipsViewsUpdater extends Command
 
     protected function getViews(Clip $clip): int
     {
-        $concret = app(TwitchManager::class)->driver('api')->get($clip->slug);
+        $concret = app(TwitchManager::class)->get($clip->slug);
 
         return $concret['views'];
     }
