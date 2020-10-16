@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('logout', function () {
     Auth::logout();

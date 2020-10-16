@@ -57,7 +57,7 @@
     </div>
     <div class="mt-16">
         <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-light leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">Commentaires (2)</h2>
+            <h2 class="text-2xl font-light leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">Commentaires ({{$comment_count}})</h2>
             <span class="rounded shadow-sm">
                 <dropdown button-class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800">
                     <template #trigger>
@@ -77,7 +77,9 @@
             </span>
         </div>
         <div class="mt-6">
+            @auth
             <post-comment :clip-id="{{$clip->id}}"></post-comment>
+            @endauth
             <div class="mt-12">
                 <comments fetch-url="{{route('api.comments.search', ['clip_id' => $clip->id])}}" />
             </div>
