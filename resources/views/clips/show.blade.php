@@ -77,17 +77,9 @@
             </span>
         </div>
         <div class="mt-6">
-            <div>
-                <p class="text-sm text-gray-300">Exprime-toi, connard</p>
-                <div class="flex max-w-lg mt-1 rounded-sm shadow-sm">
-                    <textarea rows="2" class="block w-full transition duration-150 ease-in-out bg-gray-900 border-gray-900 rounded-sm form-textarea sm:text-sm sm:leading-5"></textarea>
-                </div>
-                <button type="button" class="inline-flex items-center px-3 py-2 mt-1 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out border border-transparent border-gray-700 rounded hover:text-indigo-300 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" id="options-menu" aria-haspopup="true" aria-expanded="true">
-                    Comment
-                </button>
-            </div>
+            <post-comment :clip-id="{{$clip->id}}"></post-comment>
             <div class="mt-12">
-
+                <comments fetch-url="{{route('api.comments.search', ['clip_id' => $clip->id])}}" />
             </div>
         </div>
     </div>

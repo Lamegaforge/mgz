@@ -4,12 +4,8 @@ namespace Tests\Unit;
 
 use Carbon\Carbon;
 use Tests\TestCase;
-use App\Models\User;
-use App\Services\AuthentificationService;
-use Illuminate\Foundation\Testing\DatabaseMigrations; 
-use League\OAuth2\Client\Provider\ResourceOwnerInterface;
-
 use App\Managers\Twitch\TwitchManager;
+use Illuminate\Foundation\Testing\DatabaseMigrations; 
 
 class TwitchManagerTest extends TestCase
 {

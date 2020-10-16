@@ -29,6 +29,7 @@ class StoreCommentRequest extends FormRequest
         return [
             'clip_id' => 'required|filled|integer|exists:clips,id',
             'parent_comment_id' => [
+                'nullable',
                 Rule::exists('comments', 'id')->where(function ($query) {
                     $query->whereNull('parent_comment_id');
                 }),

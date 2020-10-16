@@ -11,6 +11,7 @@ use App\Repositories\Criterias\Where;
 use App\Repositories\Criterias\Active;
 use App\Repositories\CommentRepository;
 use App\Repositories\Criterias\OrderBy;
+use App\Repositories\Criterias\WhereNull;
 use App\Http\Requests\Api\StoreCommentRequest;
 
 class CommentController extends Controller
@@ -24,14 +25,15 @@ class CommentController extends Controller
 
     public function search(Request $request)
     {
-        $comments = app(CommentRepository::class)
+        $comments = $this->commentRepository
             ->with(['user', 'children' => function ($query) {
                 $query->where('active', true)
-                    ->orderBy('approved_at', 'DESC');
-            }])
+                    ->orderBy('created_at', 'ASC');
+            }, 'children.user'])
             ->pushCriteria(new Active())
             ->pushCriteria(new Where('clip_id', $request->clip_id))
-            ->pushCriteria(new OrderBy('approved_at', 'DESC'))
+            ->pushCriteria(new WhereNull('parent_comment_id'))
+            ->pushCriteria(new OrderBy('created_at', 'DESC'))
             ->all();
 
         return Response::json([
@@ -45,6 +47,7 @@ class CommentController extends Controller
         $attributes = $request->validated();
 
         $attributes['user_id'] = Auth::id();
+        $attributes['active'] = true;
 
         $this->commentRepository->create($attributes);
 
