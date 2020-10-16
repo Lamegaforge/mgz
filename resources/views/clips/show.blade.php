@@ -77,7 +77,9 @@
             </span>
         </div>
         <div class="mt-6">
+            @auth
             <post-comment :clip-id="{{$clip->id}}"></post-comment>
+            @endauth
             <div class="mt-12">
                 <comments fetch-url="{{route('api.comments.search', ['clip_id' => $clip->id])}}" />
             </div>
