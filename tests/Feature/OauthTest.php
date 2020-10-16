@@ -17,11 +17,7 @@ class OauthTest extends TestCase
     {
         $response = $this->get('oauth/login');
 
-        $response->assertStatus(302);
-
-        $headers = $response->headers;
-
-        $this->assertMatchesRegularExpression('#.*id\.twitch\.tv\/oauth2\/authorize#', $headers->get('Location'));
+        $response->assertStatus(200);
     }
 
     /**
