@@ -2,7 +2,7 @@
   <div class="flex py-4 space-x-3 border-t border-gray-900 sm:space-x-4">
     <img
       class="inline-block w-10 h-10 rounded-full sm:w-12 sm:h-12"
-      src="https://cdn.discordapp.com/emojis/761566071151919104.png?v=1"
+      :src="comment.user.profile_image_url"
       alt=""
     />
     <div class="w-full text-gray-300">
@@ -23,9 +23,15 @@
           Répondre
         </button>
       </div>
+      <div
+        v-if="clicked && !isAuth"
+        class="max-w-lg px-4 py-2 mt-2 text-sm bg-indigo-900 rounded"
+      >
+        <p>Tu dois être connecté(e) pour commenter</p>
+      </div>
       <post-comment
         class="mt-4"
-        v-if="clicked"
+        v-if="clicked && isAuth"
         :clip-id="comment.clip_id"
         :parent-id="
           comment.parent_comment_id ? comment.parent_comment_id : comment.id
@@ -46,6 +52,10 @@ import { ref } from "vue";
 export default {
   props: {
     comment: Object,
+    isAuth: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup() {
     const intervals = [

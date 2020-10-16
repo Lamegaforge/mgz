@@ -23,7 +23,7 @@
     Chargement des commentaires...
   </div>
   <div v-for="(comment, index) in comments" :key="index">
-    <comment :comment="comment" />
+    <comment :comment="comment" :is-auth="isAuth" />
   </div>
 </template>
 <script>
@@ -31,6 +31,10 @@ import { onMounted, ref } from "vue";
 export default {
   props: {
     fetchUrl: String,
+    isAuth: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const comments = ref([]);

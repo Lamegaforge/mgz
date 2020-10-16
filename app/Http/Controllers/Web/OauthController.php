@@ -16,7 +16,9 @@ class OauthController extends Controller
     {
         $authorizationUrl = app(OauthManager::class)->driver('vertisan')->getAuthorizationUrl();
 
-        return Redirect::to($authorizationUrl);
+        return View::make('home.login', [
+            'authorization_url' => $authorizationUrl,
+        ]);
     }
 
     public function consume(ConsumeOauthRequest $request)
@@ -28,6 +30,8 @@ class OauthController extends Controller
         $user = app(AuthentificationService::class)->getUser($attributes);
 
         Auth::login($user);
+
+        $request->session()->flash('info', 'welcome asshole');
 
         return Redirect::route('home');
     }
