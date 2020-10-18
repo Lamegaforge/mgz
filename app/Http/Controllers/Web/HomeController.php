@@ -14,27 +14,24 @@ use App\Repositories\Criterias\OrderBy;
 
 class HomeController extends Controller
 {
-	protected $clipRepository;
-	protected $cardRepository;
-
-	public function __construct(ClipRepository $clipRepository, CardRepository $cardRepository)
-	{
-		$this->clipRepository = $clipRepository;
-		$this->cardRepository = $cardRepository;
-	}
-
     public function index(Request $request)
     {
-    	$highlightClip = app(ClipService::class)->getHighlightClip();
+        $highlightClips = app(ClipRepository::class)
+            ->pushCriteria(new Active())
+            ->pushCriteria(new OrderBy('views', 'DESC'))
+            ->pushCriteria(new Limit(10))
+            ->all();
 
-        $clips = $this->clipRepository
+        $highlightClip = $highlightClips->random();
+
+        $clips = app(ClipRepository::class)
             ->with(['card'])
             ->pushCriteria(new Active())
             ->pushCriteria(new OrderBy('approved_at', 'DESC'))
             ->pushCriteria(new Limit(16))
             ->all();
 
-        $cards = $this->cardRepository
+        $cards = app(CardRepository::class)
             ->withCount(['clips'])
             ->pushCriteria(new Limit(30))
             ->all();
