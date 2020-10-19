@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
+use Auth;
 use View;
+use Redirect;
 use Illuminate\Http\Request;
 use App\Services\ClipService;
 use App\Repositories\Presenters;
@@ -43,5 +45,12 @@ class HomeController extends Controller
             'clips' => $clips,
             'cards' => $cards['data'],
         ]);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return Redirect::route('home');
     }
 }

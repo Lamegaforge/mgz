@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('logout', function () {
-    Auth::logout();
-})->name('logout');
+Route::get('logout', 'HomeController@logout')->name('logout');
 
 Route::prefix('oauth')->middleware('guest')->as('oauth.')->group(function () {
     Route::get('login', 'OauthController@login')->name('login');
