@@ -42,7 +42,7 @@
 </section>
 <section class="px-4 pb-16 mx-auto mt-12 overflow-hidden sm:px-6 lg:px-8 md:pb-20 lg:pb-24 max-w-7xl">
     <div>
-        <h2 class="text-2xl font-light leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">Clips récents</h2>
+        <h2 class="text-2xl font-light leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">Autres clips</h2>
         <div class="mt-6">
             @if(count($clips) > 0)
             <carousel :items="{{json_encode($clips)}}" :options="{responsive: [{end: 640, size: 1}, {start: 640, end: 768, size: 2}, {start: 768, end: 1024, size: 3},{size: 4}]}">

@@ -10,6 +10,7 @@ use App\Repositories\CardRepository;
 use App\Repositories\Criterias\Limit;
 use App\Repositories\Criterias\Where;
 use App\Repositories\Criterias\Active;
+use App\Repositories\Criterias\Random;
 use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereLike;
 
@@ -31,6 +32,7 @@ class ClipController extends Controller
 
         $clips = app(ClipRepository::class)
             ->with(['user', 'card'])
+            ->pushCriteria(new Random())
             ->pushCriteria(new Active())
             ->pushCriteria(new Limit(8))
             ->pushCriteria(new OrderBy('approved_at', 'DESC'))
