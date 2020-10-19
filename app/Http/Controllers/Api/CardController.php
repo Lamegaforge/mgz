@@ -7,6 +7,7 @@ use DateTime;
 use App\Services\MediaService;
 use App\Repositories\CardRepository;
 use App\Http\Controllers\Controller;
+use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereLike;
 use App\Http\Requests\Api\SearchCardsRequest;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -22,6 +23,8 @@ class CardController extends Controller
 
     public function search(SearchCardsRequest $request)
     {
+        $this->addOrderCriteria($request);
+
         if ($request->has('title')) {
 
             $title = $request->get('title');
@@ -39,6 +42,23 @@ class CardController extends Controller
             'timestamp' => (new DateTime())->getTimestamp(),
             'cards' => $this->present($paginator),
         ], 200);
+    }
+
+    protected function addOrderCriteria(SearchCardsRequest $request): void
+    {
+        $order = $request->get('order');
+        
+        switch ($order) {
+            case 'created_at':
+                $criteria = new OrderBy('created_at', 'DESC');
+                break;
+            case 'title':
+            default:
+                $criteria = new OrderBy('title', 'ASC');
+                break;
+        }
+
+        $this->cardRepository->pushCriteria($criteria);
     }
 
     protected function present(Paginator $paginator): array

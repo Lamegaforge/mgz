@@ -25,6 +25,7 @@ class SearchCardsRequest extends FormRequest
     {
         return [
             'search' => 'string',
+            'order' => 'string',
         ];
     }
 }
