@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use Auth;
+use Config;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -32,5 +34,20 @@ class OauthTest extends TestCase
         $response->assertStatus(302);
 
         $response->assertRedirect('home');
+    }
+
+    /**
+     * @test
+     */
+    public function guest_consume_request()
+    {
+        Config::set('manager.oauth.default_driver', 'mock');
+
+        $response = $this->get('oauth/consume?state=state&code=code');
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/');
+
+        $this->assertTrue(Auth::check());
     }
 }

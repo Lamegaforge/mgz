@@ -25,6 +25,15 @@ class OauthManager extends Manager
 
         return $this->getRepository($driver);
     }
+
+    public function createMockDriver()
+    {
+        $config = Config::get('manager.oauth.drivers.mock');
+
+        $driver = new Drivers\Mock($config);
+
+        return $this->getRepository($driver);
+    }
    
     public function getRepository(Driver $driver)
     {
