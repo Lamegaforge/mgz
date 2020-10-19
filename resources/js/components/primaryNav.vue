@@ -7,7 +7,7 @@
             <a
               href="/"
               class="text-xl font-bold tracking-tight text-white uppercase"
-              >LaMegaforge</a
+              >megasaurus</a
             >
           </div>
           <div class="hidden sm:ml-6 sm:flex">
