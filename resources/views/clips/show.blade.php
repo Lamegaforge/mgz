@@ -26,7 +26,7 @@
                 <div class="flex items-start justify-start mt-3 md:mt-6">
                     <div>
                         <p class="text-sm text-gray-300">Publié le @datetime($clip->approved_at)</p>
-                        <p class="text-sm text-gray-300">{comments} commentaires</p>
+                        <p class="text-sm text-gray-300">{{$comment_count}} commentaires</p>
                         <p class="text-sm text-gray-300">{{$clip->views}} vues</p>
                         <a href="{{route('cards.show', $clip->card->id)}}" class="font-semibold text-white hover:text-indigo-400">{{$clip->card->title}}</a>
                     </div>
