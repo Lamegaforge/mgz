@@ -31,7 +31,7 @@ Route::prefix('clips')->as('clips.')->group(function () {
 
 Route::prefix('cards')->as('cards.')->group(function () {
 	Route::get('/', 'CardController@index')->name('index');
-	Route::get('{id}', 'CardController@show')->name('show');
+	Route::get('{hook}', 'CardController@show')->name('show');
 });
 
 Route::prefix('users')->as('users.')->group(function () {
