@@ -83,7 +83,7 @@
             <post-comment :clip-id="{{$clip->id}}"></post-comment>
             @endauth
             <div class="mt-12">
-                <comments :is-auth="{{(string) Auth::check()}}" fetch-url="{{route('api.comments.search', ['clip_id' => $clip->id])}}" />
+                <comments :is-auth="@json(Auth::check())" fetch-url="{{route('api.comments.search', ['clip_id' => $clip->id])}}" />
             </div>
         </div>
     </div>
