@@ -1,6 +1,14 @@
 @extends('app')
 @section('content')
+
 <section class="relative overflow-hidden">
+    @if (session()->has('info'))
+    <div class="px-4 mx-auto max-w-7xl">
+        <div class="relative z-10 px-4 py-2 mx-auto mt-2 text-sm bg-indigo-900 rounded">
+            <p>{{session('info')}}</p>
+        </div>
+    </div>
+    @endif
     <img class="absolute top-0 left-0 object-cover w-full h-full blur" src="{{$highlight_clip->thumbnail}}" />
     <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25"></div>
     <div class="relative px-4 py-16 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8 md:py-20 lg:py-24">

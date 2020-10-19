@@ -1,15 +1,15 @@
 @php
 $links = [
-    [
-        'Clips',
-        '/clips',
-        request()->routeIs('clips.index'),
-    ],
-    [
-        'Fiches',
-        '/cards',
-        request()->routeIs('cards.index')
-    ],
+[
+'Clips',
+'/clips',
+request()->routeIs('clips.index'),
+],
+[
+'Fiches',
+'/cards',
+request()->routeIs('cards.index')
+],
 ];
 @endphp
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ $links = [
 
 <body class="antialiased">
     <div id="app" class="flex flex-col font-sans text-white bg-black">
-        <primary-nav :links="{{json_encode($links)}}"></primary-nav>
+        <primary-nav :links="{{json_encode($links)}}" :user="{{json_encode(Auth::user())}}"></primary-nav>
         <main class="min-h-screen">
             @yield('content')
         </main>

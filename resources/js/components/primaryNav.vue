@@ -16,8 +16,7 @@
               v-for="(link, index) in links"
               :key="index"
               :class="{
-                'text-white border-indigo-500 focus:border-indigo-700':
-                  link[2],
+                'text-white border-indigo-500 focus:border-indigo-700': link[2],
                 'text-gray-300 border-transparent hover:text-white hover:border-gray-300 focus:text-gray-700 focus:border-gray-300': !link[2],
               }"
               class="inline-flex items-center px-1 pt-1 ml-8 text-sm font-medium leading-5 transition duration-150 ease-in-out border-b-2 first:ml-0 focus:outline-none focus:text-gray-700"
@@ -26,14 +25,21 @@
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
+          <a
+            v-if="!user"
+            :href="profileLinks.login.url"
+            class="inline-flex items-center h-full px-1 pt-1 ml-8 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-white hover:border-gray-300 focus:text-gray-700 focus:border-gray-300 first:ml-0 focus:outline-none"
+            >{{ profileLinks.login.label }}</a
+          >
           <dropdown
+            v-if="user"
             class="ml-3"
             button-class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
           >
             <template #trigger>
               <img
                 class="object-cover w-8 h-8 rounded-full"
-                src="https://cdn.discordapp.com/emojis/761566071151919104.png?v=1"
+                :src="user?.profile_image_url"
                 alt=""
               />
             </template>
@@ -45,21 +51,21 @@
                 aria-labelledby="sort-menu"
               >
                 <a
-                  href="#"
+                  :href="profileLinks.profile.url"
                   class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
                   role="menuitem"
-                  >Mon profil</a
+                  >{{ profileLinks.profile.label }}</a
                 ><a
-                  href="#"
+                  :href="profileLinks.settings.url"
                   class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
                   role="menuitem"
-                  >Paramètres</a
+                  >{{ profileLinks.settings.label }}</a
                 >
                 <a
-                  href="#"
+                  :href="profileLinks.logout.url"
                   class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
                   role="menuitem"
-                  >Déconnexion</a
+                  >{{ profileLinks.logout.label }}</a
                 >
               </div>
             </template>
@@ -124,37 +130,43 @@
           class="block py-2 pl-3 pr-4 mt-1 text-base font-medium transition duration-150 ease-in-out border-l-4 focus:outline-none"
           >{{ link[0] }}</a
         >
+        <a
+          v-if="!user"
+          :href="profileLinks.login.url"
+          class="block py-2 pl-3 pr-4 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out border-l-4 border-transparent hover:text-white hover:bg-gray-800 hover:border-gray-300 focus:text-white focus:bg-gray-50 focus:border-gray-300 focus:outline-none"
+          >{{ profileLinks.login.label }}</a
+        >
       </div>
-      <div class="pt-4 pb-3 border-t border-gray-800">
+      <div class="pt-4 pb-3 border-t border-gray-800" v-if="user">
         <div class="flex items-center px-4">
           <div class="flex-shrink-0">
             <img
               class="object-cover w-10 h-10 rounded-full"
-              src="https://cdn.discordapp.com/emojis/761566071151919104.png?v=1"
+              :src="user?.profile_image_url"
               alt=""
             />
           </div>
           <div class="ml-3">
             <div class="text-base font-medium leading-6 text-white">
-              Basalte
+              {{ user?.display_name }}
             </div>
           </div>
         </div>
         <div class="mt-3">
           <a
-            href="#"
+            :href="profileLinks.profile.url"
             class="block px-4 py-2 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800"
-            >Mon profil</a
+            >{{ profileLinks.profile.label }}</a
           >
           <a
-            href="#"
+            :href="profileLinks.settings.url"
             class="block px-4 py-2 mt-1 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800"
-            >Paramètres</a
+            >{{ profileLinks.settings.label }}</a
           >
           <a
-            href="#"
+            :href="profileLinks.logout.url"
             class="block px-4 py-2 mt-1 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800"
-            >Déconnexion</a
+            >{{ profileLinks.logout.label }}</a
           >
         </div>
       </div>
@@ -166,10 +178,28 @@ import { ref } from "vue";
 export default {
   props: {
     links: Array,
+    user: Object,
   },
-  setup() {
+  setup(props) {
     const isMobileOpen = ref(false);
-
+    const profileLinks = ref({
+      login: {
+        label: "Connexion",
+        url: "/oauth/login",
+      },
+      profile: {
+        label: "Mon profil",
+        url: "#",
+      },
+      settings: {
+        label: "Paramètres",
+        url: "#",
+      },
+      logout: {
+        label: "Déconnexion",
+        url: "/logout",
+      },
+    });
     function toggleMobileMenu() {
       isMobileOpen.value = !isMobileOpen.value;
     }
@@ -177,6 +207,7 @@ export default {
     return {
       isMobileOpen,
       toggleMobileMenu,
+      profileLinks,
     };
   },
 };
