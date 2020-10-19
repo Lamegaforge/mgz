@@ -71,7 +71,7 @@ export default {
   setup(props, context) {
     const numberLinks = computed(() => {
       return props.links.filter(
-        (item) => item.label !== "Previous" && item.label !== "Next"
+        (item) => item.label !== "&laquo; Previous" && item.label !== "Next &raquo;"
       );
     });
     function handleClick(url) {
