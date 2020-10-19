@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use View;
 use Illuminate\Http\Request;
 use App\Services\ClipService;
+use App\Repositories\Presenters;
 use Illuminate\Routing\Controller;
 use App\Repositories\ClipRepository;
 use App\Repositories\CardRepository;
@@ -34,12 +35,13 @@ class HomeController extends Controller
         $cards = app(CardRepository::class)
             ->withCount(['clips'])
             ->pushCriteria(new Limit(30))
+            ->setPresenter(Presenters\CardWithMedia::class)
             ->all();
 
         return View::make('home.index', [
             'highlight_clip' => $highlightClip,
             'clips' => $clips,
-            'cards' => $cards,
+            'cards' => $cards['data'],
         ]);
     }
 }
