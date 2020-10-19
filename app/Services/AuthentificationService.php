@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Event;
-use Carbon\Carbon;
 use App\Models\User;
 use App\Services\UserService;
 use App\Repositories\UserRepository;
@@ -24,23 +23,11 @@ class AuthentificationService
     {
         $user = $this->userService->findOrCreateUser($attributes['tracking_id'], $attributes);
 
-        if ($this->upToDate($user)) {
-            return $user;
-        }
-
         $this->update($user, $attributes);
 
         $user->refresh();
 
         return $user;
-    }
-
-    protected function upToDate(User $user): bool
-    {
-        $createdAt = $user->created_at->format('Y-m-d');
-        $today = Carbon::today()->format('Y-m-d');
-
-        return $createdAt === $today;
     }
 
     protected function update(User $user, array $attributes): void
