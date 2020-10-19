@@ -16,9 +16,9 @@ class Repository
         $this->former = $former;
     }
 
-    public function getLastClips(): array
+    public function getLastClips(string $period, ?string $cursor = null): array
     {
-        $clips = $this->driver->getLastClips();
+        $clips = $this->driver->getLastClips($period, $cursor);
 
         return $this->former->clips($clips);
     }
