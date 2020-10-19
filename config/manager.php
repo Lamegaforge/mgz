@@ -12,7 +12,7 @@ return [
         ],
     ],
     'oauth' => [
-        'default_driver' => 'helix',
+        'default_driver' => 'vertisan',
         'drivers' => [
             'helix' => [
                 'client_id' => env('HELIX_CLIENT_ID'),
