@@ -22,7 +22,7 @@ class ClipsAggregator extends Command
      *
      * @var string
      */
-    protected $signature = 'clips:aggregate';
+    protected $signature = 'clips:aggregate {--period=} {--cursor=} {--active}';
 
     /**
      * The console command description.
@@ -48,7 +48,7 @@ class ClipsAggregator extends Command
      */
     public function handle()
     {
-        $clips = app(TwitchManager::class)->driver('api')->getLastClips();
+        $clips = $this->retrieveClips();
 
         foreach ($clips as $clip) {
 
@@ -64,6 +64,14 @@ class ClipsAggregator extends Command
         }
 
         return 0;
+    }
+
+    protected function retrieveClips(): array
+    {
+        $period = $this->option('period') ?? 'day';
+        $cursor = $this->option('cursor');
+
+        return app(TwitchManager::class)->driver('api')->getLastClips($period, $cursor);
     }
 
     protected function alreadySave(array $clip): bool
@@ -115,6 +123,7 @@ class ClipsAggregator extends Command
 
         $attributes['user_id'] = $user->id;
         $attributes['card_id'] = $card->id ?? null;
+        $attributes['active'] = $this->option('active');
         $attributes['approved_at'] = $attributes['created_at'];
 
         app(ClipRepository::class)->create($attributes->toArray());

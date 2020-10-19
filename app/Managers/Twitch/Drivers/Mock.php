@@ -6,7 +6,7 @@ use App\Managers\Twitch\Contracts\Driver;
 
 class Mock implements Driver
 {
-    public function getLastClips(): array
+    public function getLastClips(string $period, ?string $cursor = null): array
     {
         return [
             //
