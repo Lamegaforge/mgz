@@ -110,10 +110,12 @@ class ClipsAggregator extends Command
             'thumbnail',
             'views',
             'url',
+            'created_at',
         ]);
 
         $attributes['user_id'] = $user->id;
         $attributes['card_id'] = $card->id ?? null;
+        $attributes['approved_at'] = $attributes['created_at'];
 
         app(ClipRepository::class)->create($attributes->toArray());
     }

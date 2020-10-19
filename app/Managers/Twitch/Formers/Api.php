@@ -24,9 +24,10 @@ class Api implements Former
             'game' => $clip['game'],
             'views' => $clip['views'],
             'thumbnail' => $clip['thumbnails']['medium'],
+            'created_at' => $clip['created_at'],
             'curator' => [
                 'tracking_id' => $clip['curator']['id'],    
-                'name' => $clip['curator']['name'],    
+                'name' => $clip['curator']['name'],
                 'display_name' => $clip['curator']['display_name'],    
                 'channel_url' => $clip['curator']['channel_url'],    
                 'logo' => $clip['curator']['logo'],    

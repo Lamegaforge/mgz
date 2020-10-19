@@ -24,6 +24,7 @@ class Clip extends Model
         'url',
         'active',
         'approved_at',
+        'created_at',
     ];
 
     /**
