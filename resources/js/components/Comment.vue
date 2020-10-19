@@ -42,6 +42,7 @@
           v-for="(child, index) in comment.children"
           :key="index"
           :comment="child"
+          :is-auth="isAuth"
         />
       </div>
     </div>
