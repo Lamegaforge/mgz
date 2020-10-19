@@ -30,7 +30,10 @@ class CardController extends Controller
 
     public function show(Request $request)
     {
-        $card = app(CardRepository::class)->find($request->id);
+        $card = app(CardRepository::class)
+            ->where('slug', $request->hook)
+            ->orWhere('id', $request->hook)
+            ->first();
 
         $countClips = app(ClipRepository::class)
             ->pushCriteria(new Active())

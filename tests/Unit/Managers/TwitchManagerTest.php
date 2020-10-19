@@ -16,7 +16,7 @@ class TwitchManagerTest extends TestCase
      */
     public function get_last_clips()
     {
-        $clips = app(TwitchManager::class)->getLastClips();
+        $clips = app(TwitchManager::class)->getLastClips($period = 'all');
 
         $clip = $clips[0];
         $keys = ['slug', 'tracking_id', 'title', 'url', 'game', 'views', 'thumbnail'];
