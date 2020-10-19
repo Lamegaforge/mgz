@@ -124,7 +124,7 @@ export default {
     const options = computed(() => {
       return {
         item: {
-          padding: options?.item?.padding ? options?.item?.padding : 16,
+          padding: props.options?.item?.padding ? props.options?.item?.padding : 16,
         },
         list: {
           windowed: 1024,
