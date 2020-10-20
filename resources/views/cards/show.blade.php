@@ -7,8 +7,9 @@
     <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25"></div>
     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         @include('layouts.breadcrumbs', [
-        'breadcrumbs' => ['Home',
-        'Fiches',
+        'breadcrumbs' => [
+        ['Home', route('home')],
+        ['Fiches', route('cards.index')],
         $card->title]
         ])
     </div>
