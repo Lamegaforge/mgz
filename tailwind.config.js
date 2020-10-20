@@ -28,6 +28,8 @@ module.exports = {
         extend: {
             padding: {
                 'full': '100%',
+                '2/1': '50%',
+                '3/1': '33.333%',
                 '2/3': '150%',
                 '3/4': '133.3333%',
                 '4/5': '125%',
@@ -38,6 +40,9 @@ module.exports = {
             },
             maxWidth: {
                 '7xl': '80rem'
+            },
+            maxHeight: {
+                '500px': '500px'
             },
             transitionProperty: {
                 translate: 'translate'
