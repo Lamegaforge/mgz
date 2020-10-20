@@ -121,9 +121,11 @@ class ClipsAggregator extends Command
             'created_at',
         ]);
 
+        $active = $this->option('active') ? 'active' : 'waiting';
+
         $attributes['user_id'] = $user->id;
         $attributes['card_id'] = $card->id ?? null;
-        $attributes['active'] = $this->option('active');
+        $attributes['state'] = $active;
         $attributes['approved_at'] = $attributes['created_at'];
 
         app(ClipRepository::class)->create($attributes->toArray());
