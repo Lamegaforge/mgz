@@ -27,7 +27,7 @@ class CommentController extends Controller
     {
         $comments = $this->commentRepository
             ->with(['user', 'children' => function ($query) {
-                $query->where('active', true)
+                $query->where('state', 'active')
                     ->orderBy('created_at', 'ASC');
             }, 'children.user'])
             ->pushCriteria(new Active())
@@ -47,7 +47,7 @@ class CommentController extends Controller
         $attributes = $request->validated();
 
         $attributes['user_id'] = Auth::id();
-        $attributes['active'] = true;
+        $attributes['state'] = 'active';
 
         $this->commentRepository->create($attributes);
 

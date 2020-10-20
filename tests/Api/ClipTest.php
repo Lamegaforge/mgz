@@ -122,7 +122,7 @@ class ClipTest extends TestCase
     public function cannot_get_inactive_clips()
     {
         $clip = Clip::factory()->create([
-            'active' => false,
+            'state' => 'waiting',
         ]);
 
         $response = $this->get('api/clips/search');

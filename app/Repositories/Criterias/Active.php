@@ -9,7 +9,7 @@ class Active implements CriteriaInterface {
 
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->where('active', true);
+        $model = $model->where('state', 'active');
 
         return $model;
     }

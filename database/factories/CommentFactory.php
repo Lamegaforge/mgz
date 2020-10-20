@@ -29,6 +29,7 @@ class CommentFactory extends Factory
             'user_id' => User::factory(),
             'content' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
             'active' => true,
+            'state' => 'active',
             'approved_at' => $this->faker->dateTimeInInterval($startDate = '-30 years', $interval = '+ 5 days'),
         ];
     }
