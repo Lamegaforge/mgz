@@ -35,14 +35,14 @@ module.exports = {
                 '4/5': '125%',
                 '16/9': '56.25%'
             },
+            height: {
+                '400px': '400px'
+            },
             minWidth: {
                 '350px': '350px'
             },
             maxWidth: {
                 '7xl': '80rem'
-            },
-            maxHeight: {
-                '500px': '500px'
             },
             transitionProperty: {
                 translate: 'translate'
