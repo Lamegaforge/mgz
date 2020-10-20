@@ -37,6 +37,7 @@ class HomeController extends Controller
         $cards = app(CardRepository::class)
             ->withCount(['clips'])
             ->pushCriteria(new Limit(30))
+            ->pushCriteria(new OrderBy('clips_count', 'DESC'))
             ->setPresenter(Presenters\CardWithMedia::class)
             ->all();
 
