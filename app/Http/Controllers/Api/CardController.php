@@ -33,7 +33,7 @@ class CardController extends Controller
         }
 
         $this->cardRepository->has('clips', function () {
-            $query->where('active', true); 
+            $query->where('state', 'active'); 
         });
 
         $paginator = $this->cardRepository->paginate(12, $columns = ['*']);

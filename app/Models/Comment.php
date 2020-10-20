@@ -17,6 +17,7 @@ class Comment extends Model
         'parent_comment_id',
         'content',
         'active',
+        'state',
         'approved_at',
     ];
 

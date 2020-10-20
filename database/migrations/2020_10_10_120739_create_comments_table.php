@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('parent_comment_id')->nullable();
             $table->text('content');
             $table->boolean('active')->default(false);
+            $table->enum('state', ['active', 'waiting', 'rejected'])->default('waiting');
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
 
