@@ -35,6 +35,7 @@ class ClipFactory extends Factory
             'thumbnail' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
             'url' => $this->faker->unique()->url,
             'active' => true,
+            'state' => 'active',
             'views' => $this->faker->numberBetween($min = 100, $max = 500),
             'approved_at' => $this->faker->dateTimeInInterval($startDate = '-30 years', $interval = '+ 5 days'),
         ];

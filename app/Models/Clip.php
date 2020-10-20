@@ -23,6 +23,7 @@ class Clip extends Model
         'views',
         'url',
         'active',
+        'state',
         'approved_at',
         'created_at',
     ];
