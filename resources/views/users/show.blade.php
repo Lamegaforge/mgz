@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 <section>
-    <div class="relative pt-3/1">
+    <div class="relative xl:pt-0 pt-3/1 xl:h-400px">
         <img alt="profil banner" class="absolute top-0 left-0 object-cover object-center w-full h-full" src="https://mediad.publicbroadcasting.net/p/wshu/files/styles/x_large/public/201906/ow_riebeck.png" />
     </div>
 </section>
