@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use View;
 use Illuminate\Http\Request;
+use App\Repositories\Presenters;
 use Illuminate\Routing\Controller;
 use App\Repositories\ClipRepository;
 use App\Repositories\CardRepository;
@@ -18,9 +19,13 @@ class ClipController extends Controller
 {
     public function index(Request $request)
     {
-        $cards = app(CardRepository::class)->all();
+        $cards = app(CardRepository::class)
+            ->setPresenter(Presenters\CardWithMedia::class)
+            ->all();
 
-        return View::make('clips.index', ['cards' => $cards]);
+        return View::make('clips.index', [
+            'cards' => $cards['data'],
+        ]);
     }
 
     public function show(Request $request)
