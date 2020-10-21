@@ -20,6 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('display_name');
             $table->string('profile_image_url')->nullable();
             $table->string('email')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('twitch')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
             $table->timestamps();
         });
     }
