@@ -38,6 +38,9 @@
                 </a>
             </nav>
         </div>
+        <div class="pb-16 mt-6 md:pb-20 lg:pb-24">
+        <grid :user-id="{{$user->id}}" grid-class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.clips.search')}}" type="clips" />
+        </div>
     </div>
 </section>
 @endsection
