@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereLike;
 use App\Http\Requests\Api\SearchCardsRequest;
+use App\Repositories\Criterias\OrderWithCount;
 use Illuminate\Contracts\Pagination\Paginator;
 
 class CardController extends Controller
@@ -53,8 +54,11 @@ class CardController extends Controller
                 $criteria = new OrderBy('created_at', 'DESC');
                 break;
             case 'title':
-            default:
                 $criteria = new OrderBy('title', 'ASC');
+                break;
+            case 'count':
+            default:
+                $criteria = new OrderWithCount('clips', 'DESC');
                 break;
         }
 

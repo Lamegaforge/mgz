@@ -133,6 +133,10 @@ const sorts = {
       value: "title",
     },
     {
+      label: "Populaire",
+      value: "count",
+    },
+    {
       label: "Date",
       value: "created_at",
     },
