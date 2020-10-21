@@ -16,7 +16,7 @@
     <div class="px-4 py-16 mx-auto -mt-6 max-w-7xl sm:px-6 lg:px-8 md:py-20 lg:py-24">
         <div class="flex flex-col items-center space-y-6 md:flex-row md:space-y-0 md:space-x-12">
             <div class="w-full max-w-sm">
-                <div class="relative shadow-md pt-3/4">
+                <div class="relative shadow-md pt-2/3">
                     <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded" src="{{$mediaService->vignette($card->slug)}}" />
                 </div>
             </div>
