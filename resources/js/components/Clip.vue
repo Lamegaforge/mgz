@@ -1,20 +1,20 @@
 <template>
-  <a :href="`/clips/${item.id}`" className="block rounded group">
+  <a :href="`/clips/${item.id}`" class="block rounded group">
     <div
-      className="relative transition duration-200 ease-in-out transform shadow-md pt-16/9 group-hover:scale-105"
+      class="relative transition duration-200 ease-in-out transform shadow-md pt-16/9 group-hover:scale-105"
     >
       <img
-        className="absolute top-0 left-0 object-cover object-center w-full h-full rounded"
+        class="absolute top-0 left-0 object-cover object-center w-full h-full rounded"
         :src="item.thumbnail"
       />
     </div>
-    <div className="mt-3 text-white">
+    <div class="mt-3 text-white">
       <p
-        className="transition duration-200 ease-in-out group-hover:text-indigo-400"
+        class="transition duration-200 ease-in-out group-hover:text-indigo-400"
       >
         {{ item.title }}
       </p>
-      <p className="text-sm text-gray-300">{{ item.card?.title }}</p>
+      <p class="text-sm text-gray-300">{{ item.card?.title }}</p>
     </div>
   </a>
 </template>
