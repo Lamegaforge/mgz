@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use View;
 use Illuminate\Http\Request;
+use App\Repositories\Presenters;
 use Illuminate\Routing\Controller;
 use App\Repositories\ClipRepository;
 use App\Repositories\CardRepository;
@@ -19,7 +20,7 @@ class ClipController extends Controller
     public function index(Request $request)
     {
         $cards = app(CardRepository::class)
-            ->with(['card'])
+            ->setPresenter(Presenters\CardWithMedia::class)
             ->all();
 
         return View::make('clips.index', [
