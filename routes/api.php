@@ -27,7 +27,6 @@ Route::as('api.')->group(function () {
 	});
 	Route::prefix('account')->middleware('auth')->as('account.')->group(function () {
 		Route::post('update-banner', 'AccountController@updateBanner')->name('account');
-		Route::post('update-networks', 'AccountController@updateNetworks')->name('account');
-		Route::post('update-description', 'AccountController@updateDescription')->name('account');
+		Route::post('update-user', 'AccountController@updateUser')->name('user');
 	});
 });

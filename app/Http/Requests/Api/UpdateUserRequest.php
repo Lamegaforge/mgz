@@ -5,7 +5,7 @@ namespace App\Http\Requests\Api;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateDescriptionRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,10 @@ class UpdateDescriptionRequest extends FormRequest
     {
         return [
             'description' => 'nullable|string',
+            'youtube' => 'nullable|string',
+            'twitch' => 'nullable|string',
+            'instagram' => 'nullable|string',
+            'twitter' => 'nullable|string',
         ];
     }
 
@@ -38,6 +42,10 @@ class UpdateDescriptionRequest extends FormRequest
     {
         $this->merge([
             'description' => $this->description ?? null,
+            'youtube' => $this->youtube ?? null,
+            'twitch' => $this->twitch ?? null,
+            'instagram' => $this->instagram ?? null,
+            'twitter' => $this->twitter ?? null,
         ]);
     }
 }

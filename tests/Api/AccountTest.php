@@ -15,11 +15,12 @@ class AccountTest extends TestCase
     /**
      * @test
      */
-    public function update_networks()
+    public function update_user()
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('api/account/update-networks', [
+        $response = $this->actingAs($user)->post('api/account/update-user', [
+            'description' => 'blablabla',
             'youtube' => 'youtube',
             'twitch' => 'twitch',
             'instagram' => 'instagram',
@@ -30,28 +31,11 @@ class AccountTest extends TestCase
 
         $user->refresh();
 
+        $this->assertEquals($user->description, 'blablabla');
         $this->assertEquals($user->youtube, 'youtube');
         $this->assertEquals($user->twitch, 'twitch');
         $this->assertEquals($user->instagram, 'instagram');
         $this->assertEquals($user->twitter, 'twitter');
-    }
-
-    /**
-     * @test
-     */
-    public function update_description()
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->post('api/account/update-description', [
-            'description' => 'blablabla',
-        ]);
-
-        $response->assertStatus(200);
-
-        $user->refresh();
-
-        $this->assertEquals($user->description, 'blablabla');
     }
 
     /**

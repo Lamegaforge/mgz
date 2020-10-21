@@ -7,10 +7,9 @@ use App\Services\AccountService;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use App\Http\Responses\GenericApiResponse;
+use App\Http\Requests\Api\UpdateUserRequest;
 use Illuminate\Contracts\Support\Responsable;
 use App\Http\Requests\Api\UpdateBannerRequest;
-use App\Http\Requests\Api\UpdateNetworksRequest;
-use App\Http\Requests\Api\UpdateDescriptionRequest;
 
 class AccountController extends Controller
 {
@@ -30,16 +29,7 @@ class AccountController extends Controller
         return new GenericApiResponse();
     }
 
-    public function updateNetworks(UpdateNetworksRequest $request): Responsable
-    {
-        $attributes = $request->validated();
-
-        $this->userRepository->update($attributes, Auth::id());
-
-        return new GenericApiResponse();
-    }
-
-    public function updateDescription(UpdateDescriptionRequest $request): Responsable
+    public function updateUser(UpdateUserRequest $request): Responsable
     {
         $attributes = $request->validated();
 
