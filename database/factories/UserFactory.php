@@ -28,6 +28,10 @@ class UserFactory extends Factory
             'display_name' => $this->faker->name,
             'profile_image_url' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
             'email' => $this->faker->unique()->safeEmail,
+            'youtube' => 'lamegaforge',
+            'twitch' => 'lamegaforgelive',
+            'instagram' => 'lamegaforge',
+            'twitter' => 'LaMegaforge',
         ];
     }
 }

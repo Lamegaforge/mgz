@@ -16,6 +16,17 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    public function account(Request $request)
+    {
+        $userId = $request->user()->id;
+
+        $user = $this->userRepository->find($userId);
+
+        return View::make('users.show', [
+            'user' => $user,
+        ]);
+    }
+
     public function show(Request $request)
     {
         $user = $this->userRepository->find($request->id);

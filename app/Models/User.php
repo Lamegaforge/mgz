@@ -23,6 +23,10 @@ class User extends Authenticatable
         'display_name',
         'profile_image_url',
         'email',
+        'youtube',
+        'twitch',
+        'instagram',
+        'twitter',
     ];
 
     /**
