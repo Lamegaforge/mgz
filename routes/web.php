@@ -32,5 +32,6 @@ Route::prefix('cards')->as('cards.')->group(function () {
 });
 
 Route::prefix('users')->as('users.')->group(function () {
+	Route::get('account', 'UserController@account')->middleware('auth')->name('account');
 	Route::get('{id}', 'UserController@show')->name('show');
 });
