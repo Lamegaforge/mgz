@@ -13,7 +13,7 @@
     >
       <div class="flex items-center space-x-3 text-white">
         <img
-          :src="selectedItem.image_url"
+          :src="selectedItem.medias?.vignette"
           alt=""
           class="flex-shrink-0 w-6 h-6 rounded-full"
         />
@@ -59,7 +59,7 @@
         >
           <div class="flex items-center space-x-3">
             <img
-              :src="item.image_url"
+              :src="item.medias?.vignette"
               alt=""
               class="flex-shrink-0 w-6 h-6 rounded-full"
             />
