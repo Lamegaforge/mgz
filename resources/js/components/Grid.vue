@@ -3,7 +3,7 @@
     v-if="filters"
     class="flex flex-col items-start mt-4 space-y-3 md:mt-6 sm:space-y-0 sm:items-center sm:flex-row"
   >
-    <div v-if="type === 'clips'" class="w-full sm:w-56">
+    <div v-if="type === 'clips' && cards" class="w-full sm:w-56">
       <select-menu :items="cards" @onSelected="handleSelectedCard" />
     </div>
     <div class="relative w-full sm:ml-auto sm:w-64">
@@ -149,7 +149,11 @@ export default {
     fetchUrl: String,
     cards: Array,
     cardId: Number,
-    filters: Boolean,
+    userId: Number,
+    filters: {
+      type: Boolean,
+      default: false
+    },
   },
   setup(props) {
     const grid = ref(null);
@@ -171,7 +175,7 @@ export default {
       isLoading.value = true;
       if (url) {
         if (!props.filters) {
-          window.scrollTo(0, grid.value.offsetTop - 200);
+          window.scrollTo(0, grid.value.offsetTop - 70);
         } else {
           window.scrollTo(0, 0);
         }
@@ -198,6 +202,9 @@ export default {
       }
       if (cardId.value) {
         return `${props.fetchUrl}?card_id=${cardId.value}&order=${selectedOrder.value}`;
+      }
+      if (props.userId) {
+        return `${props.fetchUrl}?user_id=${props.userId}&order=${selectedOrder.value}`;
       }
       if (search.value) {
         return `${props.fetchUrl}?title=${search.value}&order=${selectedOrder.value}`;
