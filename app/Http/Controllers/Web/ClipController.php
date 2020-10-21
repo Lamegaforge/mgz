@@ -24,7 +24,7 @@ class ClipController extends Controller
             ->all();
 
         return View::make('clips.index', [
-            'cards' => $cards
+            'cards' => $cards['data'],
         ]);
     }
 
