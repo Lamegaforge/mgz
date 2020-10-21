@@ -25,6 +25,7 @@ class SearchClipsRequest extends FormRequest
     {
         return [
             'card_id' => 'integer',
+            'user_id' => 'integer',
             'search' => 'string',
             'order' => 'string',
         ];

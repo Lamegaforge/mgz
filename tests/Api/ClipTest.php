@@ -69,6 +69,23 @@ class ClipTest extends TestCase
     /**
      * @test
      */
+    public function get_clips_with_user_search()
+    {
+        $clip = Clip::factory()->create();
+
+        $user = $clip->user;
+
+        $response = $this->get('api/clips/search?user_id=' . $user->id);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonPath('clips.data.0.id', $clip->id)
+            ->assertJsonPath('clips.data.0.user_id', $user->id);
+    }
+
+    /**
+     * @test
+     */
     public function get_clips_ordered_by_date()
     {
         $clips = Clip::factory()

@@ -36,6 +36,13 @@ class ClipController extends Controller
             $this->clipRepository->pushCriteria(new Where('card_id', $cardId));
         }
 
+        if ($request->has('user_id')) {
+
+            $userId = $request->get('user_id');
+
+            $this->clipRepository->pushCriteria(new Where('user_id', $userId));
+        }
+
         if ($request->has('title')) {
 
             $title = $request->get('title');

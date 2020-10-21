@@ -133,7 +133,7 @@ const sorts = {
       value: "title",
     },
     {
-      label: "Populaire",
+      label: "Popularité",
       value: "count",
     },
     {

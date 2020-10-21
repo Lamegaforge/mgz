@@ -37,6 +37,16 @@ class Clip extends Model
         'approved_at',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'integer',
+        'card_id' => 'integer',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
