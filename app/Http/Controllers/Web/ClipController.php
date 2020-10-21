@@ -18,9 +18,13 @@ class ClipController extends Controller
 {
     public function index(Request $request)
     {
-        $cards = app(CardRepository::class)->all();
+        $cards = app(CardRepository::class)
+            ->with(['card'])
+            ->all();
 
-        return View::make('clips.index', ['cards' => $cards]);
+        return View::make('clips.index', [
+            'cards' => $cards
+        ]);
     }
 
     public function show(Request $request)
