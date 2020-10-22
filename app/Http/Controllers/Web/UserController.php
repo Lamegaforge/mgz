@@ -44,7 +44,6 @@ class UserController extends Controller
 
         return View::make('users.show', [
             'user' => $user,
-            'current' => true,
         ]);
     }
 }
