@@ -193,7 +193,7 @@ export default {
       },
       settings: {
         label: "Paramètres",
-        url: "#",
+        url: "/users/account/settings",
       },
       logout: {
         label: "Déconnexion",

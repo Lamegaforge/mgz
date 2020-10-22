@@ -27,12 +27,24 @@ class UserController extends Controller
         ]);
     }
 
+    public function settings(Request $request)
+    {
+        $userId = $request->user()->id;
+
+        $user = $this->userRepository->find($userId);
+
+        return View::make('users.settings', [
+            'user' => $user,
+        ]);
+    }
+
     public function show(Request $request)
     {
         $user = $this->userRepository->find($request->id);
 
         return View::make('users.show', [
             'user' => $user,
+            'current' => true,
         ]);
     }
 }
