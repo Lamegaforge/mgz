@@ -25,30 +25,10 @@ class ClipController extends Controller
     {
         $this->clipRepository->pushCriteria(new Active());
 
-        $order = $request->get('order');
-        
-        $this->clipRepository->pushCriteria(new OrderBy($order, 'DESC'));
-
-        if ($request->has('card_id')) {
-
-            $cardId = $request->get('card_id');
-
-            $this->clipRepository->pushCriteria(new Where('card_id', $cardId));
-        }
-
-        if ($request->has('user_id')) {
-
-            $userId = $request->get('user_id');
-
-            $this->clipRepository->pushCriteria(new Where('user_id', $userId));
-        }
-
-        if ($request->has('title')) {
-
-            $title = $request->get('title');
-
-            $this->clipRepository->pushCriteria(new WhereLike('title', $title));
-        }
+        $this->addOrderCriteria($request);
+        $this->addCardCriteria($request);
+        $this->addUserCriteria($request);
+        $this->addTitleCriteria($request);
 
         $this->clipRepository->with(['card']);
 
@@ -58,5 +38,45 @@ class ClipController extends Controller
             'timestamp' => (new DateTime())->getTimestamp(),
             'clips' => $clips->toArray(),
         ], 200);
+    }
+
+    protected function addOrderCriteria(SearchClipsRequest $request)
+    {
+        $order = $request->get('order');
+        
+        $this->clipRepository->pushCriteria(new OrderBy($order, 'DESC'));
+    }
+
+    protected function addCardCriteria(SearchClipsRequest $request)
+    {
+        if (! $request->has('card_id')) {
+            return;
+        };
+        
+        $cardId = $request->get('card_id');
+
+        $this->clipRepository->pushCriteria(new Where('card_id', $cardId));
+    }
+
+    protected function addUserCriteria(SearchClipsRequest $request)
+    {
+        if (! $request->has('user_id')) {
+            return;
+        };
+        
+        $userId = $request->get('user_id');
+
+        $this->clipRepository->pushCriteria(new Where('user_id', $userId));
+    }
+
+    protected function addTitleCriteria(SearchClipsRequest $request)
+    {
+        if (! $request->has('title')) {
+            return;
+        };
+        
+        $title = $request->get('title');
+
+        $this->clipRepository->pushCriteria(new WhereLike('title', $title));
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Auth;
 use Response;
 use DateTime;
 use Illuminate\Http\Request;
@@ -46,7 +45,7 @@ class CommentController extends Controller
     {
         $attributes = $request->validated();
 
-        $attributes['user_id'] = Auth::id();
+        $attributes['user_id'] = $request->user()->id;
         $attributes['state'] = 'active';
 
         $this->commentRepository->create($attributes);
