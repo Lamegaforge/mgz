@@ -49,6 +49,12 @@ return [
             'url' => env('APP_URL') . '/images/cards',
         ],
 
+        'banners' => [
+            'driver' => 'local',
+            'root' => public_path('images/banners'),
+            'url' => env('APP_URL') . '/images/banners',
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

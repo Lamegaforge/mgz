@@ -18,7 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('tracking_id')->unique();
             $table->string('login');
             $table->string('display_name');
+            $table->string('description')->nullable();
             $table->string('profile_image_url')->nullable();
+            $table->string('banner_image_slug')->nullable();
             $table->string('email')->nullable();
             $table->string('youtube')->nullable();
             $table->string('twitch')->nullable();

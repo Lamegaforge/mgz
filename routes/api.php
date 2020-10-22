@@ -25,4 +25,8 @@ Route::as('api.')->group(function () {
 		Route::get('search/{clip_id}', 'CommentController@search')->name('search');
 		Route::post('store', 'CommentController@store')->name('store');
 	});
+	Route::prefix('account')->middleware('auth')->as('account.')->group(function () {
+		Route::post('update-banner', 'AccountController@updateBanner')->name('account');
+		Route::post('update-user', 'AccountController@updateUser')->name('user');
+	});
 });
