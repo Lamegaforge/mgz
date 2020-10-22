@@ -11,6 +11,8 @@ import Carousel from "./components/Carousel"
 import Comments from "./components/Comments"
 import Comment from "./components/Comment"
 import PostComment from "./components/PostComment"
+import BannerForm from "./components/BannerForm"
+import UserSettings from "./components/UserSettings"
 import { createApp } from 'vue'
 
 const app = createApp({})
@@ -26,6 +28,8 @@ app.component('carousel', Carousel)
 app.component('comments', Comments)
 app.component('comment', Comment)
 app.component('post-comment', PostComment)
+app.component('banner-form', BannerForm)
+app.component('user-settings', UserSettings)
 
 app.directive('click-outside', {
     beforeMount(el, binding, vnode) {
