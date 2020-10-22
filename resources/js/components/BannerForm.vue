@@ -6,15 +6,29 @@
       :src="banner"
     />
     <div
+      class="absolute top-0 left-0 z-20 w-full px-4 py-2 bg-indigo-700"
+      v-if="errors"
+    >
+      <ul>
+        <li v-for="(error, index) in errors" :key="index">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <div
       class="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full space-x-3 text-white transition-opacity duration-150 ease-in-out bg-black bg-opacity-25"
     >
-      <button type="button" class="relative cursor-pointer" v-if="!changed">
+      <button
+        type="button"
+        class="relative flex items-center justify-center w-full h-full text-center cursor-pointer"
+        v-if="!changed"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          class="w-8 h-8"
+          class="w-8 h-8 pointer-events-none"
         >
           <path
             stroke-linecap="round"
@@ -31,7 +45,7 @@
         </svg>
         <input
           type="file"
-          class="absolute top-0 left-0 w-full h-full opacity-0"
+          class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
           @change="handleChange"
         />
       </button>
@@ -89,6 +103,7 @@ export default {
     const banner = ref(props.banner);
     const file = ref(null);
     const changed = ref(false);
+    const errors = ref(null);
 
     function handleChange(upload) {
       let input = upload.target.files[0];
@@ -118,8 +133,9 @@ export default {
           }
         );
         changed.value = false;
+        errors.value = null;
       } catch (err) {
-        console.log(err);
+        errors.value = err.response.data.errors.banner;
       }
     }
 
@@ -127,9 +143,10 @@ export default {
       banner.value = props.banner;
       file.value = null;
       changed.value = false;
+      errors.value = null;
     }
 
-    return { banner, handleChange, file, changed, reset, saveBanner };
+    return { banner, handleChange, file, changed, reset, saveBanner, errors };
   },
 };
 </script>
