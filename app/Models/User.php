@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Clip::class);
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Clip::class, 'favorites');
+    }
 }
