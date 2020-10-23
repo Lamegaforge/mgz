@@ -39,9 +39,39 @@ class CardTest extends TestCase
 
         $truncatedTitle = Str::limit($card->title, 5, $end = null);
 
-        $response = $this->get('api/cards/search', [
-            'title' => $truncatedTitle,
-        ]);
+        $response = $this->get('api/cards/search?title=' . $truncatedTitle);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonPath('cards.data.0.id', $card->id);
+    }
+
+    /**
+     * @test
+     */
+    public function get_cards_with_created_at_order()
+    {
+        $card = Card::factory()
+            ->has(Clip::factory()->count(3))
+            ->create();
+
+        $response = $this->get('api/cards/search?order=created_at');
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonPath('cards.data.0.id', $card->id);
+    }
+
+    /**
+     * @test
+     */
+    public function get_cards_with_title_order()
+    {
+        $card = Card::factory()
+            ->has(Clip::factory()->count(3))
+            ->create();
+
+        $response = $this->get('api/cards/search?order=title');
 
         $response
             ->assertStatus(200)
