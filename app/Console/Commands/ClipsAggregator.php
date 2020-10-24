@@ -131,7 +131,7 @@ class ClipsAggregator extends Command
         app(ClipRepository::class)->create($attributes->toArray());
     }
 
-    protected function getActiveAttribute(?Card $card): bool
+    protected function getActiveAttribute(?Card $card): string
     {
         if ($card) {
             return 'active';
