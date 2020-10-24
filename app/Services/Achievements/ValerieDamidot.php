@@ -41,7 +41,6 @@ class ValerieDamidot extends Achievements implements Achievement
     {
         $socialNetworks = [
             (bool) $this->user->youtube,
-            (bool) $this->user->twitch,
             (bool) $this->user->instagram,
             (bool) $this->user->twitter,
         ];
