@@ -27,7 +27,7 @@ class FavoriteTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonPath('favorites.data.0.id', $favorites->first()->id);
+            ->assertJsonPath('clips.data.0.id', $favorites->first()->id);
     }
 
     /**
