@@ -121,7 +121,7 @@ class ClipsAggregator extends Command
             'created_at',
         ]);
 
-        $active = $this->option('active') ? 'active' : 'waiting';
+        $active = $this->getActiveAttribute($card);
 
         $attributes['user_id'] = $user->id;
         $attributes['card_id'] = $card->id ?? null;
@@ -129,6 +129,15 @@ class ClipsAggregator extends Command
         $attributes['approved_at'] = $attributes['created_at'];
 
         app(ClipRepository::class)->create($attributes->toArray());
+    }
+
+    protected function getActiveAttribute(?Card $card): bool
+    {
+        if ($card) {
+            return 'active';
+        } 
+
+        return $this->option('active') ? 'active' : 'waiting';
     }
 
     protected function makeCardDirectory(Card $card): void
