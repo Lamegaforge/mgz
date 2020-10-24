@@ -24,7 +24,10 @@
             <div class="flex-grow w-full max-w-sm mt-6 md:w-auto md:mt-0 md:min-w-350px">
                 <h1 class="text-4xl font-extrabold leading-10 text-white">{{$clip->title}}</h1>
                 <p class="mt-2 text-gray-300">par <a href="{{route('users.show', $clip->user)}}" class="font-medium text-white hover:text-indigo-300">{{$clip->user->display_name}}</a></p>
-                <div class="flex items-start justify-start mt-3 md:mt-6">
+                <div>
+                    <favorite-button :clip-id="{{$clip->id}}" :active="@json($isFavorite)" :is-auth="@json(Auth::check())"></favorite-button>
+                </div>
+                <div class="flex items-start justify-start mt-3 md:mt-4">
                     <div>
                         <p class="text-sm text-gray-300">Publié le @datetime($clip->approved_at)</p>
                         <p class="text-sm text-gray-300">{{$comment_count}} commentaires</p>

@@ -103,7 +103,7 @@
       <card :item="item" v-if="type === 'cards'" />
     </div>
   </div>
-  <div v-if="!items.length && !isLoading" class="py-16 text-center">
+  <div v-if="!items?.length && !isLoading" class="py-16 text-center">
     Aucun résultat 🦕
   </div>
   <pagination
@@ -182,7 +182,7 @@ export default {
       }
       try {
         const response = await axios.get(constructUrl(url));
-        links.value = response.data[props.type].links;
+        links.value = response.data[props.type]?.links;
         items.value = response.data[props.type]?.data;
         prevPageUrl.value = response.data[props.type].prev_page_url;
         nextPageUrl.value = response.data[props.type].next_page_url;
