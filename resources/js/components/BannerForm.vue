@@ -100,6 +100,7 @@ export default {
   },
 
   setup(props) {
+    const isLoading = ref(false);
     const banner = ref(props.banner);
     const file = ref(null);
     const changed = ref(false);
@@ -119,6 +120,8 @@ export default {
     }
 
     async function saveBanner() {
+      if (isLoading.value) return;
+      isLoading.value = true;
       try {
         let formData = new FormData();
 
@@ -137,6 +140,7 @@ export default {
       } catch (err) {
         errors.value = err.response.data.errors.banner;
       }
+      isLoading.value = false;
     }
 
     function reset() {

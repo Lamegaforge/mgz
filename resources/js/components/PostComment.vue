@@ -33,10 +33,13 @@ export default {
   },
 
   setup(props) {
+    const isLoading = ref(false);
     const content = ref(null);
     const sent = ref(false);
 
     async function postComment() {
+      if (isLoading.value) return;
+      isLoading.value = true;
       try {
         const response = await axios.post("/api/comments/store", {
           clip_id: props.clipId,
@@ -48,6 +51,7 @@ export default {
       } catch (err) {
         console.log(err);
       }
+      isLoading.value = false;
     }
 
     return { postComment, content, sent };
