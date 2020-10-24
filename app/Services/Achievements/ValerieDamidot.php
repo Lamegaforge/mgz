@@ -9,13 +9,6 @@ class ValerieDamidot extends Achievements implements Achievement
 {
     protected $slug = 'valerie_damidot';
 
-    protected $user;
-
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
-
 	public function eligible(): bool
 	{
         $prerequisites = [
