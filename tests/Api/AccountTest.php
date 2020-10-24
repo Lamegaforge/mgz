@@ -22,7 +22,6 @@ class AccountTest extends TestCase
         $response = $this->actingAs($user)->post('api/account/update-user', [
             'description' => 'blablabla',
             'youtube' => 'youtube',
-            'twitch' => 'twitch',
             'instagram' => 'instagram',
             'twitter' => 'twitter',
         ]);
@@ -33,7 +32,6 @@ class AccountTest extends TestCase
 
         $this->assertEquals($user->description, 'blablabla');
         $this->assertEquals($user->youtube, 'youtube');
-        $this->assertEquals($user->twitch, 'twitch');
         $this->assertEquals($user->instagram, 'instagram');
         $this->assertEquals($user->twitter, 'twitter');
     }
