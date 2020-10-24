@@ -27,7 +27,6 @@ class UpdateUserRequest extends FormRequest
         return [
             'description' => 'nullable|string',
             'youtube' => 'nullable|string',
-            'twitch' => 'nullable|string',
             'instagram' => 'nullable|string',
             'twitter' => 'nullable|string',
         ];
@@ -43,7 +42,6 @@ class UpdateUserRequest extends FormRequest
         $this->merge([
             'description' => $this->description ?? null,
             'youtube' => $this->youtube ?? null,
-            'twitch' => $this->twitch ?? null,
             'instagram' => $this->instagram ?? null,
             'twitter' => $this->twitter ?? null,
         ]);

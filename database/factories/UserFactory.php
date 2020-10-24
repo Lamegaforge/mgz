@@ -31,7 +31,6 @@ class UserFactory extends Factory
             'banner_image_slug' => 'banner_image_slug',
             'email' => $this->faker->unique()->safeEmail,
             'youtube' => 'lamegaforge',
-            'twitch' => 'lamegaforgelive',
             'instagram' => 'lamegaforge',
             'twitter' => 'LaMegaforge',
         ];
