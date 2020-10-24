@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('banner_image_slug')->nullable();
             $table->string('email')->nullable();
             $table->string('youtube')->nullable();
-            $table->string('twitch')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->timestamps();

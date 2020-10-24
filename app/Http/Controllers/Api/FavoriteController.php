@@ -30,7 +30,7 @@ class FavoriteController extends Controller
             ->where('id', $request->user_id)
             ->first();
 
-        $favorites = $user->favorites;
+        $favorites = $user->favorites()->paginate(12);
 
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),

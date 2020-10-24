@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Clip;
+use App\Models\Achievement;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,7 +27,6 @@ class User extends Authenticatable
         'banner_image_slug',
         'email',
         'youtube',
-        'twitch',
         'instagram',
         'twitter',
     ];
@@ -59,5 +59,10 @@ class User extends Authenticatable
     public function favorites()
     {
         return $this->belongsToMany(Clip::class, 'favorites');
+    }
+
+    public function achievements()
+    {
+        return $this->belongsToMany(Achievement::class);
     }
 }

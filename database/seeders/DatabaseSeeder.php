@@ -7,6 +7,7 @@ use App\Models\Clip;
 use App\Models\Card;
 use App\Models\Comment;
 use Illuminate\Database\Seeder;
+use Database\Seeders\AchievementSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +17,15 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
+    {
+        $this->call([
+            AchievementSeeder::class,
+        ]);
+
+        $this->feed();
+    }
+
+    protected function feed(): void
     {
         $cards = Card::factory()->times(6)->create();
 
