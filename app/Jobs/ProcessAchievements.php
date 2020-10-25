@@ -63,7 +63,7 @@ class ProcessAchievements implements ShouldQueue
         return [
             new Achievements\ValerieDamidot($this->user),
             new Achievements\FiveActiveClips($this->user),
-            new Achievements\TenDamidot($this->user),
+            new Achievements\TenActiveClips($this->user),
             new Achievements\FifteenActiveClips($this->user),
             new Achievements\TwentyActiveClips($this->user),
         ];
