@@ -34,8 +34,10 @@ class ClipController extends Controller
         $clip = app(ClipRepository::class)
             ->with(['user', 'card'])
             ->pushCriteria(new Active())
-            ->find($request->id);
-
+            ->where('slug', $request->hook)
+            ->orWhere('id', $request->hook)
+            ->first();
+            
         $clips = app(ClipRepository::class)
             ->with(['user', 'card'])
             ->pushCriteria(new Random())
