@@ -13,6 +13,9 @@ import Comment from "./components/Comment"
 import PostComment from "./components/PostComment"
 import BannerForm from "./components/BannerForm"
 import UserSettings from "./components/UserSettings"
+import FavoriteButton from "./components/FavoriteButton"
+import Tabs from "./components/Tabs"
+import Tab from "./components/Tab"
 import { createApp } from 'vue'
 
 const app = createApp({})
@@ -30,6 +33,9 @@ app.component('comment', Comment)
 app.component('post-comment', PostComment)
 app.component('banner-form', BannerForm)
 app.component('user-settings', UserSettings)
+app.component('favorite-button', FavoriteButton)
+app.component('tabs', Tabs)
+app.component('tab', Tab)
 
 app.directive('click-outside', {
     beforeMount(el, binding, vnode) {
