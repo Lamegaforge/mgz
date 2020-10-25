@@ -25,13 +25,7 @@ class CardController extends Controller
     public function search(SearchCardsRequest $request)
     {
         $this->addOrderCriteria($request);
-
-        if ($request->has('title')) {
-
-            $title = $request->get('title');
-
-            $this->cardRepository->pushCriteria(new WhereLike('title', $title));
-        }
+        $this->addTitleCriteria($request);
 
         $this->cardRepository->has('clips', function () {
             $query->where('state', 'active'); 
@@ -63,6 +57,17 @@ class CardController extends Controller
         }
 
         $this->cardRepository->pushCriteria($criteria);
+    }
+
+    protected function addTitleCriteria(SearchCardsRequest $request): void
+    {
+        if ($request->missing('title')) {
+            return;
+        }
+
+        $title = $request->get('title');
+
+        $this->cardRepository->pushCriteria(new WhereLike('title', $title));
     }
 
     protected function present(Paginator $paginator): array

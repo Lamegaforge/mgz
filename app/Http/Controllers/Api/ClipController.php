@@ -49,7 +49,7 @@ class ClipController extends Controller
 
     protected function addCardCriteria(SearchClipsRequest $request)
     {
-        if (! $request->has('card_id')) {
+        if ($request->missing('card_id')) {
             return;
         };
         
@@ -60,7 +60,7 @@ class ClipController extends Controller
 
     protected function addUserCriteria(SearchClipsRequest $request)
     {
-        if (! $request->has('user_id')) {
+        if ($request->missing('user_id')) {
             return;
         };
         
@@ -71,7 +71,7 @@ class ClipController extends Controller
 
     protected function addTitleCriteria(SearchClipsRequest $request)
     {
-        if (! $request->has('title')) {
+        if ($request->missing('title')) {
             return;
         };
         
