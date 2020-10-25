@@ -22,7 +22,7 @@ class HomeController extends Controller
         $highlightClips = app(ClipRepository::class)
             ->pushCriteria(new Active())
             ->pushCriteria(new OrderBy('views', 'DESC'))
-            ->pushCriteria(new Limit(10))
+            ->pushCriteria(new Limit(30))
             ->all();
 
         $highlightClip = $highlightClips->random();
