@@ -19,5 +19,11 @@ class AchievementSeeder extends Seeder
             'slug' => 'valerie_damidot',
             'points' => 100,
         ]);
+
+        Achievement::factory()->create([
+            'title' => 'Five active clips',
+            'slug' => 'five_active_clips',
+            'points' => 500,
+        ]);
     }
 }
