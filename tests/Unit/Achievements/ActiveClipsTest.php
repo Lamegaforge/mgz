@@ -17,7 +17,10 @@ class ActiveClipsTest extends TestCase
 
     /**
      * @test
-     * @dataProvider dataProvider
+     * @dataProvider fiveProvider
+     * @dataProvider teenProvider
+     * @dataProvider fifteenProvider
+     * @dataProvider twentyProvider
      */
     public function eligible(int $times, string $fqcn, bool $expected)
     {
@@ -35,21 +38,36 @@ class ActiveClipsTest extends TestCase
         $this->assertEquals($expected, $achievement->eligible());
     }
 
-    public function dataProvider(): array
+    public function fiveProvider(): array
     {
         return [
             [4, $fqcn = FiveActiveClips::class, $expected = false],
             [5, $fqcn = FiveActiveClips::class, $expected = true],
             [6, $fqcn = FiveActiveClips::class, $expected = true],
+        ];
+    }
 
+    public function teenProvider(): array
+    {
+        return [
             [9, $fqcn = TenActiveClips::class, $expected = false],
             [10, $fqcn = TenActiveClips::class, $expected = true],
             [11, $fqcn = TenActiveClips::class, $expected = true],
+        ];
+    }
 
+    public function fifteenProvider(): array
+    {
+        return [
             [14, $fqcn = FifteenActiveClips::class, $expected = false],
             [15, $fqcn = FifteenActiveClips::class, $expected = true],
             [16, $fqcn = FifteenActiveClips::class, $expected = true],
+        ];
+    }
 
+    public function twentyProvider(): array
+    {
+        return [
             [19, $fqcn = TwentyActiveClips::class, $expected = false],
             [20, $fqcn = TwentyActiveClips::class, $expected = true],
             [21, $fqcn = TwentyActiveClips::class, $expected = true],
