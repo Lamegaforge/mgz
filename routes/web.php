@@ -23,7 +23,7 @@ Route::prefix('oauth')->middleware('guest')->as('oauth.')->group(function () {
 
 Route::prefix('clips')->as('clips.')->group(function () {
 	Route::get('/', 'ClipController@index')->name('index');
-    Route::get('{id}', 'ClipController@show')->name('show');
+    Route::get('{hook}', 'ClipController@show')->name('show');
 });
 
 Route::prefix('cards')->as('cards.')->group(function () {
