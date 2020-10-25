@@ -22,7 +22,9 @@ class AchievementFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->unique()->sentence($nbWords = 4, $variableNbWords = true),
+            'slug' => $this->faker->unique()->slug(),
+            'points' => 100,
         ];
     }
 }
