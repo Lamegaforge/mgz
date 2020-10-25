@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use View;
+use Redirect;
 use App\Models\Clip;
 use Illuminate\Http\Request;
 use App\Repositories\Presenters;
@@ -27,6 +28,16 @@ class ClipController extends Controller
         return View::make('clips.index', [
             'cards' => $cards['data'],
         ]);
+    }
+
+    public function random(Request $request)
+    {
+        $clip = app(ClipRepository::class)
+            ->pushCriteria(new Random())
+            ->pushCriteria(new Active())
+            ->first();
+
+        return Redirect::route('clips.show', $clip->slug);
     }
 
     public function show(Request $request)
