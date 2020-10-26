@@ -32,8 +32,8 @@ class Token
     {
         $requestToken = $this->getRequestToken($request);
         $appToken = $this->getAppToken();
-        
-        throw_unless($requestToken != $appToken, Exception::class);
+
+        throw_if($requestToken != $appToken, Exception::class);
     }
 
     protected function getRequestToken(Request $request): string
