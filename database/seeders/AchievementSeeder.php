@@ -18,6 +18,7 @@ class AchievementSeeder extends Seeder
             ['valerie_damidot', 500, 'Valerie Damidot'],
             ['famous', 500, 'Famous'],
             ['compulsive_clipper', 500, 'Compulsive clipper'],
+            ['i_love_this_game', 500, 'I love this game'],
 
             ['ten_active_clips', 500, 'Ten active clips'],
             ['thirty_active_clips', 500, 'Thirty active clips'],
