@@ -30,7 +30,7 @@ class Token
             }
 
         } catch (Exception $e) {
-            return App::abort(403);
+            return App::abort(403, 'GET OUT OF HERE STALKER');
         }
 
         return $next($request);
@@ -38,7 +38,7 @@ class Token
 
     protected function getRequestToken(Request $request): string
     {
-        $token = $request->token;
+        $token = $request->header('token');
 
         if (! $request->expectsJson() || ! $token) {
             throw new Exception();
