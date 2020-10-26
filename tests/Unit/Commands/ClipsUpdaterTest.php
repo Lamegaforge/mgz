@@ -7,7 +7,7 @@ use Tests\TestCase;
 use App\Models\Clip;
 use Illuminate\Foundation\Testing\DatabaseMigrations; 
 
-class ClipsViewsUpdaterTest extends TestCase
+class ClipsUpdaterTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -20,6 +20,6 @@ class ClipsViewsUpdaterTest extends TestCase
 
         Config::set('manager.twitch.default_driver', 'mock');
 
-        $this->artisan('clips:views-update')->assertExitCode(0);
+        $this->artisan('clips:update')->assertExitCode(0);
     }
 }
