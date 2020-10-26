@@ -41,6 +41,34 @@ class ClipFactory extends Factory
         ];
     }
 
+    public function active()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'state' => 'active',
+            ];
+        });
+    }
+
+    public function waiting()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'state' => 'waiting',
+            ];
+        });
+    }
+
+
+    public function rejected()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'state' => 'rejected',
+            ];
+        });
+    }
+
     protected function getGames(): array
     {
         return [
