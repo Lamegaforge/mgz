@@ -29,6 +29,7 @@ class CreateClipsTable extends Migration
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
 
+            $table->index('slug');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('card_id')->references('id')->on('cards');
         });
