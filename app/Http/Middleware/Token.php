@@ -20,15 +20,7 @@ class Token
     public function handle(Request $request, Closure $next)
     {
         try {
-
-            $requestToken = $this->getRequestToken($request);
-
-            $appToken = $this->getAppToken();
-            
-            if ($requestToken != $appToken) {
-                throw new Exception();
-            }
-
+            $this->checkAuthorization($request);
         } catch (Exception $e) {
             return App::abort(403, 'GET OUT OF HERE STALKER');
         }
@@ -36,13 +28,21 @@ class Token
         return $next($request);
     }
 
+    protected function checkAuthorization(Request $request)
+    {
+        $requestToken = $this->getRequestToken($request);
+        $appToken = $this->getAppToken();
+        
+        throw_unless($requestToken != $appToken, Exception::class);
+    }
+
     protected function getRequestToken(Request $request): string
     {
         $token = $request->header('token');
+        $expectedJson = $request->expectsJson();
 
-        if (! $request->expectsJson() || ! $token) {
-            throw new Exception();
-        }
+        throw_unless($token, Exception::class);
+        throw_unless($expectedJson, Exception::class);
 
         return $token;
     }
@@ -51,9 +51,7 @@ class Token
     {
         $appToken = Config::get('app.token');
 
-        if (! $appToken || $appToken == '') {
-            throw new Exception();
-        }
+        throw_unless($appToken, Exception::class);
 
         return $appToken;
     }
