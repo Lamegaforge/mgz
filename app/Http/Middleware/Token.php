@@ -30,29 +30,10 @@ class Token
 
     protected function checkAuthorization(Request $request)
     {
-        $requestToken = $this->getRequestToken($request);
-        $appToken = $this->getAppToken();
-
-        throw_if($requestToken != $appToken, Exception::class);
-    }
-
-    protected function getRequestToken(Request $request): string
-    {
-        $token = $request->header('token');
-        $expectedJson = $request->expectsJson();
-
-        throw_unless($token, Exception::class);
-        throw_unless($expectedJson, Exception::class);
-
-        return $token;
-    }
-
-    protected function getAppToken(): string
-    {
         $appToken = Config::get('app.token');
 
-        throw_unless($appToken, Exception::class);
-
-        return $appToken;
+        if ($request->header('token') != $appToken || ! $appToken) {
+            throw new Exception();
+        }
     }
 }
