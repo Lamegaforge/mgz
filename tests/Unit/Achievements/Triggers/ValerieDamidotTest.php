@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit\Achievements;
+namespace Tests\Unit\Achievements\Triggers;
 
 use Tests\TestCase;
 use App\Models\User;
-use App\Services\Achievements\ValerieDamidot;
 use Illuminate\Foundation\Testing\DatabaseMigrations; 
+use App\Services\Achievements\Triggers\ValerieDamidot;
 
 class ValerieDamidotTest extends TestCase
 {

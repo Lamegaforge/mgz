@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Achievements;
+namespace App\Services\Achievements\Triggers;
 
 use App\Models\User;
 use App\Services\Achievements\Traits;
-use App\Services\Achievements\Contracts\Achievement;
+use App\Services\Achievements\Contracts\Trigger;
 
-class TwentyActiveClips extends Achievements implements Achievement 
+class TwentyActiveClips extends Triggers implements Trigger 
 {
     use Traits\ActiveClips;
 

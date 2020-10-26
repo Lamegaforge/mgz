@@ -1,15 +1,15 @@
 <?php
 
-namespace Tests\Unit\Achievements;
+namespace Tests\Unit\Achievements\Triggers;
 
 use Tests\TestCase;
 use App\Models\Clip;
 use App\Models\User;
-use App\Services\Achievements\TenActiveClips;
-use App\Services\Achievements\FiveActiveClips;
-use App\Services\Achievements\TwentyActiveClips;
-use App\Services\Achievements\FifteenActiveClips;
 use Illuminate\Foundation\Testing\DatabaseMigrations; 
+use App\Services\Achievements\Triggers\TenActiveClips;
+use App\Services\Achievements\Triggers\FiveActiveClips;
+use App\Services\Achievements\Triggers\TwentyActiveClips;
+use App\Services\Achievements\Triggers\FifteenActiveClips;
 
 class ActiveClipsTest extends TestCase
 {
@@ -23,7 +23,7 @@ class ActiveClipsTest extends TestCase
      * @dataProvider twentyProvider
      */
     public function eligible(int $times, string $fqcn, bool $expected)
-    {
+    {   
         $user = User::factory()->create();
 
         Clip::factory()
