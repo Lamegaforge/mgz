@@ -16,6 +16,8 @@ class AchievementSeeder extends Seeder
     {
         $achievements = [
             ['valerie_damidot', 500, 'Valerie Damidot'],
+            ['famous', 500, 'Famous'],
+            ['compulsive_clipper', 500, 'Compulsive clipper'],
 
             ['ten_active_clips', 500, 'Ten active clips'],
             ['thirty_active_clips', 500, 'Thirty active clips'],
@@ -42,14 +44,3 @@ class AchievementSeeder extends Seeder
         }, $achievements);
     }
 }
-
-// SELECT user_id,
-//   SUM(views) AS total_views
-// FROM clips
-// GROUP BY user_id
-// ORDER BY SUM(views) DESC;
-
-// SELECT user_id, COUNT(clips.id) AS total_clips
-// FROM clips
-// GROUP BY user_id
-// ORDER BY COUNT(clips.id) DESC;

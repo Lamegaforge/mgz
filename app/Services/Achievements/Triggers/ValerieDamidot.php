@@ -2,7 +2,6 @@
 
 namespace App\Services\Achievements\Triggers;
 
-use App\Models\User;
 use App\Services\Achievements\Contracts\Trigger;
 
 class ValerieDamidot extends Triggers implements Trigger 
