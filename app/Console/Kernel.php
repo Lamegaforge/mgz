@@ -34,6 +34,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('clips:update')->daily();
 
         $schedule->command('cards:aggregate')->daily();
+
+        $schedule->command('achievements')->dailyAt('03:00');
     }
 
     /**
