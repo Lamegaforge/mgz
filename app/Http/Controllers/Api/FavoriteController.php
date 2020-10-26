@@ -32,6 +32,7 @@ class FavoriteController extends Controller
 
         $favorites = $user->favorites()
             ->with(['card'])
+            ->orderByDesc('favorites.created_at')
             ->paginate(12);
 
         return Response::json([
