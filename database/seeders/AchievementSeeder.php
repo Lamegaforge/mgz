@@ -40,6 +40,21 @@ class AchievementSeeder extends Seeder
                 'slug' => 'twenty_active_clips',
                 'points' => 2000,
             ],
+            [
+                'title' => 'Thousand views all clips',
+                'slug' => 'thousand_views_all_clips',
+                'points' => 1000,
+            ],
+            [
+                'title' => 'Two thousand views all clips',
+                'slug' => 'two_thousand_views_all_clips',
+                'points' => 1000,
+            ],
+            [
+                'title' => 'Three thousand views all clips',
+                'slug' => 'three_thousand_views_all_clips',
+                'points' => 1000,
+            ],
         ];
 
         array_map(function ($achievement) {
