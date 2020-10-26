@@ -20,6 +20,8 @@ class CreateCardsTable extends Migration
             $table->string('description')->nullable();
             $table->string('game')->nullable();
             $table->timestamps();
+
+            $table->index('slug');
         });
     }
 
