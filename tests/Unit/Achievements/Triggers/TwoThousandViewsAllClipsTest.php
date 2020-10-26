@@ -6,7 +6,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Clip;
 use Illuminate\Foundation\Testing\DatabaseMigrations; 
-use App\Services\Achievements\Triggers\TwoThousandViewsAllClips;
+use App\Services\Achievements\Triggers\ViewsAllClips\TwoThousand;
 
 class TwoThousandViewsAllClipsTest extends TestCase
 {
@@ -27,7 +27,7 @@ class TwoThousandViewsAllClipsTest extends TestCase
                 'views' => 500,
             ]);
 
-        $achievement = new TwoThousandViewsAllClips($user);
+        $achievement = new TwoThousand($user);
 
         $this->assertTrue($achievement->eligible());
     }
@@ -53,7 +53,7 @@ class TwoThousandViewsAllClipsTest extends TestCase
                 'views' => 1000,
             ]);
 
-        $achievement = new TwoThousandViewsAllClips($user);
+        $achievement = new TwoThousand($user);
 
         $this->assertFalse($achievement->eligible());
     }
@@ -72,7 +72,7 @@ class TwoThousandViewsAllClipsTest extends TestCase
                 'views' => 1000,
             ]);
 
-        $achievement = new TwoThousandViewsAllClips($user);
+        $achievement = new TwoThousand($user);
 
         $this->assertFalse($achievement->eligible());
     }

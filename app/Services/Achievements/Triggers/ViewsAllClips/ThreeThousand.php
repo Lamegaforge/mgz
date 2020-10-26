@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Services\Achievements\Triggers;
+namespace App\Services\Achievements\Triggers\ViewsAllClips;
 
 use App\Models\User;
 use App\Services\Achievements\Traits;
+use App\Services\Achievements\Triggers\Triggers;
 use App\Services\Achievements\Contracts\Trigger;
 
-class ThreeThousandViewsAllClips extends Triggers implements Trigger 
+class ThreeThousand extends Triggers implements Trigger 
 {
     use Traits\ClipsViews;
 

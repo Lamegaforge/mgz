@@ -14,6 +14,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Services\Achievements\Contracts\Trigger;
 use App\Services\Achievements\AchievementService;
+use App\Services\Achievements\Triggers\ActiveClips;
+use App\Services\Achievements\Triggers\ViewsAllClips;
 
 class ProcessAchievements implements ShouldQueue
 {
@@ -62,10 +64,13 @@ class ProcessAchievements implements ShouldQueue
     {
         return [
             new Triggers\ValerieDamidot($this->user),
-            new Triggers\FiveActiveClips($this->user),
-            new Triggers\TenActiveClips($this->user),
-            new Triggers\FifteenActiveClips($this->user),
-            new Triggers\TwentyActiveClips($this->user),
+            new ActiveClips\Five($this->user),
+            new ActiveClips\Ten($this->user),
+            new ActiveClips\Fifteen($this->user),
+            new ActiveClips\Twenty($this->user),
+            new ViewsAllClips\Thousand($this->user),
+            new ViewsAllClips\TwoThousand($this->user),
+            new ViewsAllClips\ThreeThousand($this->user),
         ];
     }
 
