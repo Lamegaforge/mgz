@@ -7,9 +7,11 @@ use App\Models\Clip;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations; 
 use App\Services\Achievements\Triggers\ActiveClips\Ten;
-use App\Services\Achievements\Triggers\ActiveClips\Five;
-use App\Services\Achievements\Triggers\ActiveClips\Twenty;
-use App\Services\Achievements\Triggers\ActiveClips\Fifteen;
+use App\Services\Achievements\Triggers\ActiveClips\Thirty;
+use App\Services\Achievements\Triggers\ActiveClips\Fifty;
+use App\Services\Achievements\Triggers\ActiveClips\Seventy;
+use App\Services\Achievements\Triggers\ActiveClips\Hundred;
+use App\Services\Achievements\Triggers\ActiveClips\OneHundredFifty;
 
 class ActiveClipsTest extends TestCase
 {
@@ -17,10 +19,12 @@ class ActiveClipsTest extends TestCase
 
     /**
      * @test
-     * @dataProvider fiveProvider
      * @dataProvider teenProvider
-     * @dataProvider fifteenProvider
-     * @dataProvider twentyProvider
+     * @dataProvider thirtyProvider
+     * @dataProvider fiftyProvider
+     * @dataProvider seventyProvider
+     * @dataProvider hundredProvider
+     * @dataProvider oneHundredFiftyProvider
      */
     public function eligible(int $times, string $fqcn, bool $expected)
     {   
@@ -37,16 +41,6 @@ class ActiveClipsTest extends TestCase
 
         $this->assertEquals($expected, $achievement->eligible());
     }
-
-    public function fiveProvider(): array
-    {
-        return [
-            [4, $fqcn = Five::class, $expected = false],
-            [5, $fqcn = Five::class, $expected = true],
-            [6, $fqcn = Five::class, $expected = true],
-        ];
-    }
-
     public function teenProvider(): array
     {
         return [
@@ -56,21 +50,48 @@ class ActiveClipsTest extends TestCase
         ];
     }
 
-    public function fifteenProvider(): array
+    public function thirtyProvider(): array
     {
         return [
-            [14, $fqcn = Fifteen::class, $expected = false],
-            [15, $fqcn = Fifteen::class, $expected = true],
-            [16, $fqcn = Fifteen::class, $expected = true],
+            [29, $fqcn = Thirty::class, $expected = false],
+            [30, $fqcn = Thirty::class, $expected = true],
+            [31, $fqcn = Thirty::class, $expected = true],
         ];
     }
 
-    public function twentyProvider(): array
+    public function fiftyProvider(): array
     {
         return [
-            [19, $fqcn = Twenty::class, $expected = false],
-            [20, $fqcn = Twenty::class, $expected = true],
-            [21, $fqcn = Twenty::class, $expected = true],
+            [49, $fqcn = Fifty::class, $expected = false],
+            [50, $fqcn = Fifty::class, $expected = true],
+            [51, $fqcn = Fifty::class, $expected = true],
+        ];
+    }
+
+    public function seventyProvider(): array
+    {
+        return [
+            [69, $fqcn = Seventy::class, $expected = false],
+            [70, $fqcn = Seventy::class, $expected = true],
+            [71, $fqcn = Seventy::class, $expected = true],
+        ];
+    }
+
+    public function hundredProvider(): array
+    {
+        return [
+            [99, $fqcn = Hundred::class, $expected = false],
+            [100, $fqcn = Hundred::class, $expected = true],
+            [101, $fqcn = Hundred::class, $expected = true],
+        ];
+    }
+
+    public function oneHundredFiftyProvider(): array
+    {
+        return [
+            [149, $fqcn = OneHundredFifty::class, $expected = false],
+            [150, $fqcn = OneHundredFifty::class, $expected = true],
+            [151, $fqcn = OneHundredFifty::class, $expected = true],
         ];
     }
 }

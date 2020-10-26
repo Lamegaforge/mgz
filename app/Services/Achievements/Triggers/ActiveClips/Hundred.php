@@ -7,11 +7,11 @@ use App\Services\Achievements\Traits;
 use App\Services\Achievements\Triggers\Triggers;
 use App\Services\Achievements\Contracts\Trigger;
 
-class Fifteen extends Triggers implements Trigger 
+class Hundred extends Triggers implements Trigger 
 {
     use Traits\ActiveClips;
 
-    protected const THRESHOLD = 15;
+    protected const THRESHOLD = 100;
 
-    protected $slug = 'fifteen_active_clips';
+    protected $slug = 'hundred_active_clips';
 }
