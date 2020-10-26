@@ -15,35 +15,32 @@ class AchievementSeeder extends Seeder
     public function run()
     {
         $achievements = [
-            [
-                'title' => 'Valerie Damidot',
-                'slug' => 'valerie_damidot',
-                'points' => 100,
-            ],
-            [
-                'title' => 'Five active clips',
-                'slug' => 'five_active_clips',
-                'points' => 500,
-            ],
-            [
-                'title' => 'Ten active clips',
-                'slug' => 'ten_active_clips',
-                'points' => 1000,
-            ],
-            [
-                'title' => 'Fifteen active clips',
-                'slug' => 'fifteen_active_clips',
-                'points' => 1500,
-            ],
-            [
-                'title' => 'Twenty active clips',
-                'slug' => 'twenty_active_clips',
-                'points' => 2000,
-            ],
+            ['valerie_damidot', 500, 'Valerie Damidot'],
+            ['famous', 500, 'Famous'],
+            ['compulsive_clipper', 500, 'Compulsive clipper'],
+
+            ['ten_active_clips', 500, 'Ten active clips'],
+            ['thirty_active_clips', 500, 'Thirty active clips'],
+            ['fifty_active_clips', 500, 'Fifty active clips'],
+            ['seventy_active_clips', 500, 'Seventy active clips'],
+            ['hundred_active_clips', 500, 'Hundred active clips'],
+            ['one_hundred_fifty_active_clips', 500, 'One Hundred Fifty active clips'],
+
+            ['thousand_views_all_clips', 500, 'Thousand views all clips'],
+            ['two_thousand_views_all_clips', 500, 'Two thousand views all clips'],
+            ['three_thousand_views_all_clips', 500, 'Three thousand views all clips'],
         ];
 
         array_map(function ($achievement) {
-            Achievement::factory()->create($achievement);
+
+            $attributes = [
+                'title' => $achievement[2],
+                'slug' => $achievement[0],
+                'points' => $achievement[1],
+            ];
+
+            Achievement::firstOrCreate($attributes);
+
         }, $achievements);
     }
 }

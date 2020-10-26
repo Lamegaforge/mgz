@@ -9,14 +9,14 @@ use Illuminate\Support\Collection;
 use App\Repositories\ClipRepository;
 use App\Managers\Twitch\TwitchManager;
 
-class ClipsViewsUpdater extends Command
+class ClipsUpdater extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'clips:views-update';
+    protected $signature = 'clips:update';
 
     /**
      * The console command description.
@@ -46,9 +46,9 @@ class ClipsViewsUpdater extends Command
 
         foreach ($clips as $clip) {
 
-            $views = $this->getViews($clip);
+            $concret = $this->getConcretClip($clip);
 
-            $this->updateClip($clip, $views);
+            $this->updateClip($clip, $concret);
         }
     }
 
@@ -61,16 +61,18 @@ class ClipsViewsUpdater extends Command
         return $clipRepository->all();
     }
 
-    protected function getViews(Clip $clip): int
+    protected function getConcretClip(Clip $clip): array
     {
-        $concret = app(TwitchManager::class)->get($clip->slug);
-
-        return $concret['views'];
+        return app(TwitchManager::class)->get($clip->slug);
     }
 
-    protected function updateClip(Clip $clip, int $views)
+    protected function updateClip(Clip $clip, array $concret)
     {
+        $state = $concret['slug'] ? 'active' : 'rejected';
+        $views = $concret['views'] ?? 0;
+
         app(ClipRepository::class)->update([
+            'state' => $state,
             'views' => $views,
         ], $clip->id);        
     }

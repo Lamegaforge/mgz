@@ -17,20 +17,20 @@ class Api implements Former
     public function clip(array $clip): array
     {
         return [
-            'slug' => $clip['slug'],
-            'tracking_id' => $clip['tracking_id'],
-            'title' => $clip['title'],
-            'url' => $clip['url'],
-            'game' => $clip['game'],
-            'views' => $clip['views'],
-            'thumbnail' => $clip['thumbnails']['medium'],
-            'created_at' => $clip['created_at'],
+            'slug' => $clip['slug'] ?? null,
+            'tracking_id' => $clip['tracking_id'] ?? null,
+            'title' => $clip['title'] ?? null,
+            'url' => $clip['url'] ?? null,
+            'game' => $clip['game'] ?? null,
+            'views' => $clip['views'] ?? null,
+            'thumbnail' => $clip['thumbnails']['medium'] ?? null,
+            'created_at' => $clip['created_at'] ?? null,
             'curator' => [
-                'tracking_id' => $clip['curator']['id'],    
-                'name' => $clip['curator']['name'],
-                'display_name' => $clip['curator']['display_name'],    
-                'channel_url' => $clip['curator']['channel_url'],    
-                'logo' => $clip['curator']['logo'],    
+                'tracking_id' => $clip['curator']['id'] ?? null,    
+                'name' => $clip['curator']['name'] ?? null,
+                'display_name' => $clip['curator']['display_name'] ?? null,    
+                'channel_url' => $clip['curator']['channel_url'] ?? null,    
+                'logo' => $clip['curator']['logo'] ?? null,    
             ],
         ];
     }

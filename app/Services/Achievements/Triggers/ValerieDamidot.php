@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Services\Achievements;
+namespace App\Services\Achievements\Triggers;
 
-use App\Models\User;
-use App\Services\Achievements\Contracts\Achievement;
+use App\Services\Achievements\Contracts\Trigger;
 
-class ValerieDamidot extends Achievements implements Achievement 
+class ValerieDamidot extends Triggers implements Trigger 
 {
     protected $slug = 'valerie_damidot';
 
-	public function eligible(): bool
-	{
+    public function eligible(): bool
+    {
         $prerequisites = [
             $this->hasBanner(),
             $this->hasDescription(),
@@ -18,7 +17,7 @@ class ValerieDamidot extends Achievements implements Achievement
         ];
 
         return ! in_array(false, $prerequisites);
-	}
+    }
 
     protected function hasBanner(): bool
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Achievements;
+namespace App\Services\Achievements\Triggers;
 
 use App\Models\User;
 
-abstract class Achievements 
+abstract class Triggers 
 {
     protected $user;
     protected $slug;

@@ -6,14 +6,16 @@ use Log;
 use App\Models;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use App\Services\Achievements;
 use App\Events\AchievementWon;
 use Illuminate\Queue\SerializesModels;
+use App\Services\Achievements\Triggers;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Services\Achievements\Contracts;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Services\Achievements\Contracts\Trigger;
 use App\Services\Achievements\AchievementService;
+use App\Services\Achievements\Triggers\ActiveClips;
+use App\Services\Achievements\Triggers\ViewsAllClips;
 
 class ProcessAchievements implements ShouldQueue
 {
@@ -38,19 +40,19 @@ class ProcessAchievements implements ShouldQueue
      */
     public function handle()
     {
-        $achievements = $this->achievements();
+        $triggers = $this->triggers();
 
-        foreach ($achievements as $achievement) {
+        foreach ($triggers as $trigger) {
 
             try {
                 
-                $eligible = $achievement->eligible();
+                $eligible = $trigger->eligible();
 
                 if (! $eligible) {
                     continue;
                 }
 
-               $this->assignee($achievement);
+               $this->assignee($trigger);
 
             } catch (Exception $e) {
                 Log::error($e->getMessage());
@@ -58,20 +60,25 @@ class ProcessAchievements implements ShouldQueue
         }
     }
 
-    protected function achievements(): array
+    protected function triggers(): array
     {
         return [
-            new Achievements\ValerieDamidot($this->user),
-            new Achievements\FiveActiveClips($this->user),
-            new Achievements\TenActiveClips($this->user),
-            new Achievements\FifteenActiveClips($this->user),
-            new Achievements\TwentyActiveClips($this->user),
+            new Triggers\ValerieDamidot($this->user),
+            new Triggers\Famous($this->user),
+            new Triggers\CompulsiveClipper($this->user),
+            new ActiveClips\Five($this->user),
+            new ActiveClips\Ten($this->user),
+            new ActiveClips\Fifteen($this->user),
+            new ActiveClips\Twenty($this->user),
+            new ViewsAllClips\Thousand($this->user),
+            new ViewsAllClips\TwoThousand($this->user),
+            new ViewsAllClips\ThreeThousand($this->user),
         ];
     }
 
-    protected function assignee(Contracts\Achievement $achievement): void
+    protected function assignee(Trigger $trigger): void
     {
-        $achievement = Models\Achievement::where('slug', $achievement->slug())->first();
+        $achievement = Achievement::where('slug', $trigger->slug())->first();
 
         app(AchievementService::class)->assignee($this->user, $achievement);
 

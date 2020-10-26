@@ -2,7 +2,7 @@
 
 namespace App\Services\Achievements\Contracts;
 
-interface Achievement
+interface Trigger
 {
     //
 }
