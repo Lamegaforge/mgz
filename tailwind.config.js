@@ -38,6 +38,9 @@ module.exports = {
             height: {
                 '400px': '400px'
             },
+            width: {
+                '11': '2.75rem'
+            },
             minWidth: {
                 '350px': '350px'
             },
