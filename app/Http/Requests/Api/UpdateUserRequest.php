@@ -26,6 +26,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'description' => 'nullable|string',
+            'autoplay' => 'nullable|boolean',
             'youtube' => 'nullable|string',
             'instagram' => 'nullable|string',
             'twitter' => 'nullable|string',

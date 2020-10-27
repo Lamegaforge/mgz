@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('login');
             $table->string('display_name');
             $table->string('description')->nullable();
+            $table->boolean('autoplay')->default(false);
             $table->string('profile_image_url')->nullable();
             $table->string('banner_image_slug')->nullable();
             $table->string('email')->nullable();

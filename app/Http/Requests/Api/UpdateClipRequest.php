@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Api;
 
+use DateTime;
+use App\Repositories\CardRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateClipRequest extends FormRequest
@@ -28,6 +30,48 @@ class UpdateClipRequest extends FormRequest
             'title' => 'string',
             'state' => 'string|in:active,waiting,rejected',
             'card' => 'string',
+            'approved_at' => 'date',
+            'card_id' => 'integer',
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->prepareStateAttributes();
+        $this->prepareCardAttributes();
+    }
+
+    protected function prepareStateAttributes(): void
+    {
+        if ($this->state != 'active') {
+            return;
+        }
+
+        $this->merge([
+            'approved_at' => (new DateTime())->format('Y-m-d'),
+        ]);
+    }
+
+    protected function prepareCardAttributes(): void
+    {
+        if (! $this->card) {
+            return;
+        }
+
+        $card = app(CardRepository::class)
+            ->where('slug', $this->card)
+            ->orWhere('id', $this->card)
+            ->firstOrFail();
+
+        $this->merge([
+            'card_id' => $card->id,
+        ]);
+
+        $this->card = null;
     }
 }

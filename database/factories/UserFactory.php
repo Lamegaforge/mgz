@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'login' => $this->faker->name,
             'display_name' => $this->faker->name,
             'description' => $this->faker->words($nb = 6, $asText = true),
+            'autoplay' => false,
             'profile_image_url' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
             'banner_image_slug' => 'banner_image_slug',
             'email' => $this->faker->unique()->safeEmail,

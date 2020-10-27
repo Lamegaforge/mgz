@@ -20,6 +20,7 @@ class AccountTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post('api/account/update-user', [
+            'autoplay' => true,
             'description' => 'blablabla',
             'youtube' => 'youtube',
             'instagram' => 'instagram',
@@ -30,6 +31,7 @@ class AccountTest extends TestCase
 
         $user->refresh();
 
+        $this->assertEquals($user->autoplay, true);
         $this->assertEquals($user->description, 'blablabla');
         $this->assertEquals($user->youtube, 'youtube');
         $this->assertEquals($user->instagram, 'instagram');
