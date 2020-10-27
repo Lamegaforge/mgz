@@ -48,9 +48,7 @@ class UpdateClipRequest extends FormRequest
 
     protected function prepareStateAttributes(): void
     {
-        $state = $this->state ?? null;
-
-        if ($state != 'active') {
+        if ($this->state != 'active') {
             return;
         }
 
