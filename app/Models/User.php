@@ -23,6 +23,7 @@ class User extends Authenticatable
         'login',
         'display_name',
         'description',
+        'autoplay',
         'profile_image_url',
         'banner_image_slug',
         'email',
@@ -49,6 +50,15 @@ class User extends Authenticatable
      */
     protected $dates = [
         'email_verified_at',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'autoplay' => 'boolean',
     ];
 
     public function clips()
