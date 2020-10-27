@@ -30,7 +30,7 @@ class UpdateClipRequest extends FormRequest
             'title' => 'string',
             'state' => 'string|in:active,waiting,rejected',
             'card' => 'string',
-            'approved_at' => 'timestamp',
+            'approved_at' => 'date',
             'card_id' => 'integer',
         ];
     }
