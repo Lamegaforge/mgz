@@ -9,7 +9,7 @@ class IframeService
 {
     public function url(Clip $clip): string
     {
-        $autoplay = Auth::check() ? Auth::user()->autoplay : false;
+        $autoplay = $this->getAutoplay();
 
         $parts = [
             'clip=' . $clip->slug,
@@ -21,5 +21,14 @@ class IframeService
         $format = 'https://clips.twitch.tv/embed?%s&%s&%s&%s';
 
         return sprintf($format, ... $parts);
+    }
+
+    protected function getAutoplay(): string
+    {
+        if (Auth::guest()) {
+            return 'false';
+        }
+
+        return Auth::user()->autoplay ? 'true' : 'false';
     }
 }
