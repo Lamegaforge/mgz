@@ -148,6 +148,27 @@
         />
       </div>
     </div>
+    <div class="flex items-center space-x-4">
+      <span
+        role="checkbox"
+        tabindex="0"
+        :aria-checked="autoplay"
+        @click="autoplay = !autoplay"
+        :class="{ 'bg-gray-800': !autoplay, 'bg-indigo-600': autoplay }"
+        class="relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:shadow-outline"
+      >
+        <span
+          aria-hidden="true"
+          :class="{ 'translate-x-5': autoplay, 'translate-x-0': !autoplay }"
+          class="inline-block w-5 h-5 transition duration-200 ease-in-out transform bg-white rounded-full shadow"
+        ></span>
+      </span>
+      <label
+        class="block text-sm font-medium leading-5 text-gray-300"
+      >
+        Lecture auto des clips
+      </label>
+    </div>
     <div class="text-right">
       <button
         type="submit"
@@ -171,6 +192,7 @@ export default {
     const twitter = ref(props.user.twitter);
     const youtube = ref(props.user.youtube);
     const instagram = ref(props.user.instagram);
+    const autoplay = ref(props.user.autoplay);
 
     async function submitForm(e) {
       if (isLoading.value) return;
@@ -182,6 +204,7 @@ export default {
           twitter: twitter.value,
           youtube: youtube.value,
           instagram: instagram.value,
+          autoplay: autoplay.value
         });
         window.location.href = "/users/account";
       } catch (err) {
@@ -191,7 +214,7 @@ export default {
       isLoading.value = false;
     }
 
-    return { description, twitter, youtube, instagram, submitForm };
+    return { description, twitter, youtube, instagram, submitForm, autoplay };
   },
 };
 </script>
