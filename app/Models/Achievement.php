@@ -17,6 +17,17 @@ class Achievement extends Model
     protected $fillable = [
         'title',
         'slug',
+        'description',
+        'secret',
         'points',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'secret' => 'boolean',
     ];
 }
