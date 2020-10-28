@@ -26,6 +26,7 @@ class CreateClipsTable extends Migration
             $table->boolean('active')->default(false);
             $table->enum('state', ['active', 'waiting', 'rejected'])->default('waiting');
             $table->unsignedBigInteger('views')->nullable();
+            $table->float('duration')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
 
