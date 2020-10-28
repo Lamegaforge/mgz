@@ -14,6 +14,7 @@ import PostComment from "./components/PostComment"
 import BannerForm from "./components/BannerForm"
 import UserSettings from "./components/UserSettings"
 import FavoriteButton from "./components/FavoriteButton"
+import RejectButton from "./components/RejectButton"
 import Tabs from "./components/Tabs"
 import Tab from "./components/Tab"
 import { createApp } from 'vue'
@@ -34,6 +35,7 @@ app.component('post-comment', PostComment)
 app.component('banner-form', BannerForm)
 app.component('user-settings', UserSettings)
 app.component('favorite-button', FavoriteButton)
+app.component('reject-button', RejectButton)
 app.component('tabs', Tabs)
 app.component('tab', Tab)
 
