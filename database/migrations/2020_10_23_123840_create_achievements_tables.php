@@ -17,6 +17,8 @@ class CreateAchievementsTables extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+            $table->string('description')->nullable();
+            $table->boolean('secret')->default(false);
             $table->bigInteger('points');
             $table->timestamps();
         });

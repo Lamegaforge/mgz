@@ -24,6 +24,8 @@ class AchievementFactory extends Factory
         return [
             'title' => $this->faker->unique()->sentence($nbWords = 4, $variableNbWords = true),
             'slug' => $this->faker->unique()->slug(),
+            'description' => 'blablabla',
+            'secret' => false,
             'points' => 100,
         ];
     }
