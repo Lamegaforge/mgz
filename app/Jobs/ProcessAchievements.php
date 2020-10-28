@@ -5,6 +5,7 @@ namespace App\Jobs;
 use Log;
 use App\Models;
 use App\Models\User;
+use App\Models\Achievement;
 use Illuminate\Bus\Queueable;
 use App\Events\AchievementWon;
 use Illuminate\Queue\SerializesModels;
