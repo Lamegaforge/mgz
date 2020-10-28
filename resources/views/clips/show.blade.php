@@ -38,6 +38,11 @@
                 <div>
                     <favorite-button :clip-id="{{$clip->id}}" :active="@json($isFavorite)" :is-auth="@json(Auth::check())"></favorite-button>
                 </div>
+                @can('reject', $clip)
+                <div>
+                    <reject-button :clip-id="{{$clip->id}}"></reject-button>
+                </div>
+                @endcan
                 <div class="flex items-start justify-start mt-3 md:mt-4">
                     <div>
                         <p class="text-sm text-gray-300">Publié le @datetime($clip->approved_at)</p>

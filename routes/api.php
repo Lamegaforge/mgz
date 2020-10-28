@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::as('api.')->group(function () {
 	Route::prefix('clips')->as('clips.')->group(function () {
 		Route::get('search', 'ClipController@search')->name('search');
+		Route::post('reject', 'ClipController@reject')->name('reject');
 	});
 	Route::prefix('cards')->as('cards.')->group(function () {
 		Route::get('search', 'CardController@search')->name('search');
@@ -38,6 +39,5 @@ Route::as('api.')->group(function () {
 	});
 	Route::prefix('admin')->as('admin.')->group(function () {
 		Route::post('clip-update', 'AdminController@clipUpdate')->middleware('token')->name('clip.update');
-		Route::post('clip-reject', 'AdminController@clipReject')->name('clip.reject');
 	});
 });
