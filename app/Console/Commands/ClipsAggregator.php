@@ -117,6 +117,7 @@ class ClipsAggregator extends Command
             'game',
             'thumbnail',
             'views',
+            'duration',
             'url',
             'created_at',
         ]);

@@ -33,7 +33,11 @@ Route::as('api.')->group(function () {
 		Route::get('search', 'FavoriteController@search')->name('search');
 		Route::post('toggle', 'FavoriteController@toggle')->name('toggle');
 	});
-	Route::prefix('admin')->middleware('token')->as('admin.')->group(function () {
-		Route::post('clip-update', 'AdminController@clipUpdate')->name('clip.update');
+	Route::prefix('achievements')->as('achievement.')->group(function () {
+		Route::get('search/{user_id}', 'AchievementController@search')->name('search');
+	});
+	Route::prefix('admin')->as('admin.')->group(function () {
+		Route::post('clip-update', 'AdminController@clipUpdate')->middleware('token')->name('clip.update');
+		Route::post('clip-reject', 'AdminController@clipReject')->name('clip.reject');
 	});
 });

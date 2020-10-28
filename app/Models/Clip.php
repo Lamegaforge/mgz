@@ -21,6 +21,7 @@ class Clip extends Model
         'game',
         'thumbnail',
         'views',
+        'duration',
         'url',
         'active',
         'state',
@@ -45,6 +46,7 @@ class Clip extends Model
     protected $casts = [
         'user_id' => 'integer',
         'card_id' => 'integer',
+        'duration' => 'float',
     ];
 
     public function user()

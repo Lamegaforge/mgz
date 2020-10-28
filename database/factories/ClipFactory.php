@@ -37,6 +37,7 @@ class ClipFactory extends Factory
             'active' => true,
             'state' => 'active',
             'views' => $this->faker->numberBetween($min = 100, $max = 500),
+            'duration' => 15.95,
             'approved_at' => $this->faker->dateTimeInInterval($startDate = '-30 years', $interval = '+ 5 days'),
         ];
     }
