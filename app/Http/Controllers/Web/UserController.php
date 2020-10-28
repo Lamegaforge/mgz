@@ -22,6 +22,8 @@ class UserController extends Controller
 
         $user = $this->userRepository->find($userId);
 
+        event('CounterSubscriber', ['narcissistic']);
+
         return View::make('users.show', [
             'user' => $user,
         ]);
@@ -41,6 +43,8 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $user = $this->userRepository->find($request->id);
+
+        event('CounterSubscriber', ['stalker']);
 
         return View::make('users.show', [
             'user' => $user,
