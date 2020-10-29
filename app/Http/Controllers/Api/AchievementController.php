@@ -30,7 +30,7 @@ class AchievementController extends Controller
 
     protected function present(User $user, array $attributes): array
     {
-        $unlockedAchievements = $user->achievements()->get();
+        $unlockedAchievements = $this->getUnlockedAchievements($user);
 
         $achievements = new Collection($attributes['data']);
 
@@ -42,13 +42,24 @@ class AchievementController extends Controller
         return $attributes;
     }
 
+    protected function getUnlockedAchievements(User $user): Collection
+    {
+       $unlockedAchievements = $user->achievements()->get(); 
+
+       return $unlockedAchievements->keyBy('id');
+    }
+
     protected function markUnlocked(Collection $achievements, Collection $unlockedAchievements): Collection
     {
         return $achievements->map(function ($achievement) use($unlockedAchievements) {
 
             $unlockedAchievement = $unlockedAchievements->get($achievement['id']);
 
-            $achievement['unlocked_at'] = $unlockedAchievement->created_at ?? null;
+            $achievement['unlocked_at'] = null;
+
+            if ($unlockedAchievement) {
+                $achievement['unlocked_at'] = $unlockedAchievement->created_at->toDateTimeString();
+            }
 
             return $achievement;
         });
