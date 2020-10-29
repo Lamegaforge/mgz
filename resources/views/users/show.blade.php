@@ -53,7 +53,10 @@
                 </tab>
                 <tab title="Succès" :value="1">
                     <div class="mt-6">
-                        à venir
+                        <achievement></achievement>
+                        <achievement></achievement>
+                        <achievement></achievement>
+                        <!-- <grid grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="" type="achievements" /> -->
                     </div>
                 </tab>
                 <tab title="Commentaires" :value="2">
