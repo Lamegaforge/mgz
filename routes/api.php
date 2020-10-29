@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::as('api.')->group(function () {
 	Route::prefix('clips')->as('clips.')->group(function () {
 		Route::get('search', 'ClipController@search')->name('search');
+		Route::post('reject', 'ClipController@reject')->name('reject');
 	});
 	Route::prefix('cards')->as('cards.')->group(function () {
 		Route::get('search', 'CardController@search')->name('search');
@@ -33,7 +34,10 @@ Route::as('api.')->group(function () {
 		Route::get('search', 'FavoriteController@search')->name('search');
 		Route::post('toggle', 'FavoriteController@toggle')->name('toggle');
 	});
-	Route::prefix('admin')->middleware('token')->as('admin.')->group(function () {
-		Route::post('clip-update', 'AdminController@clipUpdate')->name('clip.update');
+	Route::prefix('achievements')->as('achievement.')->group(function () {
+		Route::get('search/{user_id}', 'AchievementController@search')->name('search');
+	});
+	Route::prefix('admin')->as('admin.')->group(function () {
+		Route::post('clip-update', 'AdminController@clipUpdate')->middleware('token')->name('clip.update');
 	});
 });

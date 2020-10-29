@@ -5,6 +5,7 @@ namespace App\Jobs;
 use Log;
 use App\Models;
 use App\Models\User;
+use App\Models\Achievement;
 use Illuminate\Bus\Queueable;
 use App\Events\AchievementWon;
 use Illuminate\Queue\SerializesModels;
@@ -63,14 +64,18 @@ class ProcessAchievements implements ShouldQueue
     protected function triggers(): array
     {
         return [
+            new Triggers\CompulsiveClipper($this->user),
             new Triggers\ValerieDamidot($this->user),
             new Triggers\Famous($this->user),
-            new Triggers\CompulsiveClipper($this->user),
             new Triggers\ILoveThisGame($this->user),
-            new ActiveClips\Five($this->user),
+
+            new ActiveClips\Fifty($this->user),
+            new ActiveClips\Hundred($this->user),
+            new ActiveClips\OneHundredFifty($this->user),
+            new ActiveClips\Seventy($this->user),
             new ActiveClips\Ten($this->user),
-            new ActiveClips\Fifteen($this->user),
-            new ActiveClips\Twenty($this->user),
+            new ActiveClips\Thirty($this->user),
+
             new ViewsAllClips\Thousand($this->user),
             new ViewsAllClips\TwoThousand($this->user),
             new ViewsAllClips\ThreeThousand($this->user),

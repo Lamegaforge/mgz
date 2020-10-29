@@ -47,7 +47,7 @@ class ClipController extends Controller
             ->pushCriteria(new Active())
             ->where('slug', $request->hook)
             ->orWhere('id', $request->hook)
-            ->first();
+            ->firstOrFail();
             
         $clips = app(ClipRepository::class)
             ->with(['user', 'card'])

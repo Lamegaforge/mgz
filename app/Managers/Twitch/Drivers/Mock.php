@@ -48,6 +48,7 @@ class Mock implements Driver
             'url' => '',
             'game' => '',
             'views' => 500,
+            'duration' => 15.95,
             'created_at' => '2020-01-01',
             'thumbnails' => [
                 'medium' => '',

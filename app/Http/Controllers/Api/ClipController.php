@@ -10,6 +10,8 @@ use App\Repositories\Criterias\Where;
 use App\Repositories\Criterias\Active;
 use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereLike;
+use App\Http\Responses\GenericApiResponse;
+use App\Http\Requests\Api\RejectClipRequest;
 use App\Http\Requests\Api\SearchClipsRequest;
 
 class ClipController extends Controller
@@ -38,6 +40,18 @@ class ClipController extends Controller
             'timestamp' => (new DateTime())->getTimestamp(),
             'clips' => $clips->toArray(),
         ], 200);
+    }
+
+    public function reject(RejectClipRequest $request)
+    {
+        $attributes = [
+            'state' => 'rejected',
+            'approved_at' => null,
+        ];
+
+        $this->clipRepository->update($attributes, $request->clip_id);
+
+        return new GenericApiResponse();
     }
 
     protected function addOrderCriteria(SearchClipsRequest $request)
