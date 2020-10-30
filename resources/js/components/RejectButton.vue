@@ -1,5 +1,6 @@
 <template>
   <button
+    v-if="!rejected"
     class="inline-flex items-center mt-6 space-x-2 focus:outline-none"
     @click="handleToggle"
   >
@@ -30,16 +31,19 @@ export default {
   },
 
   setup(props) {
+    const rejected = ref(false);
     const isLoading = ref(false);
 
     async function handleToggle() {
       if (isLoading.value) return;
 
       isLoading.value = true;
+      rejected.value = true;
       try {
         const response = await axios.post("/api/clips/reject", {
           clip_id: props.clipId,
         });
+        window.location.href = "/clips";
       } catch (err) {
         console.log(err);
       }
@@ -47,7 +51,7 @@ export default {
       isLoading.value = false;
     }
 
-    return { handleToggle };
+    return { rejected, handleToggle };
   },
 };
 </script>
