@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('youtube')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
+            $table->bigInteger('points')->default(0);
             $table->timestamps();
         });
     }

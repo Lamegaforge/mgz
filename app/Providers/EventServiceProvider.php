@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events;
 use App\Listeners;
+use App\Listeners\ScoringSubscriber;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,6 +24,15 @@ class EventServiceProvider extends ServiceProvider
         Events\AchievementWon::class => [
             // Listeners\EarnAchievementPoints::class,
         ],
+    ];
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        ScoringSubscriber::class,
     ];
 
     /**

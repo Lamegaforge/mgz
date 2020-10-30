@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use View;
 use Illuminate\Http\Request;
+use App\Services\ScoringService;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 
@@ -22,8 +23,11 @@ class UserController extends Controller
 
         $user = $this->userRepository->find($userId);
 
+        $scores = app(ScoringService::class)->total($user);
+
         return View::make('users.show', [
             'user' => $user,
+            'scores' => $scores,
         ]);
     }
 
@@ -42,8 +46,11 @@ class UserController extends Controller
     {
         $user = $this->userRepository->find($request->id);
 
+        $scores = app(ScoringService::class)->total($user);
+
         return View::make('users.show', [
             'user' => $user,
+            'scores' => $scores,
         ]);
     }
 }
