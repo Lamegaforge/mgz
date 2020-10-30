@@ -23,7 +23,7 @@ class UserController extends Controller
 
         $user = $this->userRepository->find($userId);
 
-        $scores = app(ScoringService::class)->total();
+        $scores = app(ScoringService::class)->total($user);
 
         return View::make('users.show', [
             'user' => $user,
@@ -46,7 +46,7 @@ class UserController extends Controller
     {
         $user = $this->userRepository->find($request->id);
 
-        $scores = app(ScoringService::class)->total();
+        $scores = app(ScoringService::class)->total($user);
 
         return View::make('users.show', [
             'user' => $user,

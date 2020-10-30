@@ -18,6 +18,8 @@ class ScoringService
 
         $sum = $sumAchievements + $sumClips + $sumfavorites;
 
+        event('ScoringSubscriber@refresh', [$user, $sum]);
+
         return [
             'sum' => $sum,
             'sum_achievements' => $sumAchievements,

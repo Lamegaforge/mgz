@@ -34,6 +34,7 @@ class UserFactory extends Factory
             'youtube' => 'lamegaforge',
             'instagram' => 'lamegaforge',
             'twitter' => 'LaMegaforge',
+            'points' => 100,
         ];
     }
 }
