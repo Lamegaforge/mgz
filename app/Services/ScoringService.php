@@ -2,28 +2,32 @@
 
 namespace App\Services;
 
+use Event;
 use App\Models\User;
 use App\Models\Favorite;
 
 class ScoringService
 {
     protected const CLIP_VALOR = 100;
+    protected const VIEWS_VALOR = 1;
     protected const FAVORITE_VALOR = 10;
 
     public function total(User $user): array
     {
         $sumAchievements = $this->getSumAchievements($user);
         $sumClips = $this->getSumClips($user);
+        $sumViews = $this->getSumViews($user);
         $sumfavorites = $this->getSumFavorites($user);
 
-        $sum = $sumAchievements + $sumClips + $sumfavorites;
+        $sum = $sumAchievements + $sumClips + $sumViews + $sumfavorites;
 
-        event('ScoringSubscriber@refresh', [$user, $sum]);
+        Event::dispatch('ScoringSubscriber@refresh', [$user, $sum]);
 
         return [
             'sum' => $sum,
             'sum_achievements' => $sumAchievements,
             'sum_clips' => $sumClips,
+            'sum_views' => $sumViews,
             'sum_favorites' => $sumfavorites,
         ];
     }
@@ -38,6 +42,13 @@ class ScoringService
         $count = $user->clips->where('state', 'active')->count();
 
         return $count * self::CLIP_VALOR;
+    }
+
+    protected function getSumViews(User $user): int
+    {
+        $views = $user->clips->where('state', 'active')->sum('views');
+
+        return $views * self::VIEWS_VALOR;
     }
 
     protected function getSumFavorites(User $user): int
