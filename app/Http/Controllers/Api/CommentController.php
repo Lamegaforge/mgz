@@ -28,8 +28,8 @@ class CommentController extends Controller
             ->pushCriteria(new Active())
             ->pushCriteria(new Where('user_id', $request->user_id))
             ->pushCriteria(new OrderBy('created_at', 'DESC'))
-            ->all();
-
+            ->paginate(12);
+            
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),
             'comments' => $comments->toArray(),
