@@ -27,9 +27,10 @@ class ScoringServiceTest extends TestCase
         $total = app(ScoringService::class)->total($user);
 
         $expected = [
-            'sum' => 850,
+            'sum' => 1650,
             'sum_achievements' => 100,
-            'sum_clips' => 700,
+            'sum_clips' => 500,
+            'sum_views' => 1000,
             'sum_favorites' => 50,
         ];
 
@@ -47,8 +48,9 @@ class ScoringServiceTest extends TestCase
 
     protected function giveClipsPoints(User $user)
     {
-        return Clip::factory()->times(7)->create([
+        return Clip::factory()->times(5)->create([
             'user_id' => $user->id,
+            'views' => 200,
             'state' => 'active',
         ]);
     }
