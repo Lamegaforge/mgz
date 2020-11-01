@@ -25,11 +25,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('clips:aggregate')
-            ->hourly()
+            ->everyThirtyMinutes()
             ->between('17:00', '01:00');
 
         $schedule->command('clips:aggregate')->dailyAt('10:00');
-        $schedule->command('clips:aggregate')->dailyAt('14:00');
+        $schedule->command('clips:aggregate')->dailyAt('12:00');
+        $schedule->command('clips:aggregate')->dailyAt('16:00');
 
         $schedule->command('clips:update')->daily();
 

@@ -2,9 +2,11 @@
 
 namespace Tests\Api;
 
+use Config;
 use Carbon\Carbon;
 use Tests\TestCase;
 use App\Models\Clip;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -147,5 +149,36 @@ class ClipTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJsonMissing(['clips.data.0.id']);
+    }
+
+    /**
+     * @test
+     */
+    public function unauthorized_user_cannot_reject_clip()
+    {
+        $clip = Clip::factory()->create();
+
+        $response = $this->post('api/clips/reject', [
+            'clip_id' => $clip->id,
+        ]);
+
+        $response->assertStatus(403);
+    }
+
+    /**
+     * @test
+     */
+    public function authorized_user_can_reject_clip()
+    {
+        $user = User::factory()->create();
+        $clip = Clip::factory()->create();
+
+        Config::set('authority.can_reject_clip', [$user->login]);
+
+        $response = $this->actingAs($user)->post('api/clips/reject', [
+            'clip_id' => $clip->id,
+        ]);
+
+        $response->assertStatus(200);
     }
 }
