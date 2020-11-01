@@ -23,6 +23,7 @@ Route::as('api.')->group(function () {
 		Route::get('search', 'CardController@search')->name('search');
 	});
 	Route::prefix('comments')->as('comments.')->group(function () {
+		Route::get('user/{user_id}', 'CommentController@user')->name('user');
 		Route::get('search/{clip_id}', 'CommentController@search')->name('search');
 		Route::post('store', 'CommentController@store')->name('store');
 	});
