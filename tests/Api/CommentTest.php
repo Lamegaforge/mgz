@@ -38,4 +38,18 @@ class CommentTest extends TestCase
             ->assertJsonPath('comments.0.children.1.user.id', $children->last()->user->id)
             ->assertJsonPath('comments.0.children.0.id', $children->first()->id);
     }
+
+    /**
+     * @test
+     */
+    public function get_user_comments()
+    {
+        $comment = Comment::factory()->create();
+
+        $response = $this->get('api/comments/user/' . $comment->user->id);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonPath('comments.data.0.id', $comment->id);
+    }
 }
