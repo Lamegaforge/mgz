@@ -44,7 +44,10 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
-        $user = $this->userRepository->find($request->id);
+        $user = $this->userRepository
+            ->where('login', $request->hook)
+            ->orWhere('id', $request->hook)
+            ->first();
 
         $scores = app(ScoringService::class)->total($user);
 
