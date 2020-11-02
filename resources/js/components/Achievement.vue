@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="items-center hidden text-gray-500 md:flex">
-          <p class="text-sm text-indigo-400">Très rare</p>
+          <!-- <p class="text-sm text-indigo-400">Très rare</p> -->
           <div class="ml-auto" v-if="item.unlocked_at">
             <div class="text-sm leading-5">
               <time :datetime="item.unlocked_at">{{ item.unlocked_at }}</time>
