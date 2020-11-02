@@ -52,8 +52,22 @@
                     <grid :user-id="{{$user->id}}" grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.clips.search')}}" type="clips" />
                 </tab>
                 <tab title="Succès" :value="1">
-                    <div class="mt-6">
-                        à venir
+                    <div class="mt-6 md:grid grid-cols-layout md:gap-8">
+                        <div class="text-center">
+                            <div class="px-3 py-2 border border-gray-900">
+                                <p>Succès</p>
+                                <progress max="100" value="50">50%</progress>
+                                <p class="text-xs text-gray-400">{{$scores['sum_achievements']}}/? points</p>
+                                <p class="mt-3">Clips</p>
+                                <p class="text-xs text-gray-400">Validés: {{$scores['sum_clips']}} points</p>
+                                <p class="text-xs text-gray-400">Vues total: {{$scores['sum_views']}} points</p>
+                                <p class="text-xs text-gray-400">En favoris: {{$scores['sum_favorites']}} points</p>
+                            </div>
+                            <p class="mt-4 text-lg">Total: {{$scores['sum']}} points</p>
+                        </div>
+                        <div>
+                            <grid fetch-url="{{route('api.achievement.search', $user->id)}}" type="achievements" />
+                        </div>
                     </div>
                 </tab>
                 <tab title="Commentaires" :value="2">
@@ -62,7 +76,7 @@
                     </div>
                 </tab>
                 <tab title="Favoris" :value="3">
-                    <grid :user-id="{{$user->id}}" grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.favorites.search')}}" type="clips" />
+                    <grid grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.favorites.search', $user->id)}}" type="clips" />
                 </tab>
             </tabs>
         </div>

@@ -101,6 +101,7 @@
     <div v-for="(item, index) in items" :key="index">
       <clip :item="item" v-if="type === 'clips'" />
       <card :item="item" v-if="type === 'cards'" />
+      <achievement :item="item" v-if="type === 'achievements'" />
     </div>
   </div>
   <div v-if="!items?.length && !isLoading" class="py-16 text-center">
@@ -140,6 +141,12 @@ const sorts = {
       label: "Date",
       value: "created_at",
     },
+  ],
+  achievements: [
+    {
+      label: "Date d'obtention",
+      value: "unlocked",
+    }
   ],
 };
 export default {

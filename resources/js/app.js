@@ -7,6 +7,7 @@ import DebounceInput from "./components/DebounceInput"
 import Dropdown from "./components/Dropdown"
 import Clip from "./components/Clip"
 import Card from "./components/Card"
+import Achievement from "./components/Achievement"
 import Carousel from "./components/Carousel"
 import Comments from "./components/Comments"
 import Comment from "./components/Comment"
@@ -28,6 +29,7 @@ app.component('debounce-input', DebounceInput)
 app.component('dropdown', Dropdown)
 app.component('clip', Clip)
 app.component('card', Card)
+app.component('achievement', Achievement)
 app.component('carousel', Carousel)
 app.component('comments', Comments)
 app.component('comment', Comment)
