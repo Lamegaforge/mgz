@@ -53,15 +53,17 @@
                 </tab>
                 <tab title="Succès" :value="1">
                     <div class="mt-6 md:grid grid-cols-layout md:gap-8">
-                        <div class="h-screen text-center top-64px">
+                        <div class="text-center">
                             <div class="px-3 py-2 border border-gray-900">
                                 <p>Succès</p>
                                 <progress max="100" value="50">50%</progress>
-                                <p class="text-xs text-gray-400">500/1000 points</p>
+                                <p class="text-xs text-gray-400">{{$scores['sum_achievements']}}/? points</p>
                                 <p class="mt-3">Clips</p>
-                                <p class="text-xs text-gray-400">1 clip * 10 points = 10 points</p>
+                                <p class="text-xs text-gray-400">Validés: {{$scores['sum_clips']}} points</p>
+                                <p class="text-xs text-gray-400">Vues total: {{$scores['sum_views']}} points</p>
+                                <p class="text-xs text-gray-400">En favoris: {{$scores['sum_favorites']}} points</p>
                             </div>
-                            <p class="mt-4 text-lg">510 points</p>
+                            <p class="mt-4 text-lg">Total: {{$scores['sum']}} points</p>
                         </div>
                         <div>
                             <grid fetch-url="{{route('api.achievement.search', $user->id)}}" type="achievements" />
