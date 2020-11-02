@@ -21,7 +21,7 @@ class FavoriteTest extends TestCase
 
         $user->favorites()->attach($clip->id);
 
-        $response = $this->get('api/favorites/search?user_id=' . $user->id);
+        $response = $this->get('api/favorites/search/' . $user->id);
 
         $favorites = $user->favorites;
 

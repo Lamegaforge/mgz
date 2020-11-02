@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ClipRepository;
 use App\Repositories\UserRepository;
 use App\Http\Responses\GenericApiResponse;
-use App\Http\Requests\Api\SearchFavoriteRequest;
 use App\Http\Requests\Api\ToggleFavoriteRequest;
 
 class FavoriteController extends Controller
@@ -24,7 +23,7 @@ class FavoriteController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function search(SearchFavoriteRequest $request)
+    public function search(Request $request)
     {
         $user = $this->userRepository
             ->where('id', $request->user_id)

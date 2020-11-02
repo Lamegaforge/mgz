@@ -41,6 +41,20 @@
     flex-shrink: 0;
 }
 
+progress {
+    @apply h-2;
+}
+progress::-webkit-progress-bar {
+    @apply bg-gray-900;
+    @apply rounded;
+}
+progress::-webkit-progress-value {
+    @apply bg-indigo-700;
+    @apply rounded;
+}
+progress::-moz-progress-bar {
+}
+
 @import "tailwindcss/utilities";
 .blur {
     filter: blur(8px);

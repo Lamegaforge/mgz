@@ -47,8 +47,14 @@ module.exports = {
             maxWidth: {
                 '7xl': '80rem'
             },
+            inset: {
+                '64px': '64px'
+            },
             transitionProperty: {
                 translate: 'translate'
+            },
+            gridTemplateColumns: {
+                'layout': '0.5fr 1.5fr'
             }
         }
     },
