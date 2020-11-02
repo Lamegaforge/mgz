@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use View;
+use App\Models\Achievement;
 use Illuminate\Http\Request;
 use App\Services\ScoringService;
 use App\Http\Controllers\Controller;
@@ -25,9 +26,12 @@ class UserController extends Controller
 
         $scores = app(ScoringService::class)->total($user);
 
+        $maxAchievementsPoints = $this->getMaxAchievementsPoints();
+
         return View::make('users.show', [
             'user' => $user,
             'scores' => $scores,
+            'max_achievements_points' => $maxAchievementsPoints,
         ]);
     }
 
@@ -51,9 +55,17 @@ class UserController extends Controller
 
         $scores = app(ScoringService::class)->total($user);
 
+        $maxAchievementsPoints = $this->getMaxAchievementsPoints();
+
         return View::make('users.show', [
             'user' => $user,
             'scores' => $scores,
+            'max_achievements_points' => $maxAchievementsPoints,
         ]);
+    }
+
+    protected function getMaxAchievementsPoints(): int
+    {
+        return Achievement::sum('points');
     }
 }
