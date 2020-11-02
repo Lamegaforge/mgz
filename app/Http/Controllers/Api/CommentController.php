@@ -22,6 +22,20 @@ class CommentController extends Controller
         $this->commentRepository = $commentRepository;
     }
 
+    public function user(Request $request)
+    {
+        $comments = $this->commentRepository
+            ->pushCriteria(new Active())
+            ->pushCriteria(new Where('user_id', $request->user_id))
+            ->pushCriteria(new OrderBy('created_at', 'DESC'))
+            ->paginate(12);
+            
+        return Response::json([
+            'timestamp' => (new DateTime())->getTimestamp(),
+            'comments' => $comments->toArray(),
+        ], 200);
+    }
+
     public function search(Request $request)
     {
         $comments = $this->commentRepository

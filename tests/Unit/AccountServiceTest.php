@@ -14,25 +14,28 @@ class AccountServiceTest extends TestCase
 
     /**
      * @test
+     * @dataProvider provider
      */
-    public function refresh_banner()
-    {
-        list($user, $slug) = $this->prerequisite();
-
-        app(AccountService::class)->refreshBanner($user, $slug);
-
-        $user->refresh();
-
-        $this->assertEquals($user->banner_image_slug, $slug);
-    }
-
-    protected function prerequisite()
+    public function refresh_banner($slug)
     {
         Storage::fake('banners');
 
+        $user = User::factory()->create([
+            'banner_image_slug' => $slug,
+        ]);
+
+        app(AccountService::class)->refreshBanner($user, 'new_banner_image_slug');
+
+        $user->refresh();
+
+        $this->assertEquals($user->banner_image_slug, 'new_banner_image_slug');
+    }
+
+    public function provider(): array
+    {
         return [
-            User::factory()->create(),
-            'new_banner_image_slug',
+            [null],
+            ['banner_slug'],
         ];
     }
 }
