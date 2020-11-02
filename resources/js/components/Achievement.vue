@@ -1,7 +1,23 @@
 <template>
   <div class="flex items-center py-4 border-b border-gray-900">
     <div class="flex items-center flex-1 min-w-0">
-      <div class="flex-shrink-0">
+      <div class="relative flex-shrink-0">
+        <div v-if="!item.unlocked_at" class="absolute flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-75 rounded-sm">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+            />
+          </svg>
+        </div>
         <img
           class="w-12 h-12 rounded-sm"
           src="https://cdn.discordapp.com/emojis/765870979921608725.png?v=1"
@@ -11,22 +27,19 @@
       <div class="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-8">
         <div>
           <div class="text-sm font-medium leading-5 text-white truncate">
-            Fashion Victime
+            {{ item.title }}
           </div>
           <div class="flex items-center mt-2 text-sm leading-5 text-gray-500">
             <p>
-              Avoir renseigné une bannière, une description et au moins un
-              réseau social
+              {{ item.description }}
             </p>
           </div>
         </div>
-        <div
-          class="items-center hidden text-gray-500 md:flex"
-        >
+        <div class="items-center hidden text-gray-500 md:flex">
           <p class="text-sm text-indigo-400">Très rare</p>
-          <div class="ml-auto">
+          <div class="ml-auto" v-if="item.unlocked_at">
             <div class="text-sm leading-5">
-              <time datetime="2020-01-07">27/10/2020</time>
+              <time :datetime="item.unlocked_at">{{ item.unlocked_at }}</time>
             </div>
             <div class="flex items-center mt-2 ml-auto text-sm leading-5">
               <svg
@@ -41,7 +54,7 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              100 points
+              {{ item.points }} points
             </div>
           </div>
         </div>

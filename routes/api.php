@@ -31,7 +31,7 @@ Route::as('api.')->group(function () {
 		Route::post('update-user', 'AccountController@updateUser')->name('user');
 	});
 	Route::prefix('favorites')->as('favorites.')->group(function () {
-		Route::get('search', 'FavoriteController@search')->name('search');
+		Route::get('search/{user_id}', 'FavoriteController@search')->name('search');
 		Route::post('toggle', 'FavoriteController@toggle')->name('toggle');
 	});
 	Route::prefix('achievements')->as('achievement.')->group(function () {
