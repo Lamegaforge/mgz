@@ -2,13 +2,13 @@
 @section('content')
 <section>
     <div class="relative xl:pt-0 pt-3/1 xl:h-400px">
-        <img alt="profil banner" class="absolute top-0 left-0 object-cover object-center w-full h-full" src="{{'/images/banners/' . ($user->banner_image_slug ? $user->banner_image_slug  : 'placeholder.jpg')}}" />
+        <img alt="profil banner" class="absolute top-0 left-0 object-cover object-center w-full h-full" src="{{'/images/banners/' . ($user->banner_image_slug ?? 'placeholder.jpg')}}" />
     </div>
 </section>
 <section class="relative border-t border-gray-900">
     <div class="px-4 py-6 mx-auto -mt-10 max-w-7xl sm:px-6 lg:px-8">
         <div class="flex flex-col items-center sm:flex-row">
-            <img class="inline-block w-40 h-40 mx-auto border-4 border-black rounded-md sm:ml-0 sm:mr-0" src="{{$user->profile_image_url}}" alt="">
+            <img class="inline-block w-40 h-40 mx-auto border-4 border-black rounded-md sm:ml-0 sm:mr-0" src="{{$user->profile_image_url ?? '/images/profile_placeholder.jpg'}}" alt="">
             <div class="sm:ml-6 sm:mt-3">
                 <p class="text-3xl leading-tight">{{$user->display_name}}</p>
                 <p class="max-w-md">{{ $user->description }}</p>
