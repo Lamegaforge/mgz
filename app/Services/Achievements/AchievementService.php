@@ -17,4 +17,9 @@ class AchievementService
 
         $user->achievements()->attach($achievement->id);
     }
+
+    public function unassign(User $user, Achievement $achievement): void
+    {
+        $user->achievements()->detach($achievement->id);
+    }
 }

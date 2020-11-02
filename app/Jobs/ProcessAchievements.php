@@ -43,17 +43,19 @@ class ProcessAchievements implements ShouldQueue
     {
         $triggers = $this->triggers();
 
+        $achievements = Achievement::all()->keyBy('slug');
+
         foreach ($triggers as $trigger) {
 
             try {
                 
+                $achievement = $achievements->get($trigger->slug());
+
                 $eligible = $trigger->eligible();
 
-                if (! $eligible) {
-                    continue;
-                }
-
-               $this->assignee($trigger);
+                $eligible 
+                    ? $this->assignee($achievement)
+                    : $this->unassign($achievement);
 
             } catch (Exception $e) {
                 Log::error($e->getMessage());
@@ -83,12 +85,15 @@ class ProcessAchievements implements ShouldQueue
         ];
     }
 
-    protected function assignee(Trigger $trigger): void
+    protected function assignee(Achievement $achievement): void
     {
-        $achievement = Achievement::where('slug', $trigger->slug())->first();
-
         app(AchievementService::class)->assignee($this->user, $achievement);
 
         AchievementWon::dispatch($this->user, $achievement);
+    }
+
+    protected function unassign(Achievement $achievement): void
+    {
+        app(AchievementService::class)->unassign($this->user, $achievement);
     }
 }
