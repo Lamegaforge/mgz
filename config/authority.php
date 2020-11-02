@@ -2,10 +2,10 @@
 
 return [
     'privileged' => [
-        'adwim',
+        '18615060', // Adwim
     ],
     'can_reject_clip' => [
-        'rurulmf',
-        'thakwulf',
+        '75667321', // Russian
+        '205422657', // Basalte
     ],
 ];

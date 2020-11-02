@@ -17,14 +17,14 @@ class AuthorityService
 
         $authorizedUsers = $this->authorizedUsers($goal);
 
-        return in_array($user->login, $authorizedUsers, true);
+        return in_array($user->tracking_id, $authorizedUsers, true);
     }
 
     protected function privilegedUser(User $user): bool
     {
         $privilegedUsers = Config::get('authority.privileged');
 
-        return in_array($user->login, $privilegedUsers, true);
+        return in_array($user->tracking_id, $privilegedUsers, true);
     }
 
     protected function authorizedUsers(string $goal): array
