@@ -20,7 +20,7 @@ class AuthorityServiceTest extends TestCase
         $user = User::factory()->create();
 
         Config::set('authority.privileged', [
-            $user->login,  
+            $user->tracking_id,  
         ]);
 
         $can = app(AuthorityService::class)->can($user, 'can_reject_clip');
@@ -36,7 +36,7 @@ class AuthorityServiceTest extends TestCase
         $user = User::factory()->create();
 
         Config::set('authority.can_reject_clip', [
-            $user->login,  
+            $user->tracking_id,  
         ]);
 
         $can = app(AuthorityService::class)->can($user, 'can_reject_clip');

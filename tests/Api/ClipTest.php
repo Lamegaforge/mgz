@@ -173,7 +173,7 @@ class ClipTest extends TestCase
         $user = User::factory()->create();
         $clip = Clip::factory()->create();
 
-        Config::set('authority.can_reject_clip', [$user->login]);
+        Config::set('authority.can_reject_clip', [$user->tracking_id]);
 
         $response = $this->actingAs($user)->post('api/clips/reject', [
             'clip_id' => $clip->id,
