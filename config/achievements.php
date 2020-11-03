@@ -12,8 +12,8 @@ return [
         'slug' => 'valerie_damidot',
         'points' => 500, 
         'title' => 'Valerie Damidot',
-        'secret' => "Avoir modifixé x fois sa banniere, mais oui t'es belle.",
-        'description' => null,
+        'secret' => true,
+        'description' => "Avoir modifixé x fois sa banniere, mais oui t'es belle.",
     ],
     [
         'slug' => 'famous',
