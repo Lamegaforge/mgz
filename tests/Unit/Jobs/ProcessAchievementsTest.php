@@ -44,7 +44,7 @@ class ProcessAchievementsTest extends TestCase
 
         $slugs = $user->achievements->pluck('slug');
 
-        $this->assertContains('valerie_damidot', $slugs);
+        $this->assertContains('pharos', $slugs);
         $this->assertContains('compulsive_clipper', $slugs);
         $this->assertContains('famous', $slugs);
         $this->assertContains('fifty_active_clips', $slugs);
@@ -61,7 +61,7 @@ class ProcessAchievementsTest extends TestCase
 
     protected function addAchievementsRequirement(User $user): void
     {
-        $this->addValerieDamidotRequirement($user);
+        $this->addPharosRequirement($user);
         $this->addCompulsiveClipperRequirement($user);
         $this->addFamousRequirement($user);
         $this->addILoveThisGameRequirement($user);
@@ -69,7 +69,7 @@ class ProcessAchievementsTest extends TestCase
         $this->addUnlovedRequirement($user);
     }
 
-    protected function addValerieDamidotRequirement(User $user): void
+    protected function addPharosRequirement(User $user): void
     {
         $user->update([
             'description' => 'qsdsq',

@@ -49,13 +49,15 @@ class ProcessAchievements implements ShouldQueue
 
             try {
                 
-                $achievement = $achievements->get($trigger->slug());
-
                 $eligible = $trigger->eligible();
 
-                $eligible 
-                    ? $this->assignee($achievement)
-                    : $this->unassign($achievement);
+                if (! $eligible) {
+                    continue;
+                }
+                
+                $achievement = $achievements->get($trigger->slug());
+
+                $this->assignee($achievement);
 
             } catch (Exception $e) {
                 Log::error($e->getMessage());
@@ -71,6 +73,7 @@ class ProcessAchievements implements ShouldQueue
             new Triggers\Famous($this->user),
             new Triggers\ILoveThisGame($this->user),
             new Triggers\Unloved($this->user),
+            new Triggers\Pharos($this->user),
 
             new ActiveClips\Fifty($this->user),
             new ActiveClips\Hundred($this->user),
@@ -90,10 +93,5 @@ class ProcessAchievements implements ShouldQueue
         app(AchievementService::class)->assignee($this->user, $achievement);
 
         AchievementWon::dispatch($this->user, $achievement);
-    }
-
-    protected function unassign(Achievement $achievement): void
-    {
-        app(AchievementService::class)->unassign($this->user, $achievement);
     }
 }
