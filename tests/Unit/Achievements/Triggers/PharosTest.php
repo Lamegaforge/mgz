@@ -5,9 +5,9 @@ namespace Tests\Unit\Achievements\Triggers;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations; 
-use App\Services\Achievements\Triggers\ValerieDamidot;
+use App\Services\Achievements\Triggers\Pharos;
 
-class ValerieDamidotTest extends TestCase
+class PharosTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -18,7 +18,7 @@ class ValerieDamidotTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $achievement = new ValerieDamidot($user);
+        $achievement = new Pharos($user);
 
         $this->assertTrue($achievement->eligible());
     }
@@ -32,7 +32,7 @@ class ValerieDamidotTest extends TestCase
             'description' => null,
         ]);
 
-        $achievement = new ValerieDamidot($user);
+        $achievement = new Pharos($user);
 
         $this->assertFalse($achievement->eligible());
     }
