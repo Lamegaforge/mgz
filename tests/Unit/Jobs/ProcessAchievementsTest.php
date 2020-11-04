@@ -57,6 +57,7 @@ class ProcessAchievementsTest extends TestCase
         $this->assertContains('three_thousand_views_all_clips', $slugs);
         $this->assertContains('two_thousand_views_all_clips', $slugs);
         $this->assertContains('unloved', $slugs);
+        $this->assertContains('i_am_an_idiot', $slugs);
     }
 
     protected function addAchievementsRequirement(User $user): void
@@ -67,6 +68,7 @@ class ProcessAchievementsTest extends TestCase
         $this->addILoveThisGameRequirement($user);
         $this->addClipsRequirement($user);
         $this->addUnlovedRequirement($user);
+        $this->addIAmAnIdiotRequirement($user);
     }
 
     protected function addPharosRequirement(User $user): void
@@ -115,6 +117,13 @@ class ProcessAchievementsTest extends TestCase
         Clip::factory()->times(20)->create([
             'user_id' => $user->id,
             'state' => 'rejected',
+        ]);
+    }
+
+    protected function addIAmAnIdiotRequirement(User $user): void
+    {
+        $user->update([
+            'youtube' => 'http://qsdsqsq',
         ]);
     }
 }

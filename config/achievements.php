@@ -2,6 +2,25 @@
 
 return [
     [
+        'slug' => 'architect',
+        'points' => 500, 
+        'title' => 'Architecte',
+        'description' => "Avoir contribué au développement du site.",
+    ],
+    [
+        'slug' => 'beta_test',
+        'points' => 500, 
+        'title' => 'Bêta-testeur',
+        'description' => "Avoir contribué à la bêta-test du site ❤️",
+    ],
+    [
+        'slug' => 'i_am_an_idiot',
+        'points' => 500, 
+        'title' => 'I am an idiot',
+        'secret' => true,
+        'description' => "Avoir mal renseigné ses réseaux sociaux, faut pas mettre le http espèce de con !",
+    ],
+    [
         'slug' => 'pharos',
         'points' => 750, 
         'title' => 'PHAROS',
