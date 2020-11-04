@@ -19,7 +19,7 @@ class IframeService
             'autoplay=' . $autoplay,
         ];
 
-        $format = 'https://clips.twitch.tv/embed?%s&%s&%s&%s';
+        $format = 'https://clips.twitch.tv/embed?%s&%s&%s&%s&%s';
 
         return sprintf($format, ... $parts);
     }

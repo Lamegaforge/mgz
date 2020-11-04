@@ -3,9 +3,9 @@
 
 @extends('app')
 
-@section('meta')
+@push('metas')
 <x-meta :clip="$clip"/>
-@endsection
+@endpush
 
 @section('content')
 <section class="relative overflow-hidden">

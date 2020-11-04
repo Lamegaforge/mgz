@@ -25,6 +25,7 @@ class IframeServiceTest extends TestCase
             '?clip=' . $clip->slug . 
             '&parent=megasaurus.fr' .
             '&parent=staging.megasaurus.fr' .
+            '&allowfullscreen=true' .
             '&autoplay=false';
 
         $this->assertEquals($url, $expected);
@@ -48,6 +49,7 @@ class IframeServiceTest extends TestCase
             '?clip=' . $clip->slug . 
             '&parent=megasaurus.fr' .
             '&parent=staging.megasaurus.fr' .
+            '&allowfullscreen=true' .
             '&autoplay=true';
 
         $this->assertEquals($url, $expected);
@@ -71,6 +73,7 @@ class IframeServiceTest extends TestCase
             '?clip=' . $clip->slug . 
             '&parent=megasaurus.fr' .
             '&parent=staging.megasaurus.fr' .
+            '&allowfullscreen=true' .
             '&autoplay=false';
 
         $this->assertEquals($url, $expected);
