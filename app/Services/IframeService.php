@@ -15,6 +15,7 @@ class IframeService
             'clip=' . $clip->slug,
             'parent=megasaurus.fr',
             'parent=staging.megasaurus.fr',
+            'allowfullscreen=true',
             'autoplay=' . $autoplay,
         ];
 

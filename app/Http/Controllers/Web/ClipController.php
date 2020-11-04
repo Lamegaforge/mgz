@@ -7,6 +7,7 @@ use Redirect;
 use App\Models\Clip;
 use Illuminate\Http\Request;
 use App\Repositories\Presenters;
+use Illuminate\Support\Collection;
 use Illuminate\Routing\Controller;
 use App\Repositories\ClipRepository;
 use App\Repositories\CardRepository;
@@ -49,13 +50,7 @@ class ClipController extends Controller
             ->orWhere('id', $request->hook)
             ->firstOrFail();
             
-        $clips = app(ClipRepository::class)
-            ->with(['user', 'card'])
-            ->pushCriteria(new Random())
-            ->pushCriteria(new Active())
-            ->pushCriteria(new Limit(8))
-            ->pushCriteria(new OrderBy('approved_at', 'DESC'))
-            ->all();
+        $clips = $this->getOtherClips($clip);
 
         $commentCount = $clip->comments->where('active', true)->count();
 
@@ -67,6 +62,32 @@ class ClipController extends Controller
             'clips' => $clips,
             'isFavorite' => $isFavorite,
         ]);
+    }
+
+    protected function getOtherClips(Clip $clip): Collection
+    {
+        $clips = app(ClipRepository::class)
+            ->with(['user', 'card'])
+            ->pushCriteria(new Random())
+            ->pushCriteria(new Active())
+            ->pushCriteria(new Limit(8))
+            ->pushCriteria(new Where('card_id', $clip->card_id))
+            ->all();
+
+        $missing = 8 - $clips->count();
+
+        if ($missing == 0) {
+            return $clips;
+        }
+
+        $missingClips = app(ClipRepository::class)
+            ->with(['user', 'card'])
+            ->pushCriteria(new Random())
+            ->pushCriteria(new Active())
+            ->pushCriteria(new Limit($missing))
+            ->all();
+
+        return $clips->merge($missingClips);
     }
 
     protected function isFavorite(Request $request, Clip $clip): bool
