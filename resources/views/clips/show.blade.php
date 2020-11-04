@@ -4,7 +4,7 @@
 @extends('app')
 
 @section('meta')
-<x-meta/>
+<x-meta :clip="$clip"/>
 @endsection
 
 @section('content')
