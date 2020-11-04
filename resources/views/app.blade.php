@@ -26,8 +26,8 @@ $links = [
     <meta name="description" content="">
     <title>Megasaurus</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('meta')
 </head>
-
 <body class="antialiased">
     <div id="app" class="flex flex-col font-sans text-white bg-black">
         <primary-nav :links="{{json_encode($links)}}" :user="{{json_encode(Auth::user())}}"></primary-nav>
