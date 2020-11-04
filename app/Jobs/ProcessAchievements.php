@@ -74,6 +74,7 @@ class ProcessAchievements implements ShouldQueue
             new Triggers\ILoveThisGame($this->user),
             new Triggers\Unloved($this->user),
             new Triggers\Pharos($this->user),
+            new Triggers\IamAnIdiot($this->user),
 
             new ActiveClips\Fifty($this->user),
             new ActiveClips\Hundred($this->user),
