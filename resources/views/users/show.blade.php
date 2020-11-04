@@ -56,8 +56,11 @@
                         <div class="text-center">
                             <div class="px-3 py-2 border border-gray-900">
                                 <p>Succès</p>
-                                <progress max="100" value="50">50%</progress>
-                                <p class="text-xs text-gray-400">{{$scores['sum_achievements']}}/? points</p>
+                                <x-achievements-progress 
+                                    :sumAchievements="$scores['sum_achievements']" 
+                                    :maxAchievementsPoints="$max_achievements_points"
+                                />
+                                <p class="text-xs text-gray-400">{{$scores['sum_achievements']}}/{{$max_achievements_points}} points</p>
                                 <p class="mt-3">Clips</p>
                                 <p class="text-xs text-gray-400">Validés: {{$scores['sum_clips']}} points</p>
                                 <p class="text-xs text-gray-400">Vues total: {{$scores['sum_views']}} points</p>
