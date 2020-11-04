@@ -20,6 +20,8 @@ class CardTest extends TestCase
         $response = $this->get('cards');
 
         $response->assertStatus(200);
+
+        $response->assertSee('Toutes les fiches');
     }
 
     /**
@@ -32,5 +34,9 @@ class CardTest extends TestCase
         $response = $this->get('cards/' . $cards->first()->id);
 
         $response->assertStatus(200);
+
+        $response->assertSee($cards->first()->title);
+        $response->assertSee('Meilleurs clips');
+        $response->assertSee('Tous les clips');
     }
 }

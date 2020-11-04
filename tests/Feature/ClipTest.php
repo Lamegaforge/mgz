@@ -18,6 +18,8 @@ class ClipTest extends TestCase
         $response = $this->get('clips');
 
         $response->assertStatus(200);
+
+        $response->assertSee('Tous les clips');
     }
 
     /**
@@ -30,5 +32,7 @@ class ClipTest extends TestCase
         $response = $this->get('clips/' . $clips->first()->id);
 
         $response->assertStatus(200);
+
+        $response->assertSee($clips->first()->title);
     }
 }
