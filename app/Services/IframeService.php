@@ -15,10 +15,11 @@ class IframeService
             'clip=' . $clip->slug,
             'parent=megasaurus.fr',
             'parent=staging.megasaurus.fr',
+            'allowfullscreen=true',
             'autoplay=' . $autoplay,
         ];
 
-        $format = 'https://clips.twitch.tv/embed?%s&%s&%s&%s';
+        $format = 'https://clips.twitch.tv/embed?%s&%s&%s&%s&%s';
 
         return sprintf($format, ... $parts);
     }
