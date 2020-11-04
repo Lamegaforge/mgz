@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use App\Models\Clip;
 use Illuminate\View\Component;
+use App\Services\IframeService;
 
 class Meta extends Component
 {
@@ -17,6 +18,11 @@ class Meta extends Component
     public function __construct(Clip $clip)
     {
         $this->clip = $clip;
+    }
+
+    public function embedUrl()
+    {
+        return app(IframeService::class)->url($this->clip);
     }
 
     /**
