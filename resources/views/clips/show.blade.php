@@ -2,6 +2,11 @@
 @inject('iframeService', 'App\Services\IframeService')
 
 @extends('app')
+
+@section('meta')
+<x-meta/>
+@endsection
+
 @section('content')
 <section class="relative overflow-hidden">
     <img class="absolute top-0 left-0 object-cover w-full h-full blur" src="{{$clip->thumbnail}}" />
