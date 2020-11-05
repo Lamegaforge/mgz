@@ -15,7 +15,7 @@
         <div class="flex flex-col md:items-center md:justify-start md:flex-row md:space-x-12">
             <div class="w-full">
                 <div class="relative pt-16/9">
-                    <iframe class="absolute top-0 left-0 w-full h-full" width="550" height="275" src="{{'https://clips.twitch.tv/embed?clip='.$highlight_clip->slug.'&parent=megasaurus.fr&parent=staging.megasaurus.fr&autoplay=false'}}">
+                    <iframe allowfullscreen="true" class="absolute top-0 left-0 w-full h-full" width="550" height="275" src="{{'https://clips.twitch.tv/embed?clip='.$highlight_clip->slug.'&parent=megasaurus.fr&parent=staging.megasaurus.fr&autoplay=false'}}">
                     </iframe>
                 </div>
             </div>
