@@ -34,7 +34,7 @@
         <div class="flex flex-col md:items-center md:justify-start md:flex-row md:space-x-12">
             <div class="w-full">
                 <div class="relative pt-16/9">
-                    <iframe class="absolute top-0 left-0 w-full h-full" width="550" height="275" src="{{$iframeService->url($clip)}}"></iframe>
+                    <iframe allowfullscreen="true" class="absolute top-0 left-0 w-full h-full" width="550" height="275" src="{{$iframeService->url($clip)}}"></iframe>
                 </div>
             </div>
             <div class="flex-grow w-full max-w-sm mt-6 md:w-auto md:mt-0 md:min-w-350px">
