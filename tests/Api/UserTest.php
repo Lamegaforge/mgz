@@ -50,8 +50,11 @@ class UserTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJsonPath('users.data.0.clips_count', '5')
+            ->assertJsonPath('users.data.0.rank', 1)
             ->assertJsonPath('users.data.1.clips_count', '4')
-            ->assertJsonPath('users.data.2.clips_count', '3');
+            ->assertJsonPath('users.data.1.rank', 2)
+            ->assertJsonPath('users.data.2.clips_count', '3')
+            ->assertJsonPath('users.data.2.rank', 3);
     }
 
     /**
@@ -76,8 +79,11 @@ class UserTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJsonPath('users.data.0.achievements_count', '5')
+            ->assertJsonPath('users.data.0.rank', 1)
             ->assertJsonPath('users.data.1.achievements_count', '4')
-            ->assertJsonPath('users.data.2.achievements_count', '3');
+            ->assertJsonPath('users.data.1.rank', 2)
+            ->assertJsonPath('users.data.2.achievements_count', '3')
+            ->assertJsonPath('users.data.2.rank', 3);
     }
 
     /**
@@ -101,8 +107,11 @@ class UserTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJsonPath('users.data.0.id', $sorted[2]->id)
+            ->assertJsonPath('users.data.0.rank', $sorted[2]->id)
             ->assertJsonPath('users.data.1.id', $sorted[1]->id)
-            ->assertJsonPath('users.data.2.id', $sorted[0]->id);
+            ->assertJsonPath('users.data.1.rank', $sorted[1]->id)
+            ->assertJsonPath('users.data.2.id', $sorted[0]->id)
+            ->assertJsonPath('users.data.2.rank', $sorted[0]->id);
     }
 
     /**
