@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Services\ScoringService;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use App\Services\NotificationService;
+use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereNull;
 use App\Repositories\NotificationRepository;
 
@@ -61,8 +63,11 @@ class UserController extends Controller
 
         $notifications = $this->notificationRepository
             ->pushCriteria(new WhereNull('readed_at'))
+            ->pushCriteria(new OrderBy('created_at', 'DESC'))
             ->where('user_id', $user->id)
             ->get();
+
+        app(NotificationService::class)->readAll($user);
 
         return View::make('users.notifications', [
             'user' => $user,
