@@ -3,11 +3,13 @@
 namespace App\Jobs;
 
 use Log;
+use Event;
 use App\Models;
 use App\Models\User;
 use App\Models\Achievement;
 use Illuminate\Bus\Queueable;
 use App\Events\AchievementWon;
+use App\Services\ScoringService;
 use Illuminate\Queue\SerializesModels;
 use App\Services\Achievements\Triggers;
 use Illuminate\Queue\InteractsWithQueue;
@@ -63,6 +65,8 @@ class ProcessAchievements implements ShouldQueue
                 Log::error($e->getMessage());
             }
         }
+
+        $this->refreshPoints();
     }
 
     protected function triggers(): array
@@ -93,6 +97,11 @@ class ProcessAchievements implements ShouldQueue
     {
         app(AchievementService::class)->assignee($this->user, $achievement);
 
-        AchievementWon::dispatch($this->user, $achievement);
+        Event::dispatch('NotifySubscriber@achievement', [$this->user, $achievement]);
+    }
+
+    protected function refreshPoints()
+    {
+        app(ScoringService::class)->total($this->user);
     }
 }

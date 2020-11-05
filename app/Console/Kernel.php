@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('clips:aggregate')
-            ->everyThirtyMinutes()
+            ->everyTenMinutes()
             ->between('17:00', '01:00');
 
         $schedule->command('clips:aggregate')->dailyAt('10:00');
@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('cards:aggregate')->daily();
 
-        $schedule->command('achievements')->dailyAt('03:00');
+        $schedule->command('achievements')->hourly();
     }
 
     /**
