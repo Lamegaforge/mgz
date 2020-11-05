@@ -2,18 +2,6 @@
 
 return [
     [
-        'slug' => 'architect',
-        'points' => 500, 
-        'title' => 'Architecte',
-        'description' => "Avoir contribué au développement du site.",
-    ],
-    [
-        'slug' => 'beta_test',
-        'points' => 500, 
-        'title' => 'Bêta-testeur',
-        'description' => "Avoir contribué à la bêta-test du site ❤️",
-    ],
-    [
         'slug' => 'i_am_an_idiot',
         'points' => 500, 
         'title' => 'I am an idiot',
@@ -61,6 +49,18 @@ return [
         'title' => 'Le Mal-aimé',
         'secret' => true,
         'description' => 'Avoir plus de 20 clips refusés... tu vas commencer à nous casser les couilles toi.',
+    ],
+    [
+        'slug' => 'architect',
+        'points' => 500, 
+        'title' => 'Architecte',
+        'description' => "Avoir contribué au développement du site.",
+    ],
+    [
+        'slug' => 'beta_test',
+        'points' => 500, 
+        'title' => 'Bêta-testeur',
+        'description' => "Avoir contribué à la bêta-test du site ❤️",
     ],
     [
         'slug' => 'ten_active_clips',
