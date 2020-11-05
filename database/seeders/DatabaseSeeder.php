@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Clip;
 use App\Models\Card;
 use App\Models\Comment;
+use App\Models\Notification;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AchievementSeeder;
 
@@ -27,7 +28,9 @@ class DatabaseSeeder extends Seeder
 
     protected function feed(): void
     {
-        $cards = Card::factory()->times(6)->create();
+        $cards = Card::factory()
+            ->times(6)
+            ->create();
 
         $cards->map(function ($card) {
 
@@ -44,6 +47,12 @@ class DatabaseSeeder extends Seeder
                     ->has(Comment::factory()->count(3), 'children')
                     ->create([
                         'clip_id' => $clip->id,
+                    ]);
+
+                Notification::factory()
+                    ->times(10)
+                    ->create([
+                        'user_id' => $clip->user->id,
                     ]);
             });
         });
