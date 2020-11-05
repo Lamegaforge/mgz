@@ -36,5 +36,6 @@ Route::prefix('users')->as('users.')->group(function () {
 	Route::get('/', 'UserController@index')->name('index');
 	Route::get('account', 'UserController@account')->middleware('auth')->name('account');
 	Route::get('account/settings', 'UserController@settings')->middleware('auth')->name('settings');
+	Route::get('notifications', 'UserController@notifications')->middleware('auth')->name('notifications');
 	Route::get('{hook}', 'UserController@show')->name('show');
 });
