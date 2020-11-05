@@ -20,7 +20,7 @@ class IAmAnIdiot extends Triggers implements Trigger
         return in_array(true, $prerequisites);
     }
 
-    protected function check(string $socialNetwork): bool
+    protected function check(?string $socialNetwork = null): bool
     {
         return Str::startsWith($socialNetwork, 'http://') 
             || Str::startsWith($socialNetwork, 'https://');
