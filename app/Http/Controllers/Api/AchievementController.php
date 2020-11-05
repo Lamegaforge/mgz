@@ -86,7 +86,7 @@ class AchievementController extends Controller
     protected function userLookHisOwnAccount(User $user): bool
     {
         if (Auth::guest()) {
-            return true;
+            return false;
         }
 
         return $user->id == Auth::user()->id;
