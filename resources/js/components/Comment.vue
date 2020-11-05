@@ -7,7 +7,13 @@
     />
     <div class="w-full text-gray-300">
       <p class="font-semibold text-white">
-        {{ comment.user.display_name }}
+        <a
+          :href="`/users/${
+            comment.user.login ? comment.user.login : comment.user.id
+          }`"
+          class="transition-colors duration-150 ease-in-out hover:text-indigo-400"
+          >{{ comment.user.display_name }}</a
+        >
         <span class="text-sm font-normal text-gray-500"
           >- {{ timeSince(comment.created_at) }}</span
         >
@@ -17,7 +23,7 @@
       </p>
       <div class="inline-flex items-center mt-2">
         <button
-          class="font-semibold hover:text-indigo-400"
+          class="font-semibold transition-colors duration-150 ease-in-out hover:text-indigo-400"
           @click="clicked = true"
         >
           Répondre
