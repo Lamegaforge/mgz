@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
+use Event;
 use Storage;
 use App\Models\User;
 use App\Models\Card;
+use App\Models\Clip;
 use Illuminate\Support\Str;
 use App\Services\UserService;
 use App\Services\CardSniffer;
@@ -22,7 +24,7 @@ class ClipsAggregator extends Command
      *
      * @var string
      */
-    protected $signature = 'clips:aggregate {--period=} {--cursor=} {--active}';
+    protected $signature = 'clips:aggregate {--period=} {--cursor=} {--active} {--disabled-notify}';
 
     /**
      * The console command description.
@@ -59,8 +61,9 @@ class ClipsAggregator extends Command
             $user = $this->retrieveUser($clip['curator']);
             $card = $this->retrieveCard($clip);
           
-            $this->storeClip($clip, $user, $card);
+            $clip = $this->storeClip($clip, $user, $card);
             $this->makeCardDirectory($card);
+            $this->notify($clip, $user);
         }
 
         return 0;
@@ -108,7 +111,7 @@ class ClipsAggregator extends Command
         return app(CardService::class)->findOrCreateCard($attributes['game'], $attributes);
     }
 
-    protected function storeClip(array $clip, User $user, ?Card $card): void
+    protected function storeClip(array $clip, User $user, ?Card $card): Clip
     {
         $attributes = (new Collection($clip))->only([
             'tracking_id',
@@ -129,7 +132,7 @@ class ClipsAggregator extends Command
         $attributes['state'] = $active;
         $attributes['approved_at'] = $attributes['created_at'];
 
-        app(ClipRepository::class)->create($attributes->toArray());
+        return app(ClipRepository::class)->create($attributes->toArray());
     }
 
     protected function getActiveAttribute(?Card $card): string
@@ -144,5 +147,18 @@ class ClipsAggregator extends Command
     protected function makeCardDirectory(Card $card): void
     {
         Storage::disk('cards')->makeDirectory($card->slug);
+    }
+
+    protected function notify(Clip $clip, User $user)
+    {
+        if ($this->option('disabled-notify')) {
+            return;
+        }
+
+        if ($clip->state != 'active') {
+            return;
+        }
+
+        Event::dispatch('NotifySubscriber@clip', [$user, $clip]);
     }
 }

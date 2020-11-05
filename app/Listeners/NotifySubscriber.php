@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\Clip;
 use App\Models\User;
 use App\Models\Achievement;
 use App\Models\Notification;
