@@ -34,7 +34,7 @@ class UserFactory extends Factory
             'youtube' => 'lamegaforge',
             'instagram' => 'lamegaforge',
             'twitter' => 'LaMegaforge',
-            'points' => 100,
+            'points' => $this->faker->numberBetween(10, 1000),
         ];
     }
 }
