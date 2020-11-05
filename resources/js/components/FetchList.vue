@@ -1,12 +1,12 @@
 <template>
   <div
-    v-if="filters"
+    v-if="canFilter"
     class="flex flex-col items-start mt-4 space-y-3 md:mt-6 sm:space-y-0 sm:items-center sm:flex-row"
   >
     <div v-if="type === 'clips' && cards" class="w-full sm:w-56">
       <select-menu :items="cards" @onSelected="handleSelectedCard" />
     </div>
-    <div class="relative w-full sm:ml-auto sm:w-64">
+    <div class="relative w-full sm:ml-auto sm:w-64" v-if="canSearch">
       <div
         class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500 pointer-events-none"
       >
@@ -25,7 +25,7 @@
         @onDebounced="handleSearch"
       />
     </div>
-    <div className="ml-auto sm:ml-3">
+    <div className="ml-auto sm:ml-3" v-if="canOrder">
       <dropdown
         button-class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded focus:outline-none focus:shadow-outline focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
       >
@@ -103,6 +103,12 @@
       <card :item="item" v-if="type === 'cards'" />
       <achievement :item="item" v-if="type === 'achievements'" />
     </div>
+    <leaderboard
+      :items="items"
+      v-if="type === 'users'"
+      :selected-order="selectedOrder"
+      @orderChanged="handleSort"
+    />
   </div>
   <div v-if="!items?.length && !isLoading" class="py-16 text-center">
     Aucun résultat 🦕
@@ -146,7 +152,13 @@ const sorts = {
     {
       label: "Date d'obtention",
       value: "unlocked",
-    }
+    },
+  ],
+  users: [
+    {
+      label: "Score",
+      value: "points",
+    },
   ],
 };
 export default {
@@ -157,9 +169,17 @@ export default {
     cards: Array,
     cardId: Number,
     userId: Number,
-    filters: {
+    canFilter: {
       type: Boolean,
-      default: false
+      default: false,
+    },
+    canOrder: {
+      type: Boolean,
+      default: false,
+    },
+    canSearch: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {
@@ -181,7 +201,7 @@ export default {
     async function fetchItems(url) {
       isLoading.value = true;
       if (url) {
-        if (!props.filters) {
+        if (!props.canFilter) {
           window.scrollTo(0, grid.value.offsetTop - 70);
         } else {
           window.scrollTo(0, 0);
@@ -212,6 +232,9 @@ export default {
       }
       if (props.userId) {
         return `${props.fetchUrl}?user_id=${props.userId}&order=${selectedOrder.value}`;
+      }
+      if (search.value && props.type === "users") {
+        return `${props.fetchUrl}?display_name=${search.value}&order=${selectedOrder.value}`;
       }
       if (search.value) {
         return `${props.fetchUrl}?title=${search.value}&order=${selectedOrder.value}`;
