@@ -58,7 +58,7 @@
                   <div class="flex items-center space-x-3">
                     <div class="flex-shrink-0">
                       <img
-                        :src="item.profile_image_url"
+                        :src="`${item.profile_image_url ? item.profile_image_url : '/images/profile_placeholder.jpg'}`"
                         class="object-cover w-10 h-10 rounded-full"
                         alt=""
                       />
