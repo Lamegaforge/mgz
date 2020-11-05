@@ -8,14 +8,18 @@ use Illuminate\Http\Request;
 use App\Services\ScoringService;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use App\Repositories\Criterias\WhereNull;
+use App\Repositories\NotificationRepository;
 
 class UserController extends Controller
 {
     protected $userRepository;
+    protected $notificationRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, NotificationRepository $notificationRepository)
     {
         $this->userRepository = $userRepository;
+        $this->notificationRepository = $notificationRepository;
     }
 
     public function index()
@@ -48,6 +52,21 @@ class UserController extends Controller
 
         return View::make('users.settings', [
             'user' => $user,
+        ]);
+    }
+
+    public function notifications(Request $request)
+    {
+        $user = $request->user();
+
+        $notifications = $this->notificationRepository
+            ->pushCriteria(new WhereNull('readed_at'))
+            ->where('user_id', $user->id)
+            ->get();
+
+        return View::make('users.notifications', [
+            'user' => $user,
+            'notifications' => $notifications,
         ]);
     }
 
