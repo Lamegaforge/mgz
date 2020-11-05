@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events;
 use App\Listeners;
+use App\Listeners\NotifySubscriber;
 use App\Listeners\ScoringSubscriber;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -22,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         Events\AchievementWon::class => [
-            // Listeners\EarnAchievementPoints::class,
+            Listeners\NotifyUser::class,
         ],
     ];
 
@@ -33,6 +34,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $subscribe = [
         ScoringSubscriber::class,
+        NotifySubscriber::class,
     ];
 
     /**
