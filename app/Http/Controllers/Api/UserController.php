@@ -14,6 +14,8 @@ use App\Repositories\Criterias\OrderWithCount;
 
 class UserController extends Controller
 {
+    protected const PER_PAGE = 12;
+
     protected $userRepository;
 
     public function __construct(UserRepository $userRepository)
@@ -26,11 +28,11 @@ class UserController extends Controller
         $this->addOrderCriteria($request);
         $this->addDisplayNameCriteria($request);
 
-        $paginator = $this->userRepository->paginate(12, $columns = ['*']);
+        $paginator = $this->userRepository->paginate(self::PER_PAGE, $columns = ['*']);
 
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),
-            'users' => $paginator->toArray(),
+            'users' => $this->present($paginator),
         ], 200);
     }
 
@@ -66,5 +68,29 @@ class UserController extends Controller
         $displayName = $request->get('display_name');
 
         $this->userRepository->pushCriteria(new WhereLike('display_name', $displayName));
+    }
+
+    protected function present($paginator): array
+    {
+        $attributes = $paginator->toArray();   
+
+        $attributes['data'] = $paginator->map(function ($card, $rank) use($paginator) {
+            return $card->toArray() + [
+                'rank' => $this->getRanking($paginator, $rank),
+            ];
+        })->toArray();
+
+        return $attributes;
+    }
+
+    protected function getRanking($paginator, $rank): int
+    {
+        $currentPage = $paginator->currentPage();
+
+        $currentPage = ($currentPage == 1) ? 0 : $currentPage - 1;
+
+        $rank++;
+
+        return ($currentPage * self::PER_PAGE) + $rank;
     }
 }
