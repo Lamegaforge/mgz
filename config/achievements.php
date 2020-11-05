@@ -9,32 +9,11 @@ return [
         'description' => "Avoir mal renseigné ses réseaux sociaux, faut pas mettre le http espèce de con !",
     ],
     [
-        'slug' => 'pharos',
-        'points' => 750, 
-        'title' => 'PHAROS',
-        'secret' => true,
-        'description' => "Avoir renseigné une banniere, sa description et l'un de ses réseaux. Bravo, on peut désormais venir te choper",
-    ],
-    [
         'slug' => 'valerie_damidot',
         'points' => 500, 
         'title' => 'Valerie Damidot',
         'secret' => true,
         'description' => "Avoir modifié 5 fois sa banniere, mais oui t'es belle.",
-    ],
-    [
-        'slug' => 'famous',
-        'points' => 1000, 
-        'title' => 'Famous',
-        'secret' => true,
-        'description' => 'Avoir un clip avec plus de 500 vues.',
-    ],
-    [
-        'slug' => 'compulsive_clipper',
-        'points' => 500, 
-        'title' => 'Clipper compulsif',
-        'secret' => true,
-        'description' => 'Avoir réalisé plus de 7 clips en une semaine.',
     ],
     [
         'slug' => 'i_love_this_game',
@@ -49,6 +28,24 @@ return [
         'title' => 'Le Mal-aimé',
         'secret' => true,
         'description' => 'Avoir plus de 20 clips refusés... tu vas commencer à nous casser les couilles toi.',
+    ],
+    [
+        'slug' => 'pharos',
+        'points' => 750, 
+        'title' => 'PHAROS',
+        'description' => "Avoir renseigné une banniere, sa description et l'un de ses réseaux. Bravo, on peut désormais venir te choper",
+    ],
+    [
+        'slug' => 'famous',
+        'points' => 1000, 
+        'title' => 'Famous',
+        'description' => 'Avoir un clip avec plus de 500 vues.',
+    ],
+    [
+        'slug' => 'compulsive_clipper',
+        'points' => 500, 
+        'title' => 'Clipper compulsif',
+        'description' => 'Avoir réalisé plus de 7 clips en une semaine.',
     ],
     [
         'slug' => 'architect',
