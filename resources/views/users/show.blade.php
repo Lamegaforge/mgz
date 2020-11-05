@@ -49,7 +49,7 @@
         <div class="pb-16 mt-6 md:pb-20 lg:pb-24">
             <tabs>
                 <tab title="Clips" :value="0">
-                    <grid :user-id="{{$user->id}}" grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.clips.search')}}" type="clips" />
+                    <fetch-list :user-id="{{$user->id}}" grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.clips.search')}}" type="clips" />
                 </tab>
                 <tab title="Succès" :value="1">
                     <div class="mt-6 md:grid grid-cols-layout md:gap-8">
@@ -69,7 +69,7 @@
                             <p class="mt-4 text-lg">Total: {{$scores['sum']}} points</p>
                         </div>
                         <div>
-                            <grid fetch-url="{{route('api.achievement.search', $user->id)}}" type="achievements" />
+                            <fetch-list fetch-url="{{route('api.achievement.search', $user->id)}}" type="achievements" />
                         </div>
                     </div>
                 </tab>
@@ -79,7 +79,7 @@
                     </div>
                 </tab>
                 <tab title="Favoris" :value="3">
-                    <grid grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.favorites.search', $user->id)}}" type="clips" />
+                    <fetch-list grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.favorites.search', $user->id)}}" type="clips" />
                 </tab>
             </tabs>
         </div>

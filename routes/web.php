@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('logout', 'HomeController@logout')->name('logout');
 
 Route::prefix('oauth')->middleware('guest')->as('oauth.')->group(function () {
-    Route::get('login', 'OauthController@login')->name('login');
+	Route::get('login', 'OauthController@login')->name('login');
     Route::get('consume', 'OauthController@consume')->name('consume');
 });
 
@@ -33,6 +33,7 @@ Route::prefix('cards')->as('cards.')->group(function () {
 });
 
 Route::prefix('users')->as('users.')->group(function () {
+	Route::get('/', 'UserController@index')->name('index');
 	Route::get('account', 'UserController@account')->middleware('auth')->name('account');
 	Route::get('account/settings', 'UserController@settings')->middleware('auth')->name('settings');
 	Route::get('{hook}', 'UserController@show')->name('show');

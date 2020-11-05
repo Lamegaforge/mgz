@@ -11,6 +11,11 @@ $links = [
         request()->routeIs('cards.index'),
     ],
     [
+        'Classement',
+        '/users',
+        request()->routeIs('users.index'),
+    ],
+    [
         'Aléatoire',
         '/clips/random',
         request()->routeIs('clips.random'),

@@ -17,7 +17,7 @@
       </p>
       <div class="inline-flex items-center mt-2">
         <button
-          class="font-semibold hover:text-indigo-300"
+          class="font-semibold hover:text-indigo-400"
           @click="clicked = true"
         >
           Répondre

@@ -18,6 +18,11 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    public function index()
+    {
+        return View::make('users.index');
+    }
+
     public function account(Request $request)
     {
         $userId = $request->user()->id;
