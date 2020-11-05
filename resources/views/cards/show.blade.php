@@ -44,6 +44,6 @@
         @endif
     </div>
     <h2 class="mt-24 text-3xl font-light leading-8 tracking-tight text-white sm:text-3xl sm:leading-9">Tous les clips</h2>
-    <grid grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" :card-id="{{$card->id}}" fetch-url="{{route('api.clips.search')}}" type="clips" />
+    <fetch-list grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" :card-id="{{$card->id}}" fetch-url="{{route('api.clips.search')}}" type="clips" />
 </section>
 @endsection
