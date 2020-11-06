@@ -48,6 +48,12 @@ return [
         'description' => 'Avoir réalisé plus de 7 clips en une semaine.',
     ],
     [
+        'slug' => 'old_man',
+        'points' => 500, 
+        'title' => "Vieux d'la vieille",
+        'description' => 'Avoir un clip de plus de 3 ans.',
+    ],
+    [
         'slug' => 'architect',
         'points' => 500, 
         'title' => 'Architecte',
