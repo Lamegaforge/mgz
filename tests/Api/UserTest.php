@@ -117,9 +117,6 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    /**
-     * @test
-     */
     public function get_users_with_display_name_search()
     {
         $user = User::factory()->create();
