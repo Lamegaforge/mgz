@@ -37,7 +37,7 @@ class NotifySubscriber
         $this->store($user, $content);
     }
 
-    public function clip(User $user, Clip $clip): void
+    public function clipWon(User $user, Clip $clip): void
     {   
         $format = "Félicitations, l'un de tes clips vient d'être validé : %s";
 
@@ -51,7 +51,7 @@ class NotifySubscriber
         $this->store($user, $content);
     }
 
-    public function removeclip(User $user, Clip $clip): void
+    public function clipLost(User $user, Clip $clip): void
     {   
         $format = "Désolé, le clip suivant est finalement rejeté : %s";
 
