@@ -51,13 +51,13 @@ class ProcessAchievements implements ShouldQueue
 
             try {
                 
-                \Log::info($this->user->display_name . ' - ' . $trigger->slug());
+                // \Log::info($this->user->display_name . ' - ' . $trigger->slug());
 
                 $eligible = $trigger->eligible();
 
                 $achievement = $achievements->get($trigger->slug());
 
-                \Log::info($this->user->display_name . ' - ' . $achievement->slug);
+                // \Log::info($this->user->display_name . ' - ' . $achievement->slug);
 
                 $eligible 
                     ? $this->assignee($achievement)
@@ -65,7 +65,7 @@ class ProcessAchievements implements ShouldQueue
 
 
             } catch (Exception $e) {
-                Log::error($e->getMessage());
+                // Log::error($e->getMessage());
             }
         }
 
@@ -99,7 +99,7 @@ class ProcessAchievements implements ShouldQueue
 
     protected function assignee(Achievement $achievement): void
     {
-        Log::info($this->user->display_name . ' eligible to ' . $achievement->slug);
+        // Log::info($this->user->display_name . ' eligible to ' . $achievement->slug);
 
         $assigned = app(AchievementService::class)->assignee($this->user, $achievement);
 
@@ -114,7 +114,7 @@ class ProcessAchievements implements ShouldQueue
             return;
         }
 
-        Log::info($this->user->display_name . ' not eligible to ' . $achievement->slug);
+        // Log::info($this->user->display_name . ' not eligible to ' . $achievement->slug);
 
         $unassigned = app(AchievementService::class)->unassign($this->user, $achievement);
 
