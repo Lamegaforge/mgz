@@ -95,6 +95,8 @@ class ProcessAchievements implements ShouldQueue
 
     protected function assignee(Achievement $achievement): void
     {
+        Log::info($this->user->display_name . 'eligible to ' . $achievement->slug);
+
         $assigned = app(AchievementService::class)->assignee($this->user, $achievement);
 
         if ($assigned) {
@@ -107,6 +109,8 @@ class ProcessAchievements implements ShouldQueue
         if ($achievement->always) {
             return;
         }
+
+        Log::info($this->user->display_name . 'not eligible to ' . $achievement->slug);
 
         $unassigned = app(AchievementService::class)->unassign($this->user, $achievement);
 
