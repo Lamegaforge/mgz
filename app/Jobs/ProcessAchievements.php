@@ -51,9 +51,13 @@ class ProcessAchievements implements ShouldQueue
 
             try {
                 
+                \Log::info($this->user->display_name . ' - ' . $trigger->slug());
+
                 $eligible = $trigger->eligible();
 
                 $achievement = $achievements->get($trigger->slug());
+
+                \Log::info($this->user->display_name . ' - ' . $achievement->slug);
 
                 $eligible 
                     ? $this->assignee($achievement)
