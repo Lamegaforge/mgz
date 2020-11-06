@@ -98,7 +98,7 @@ class ProcessAchievements implements ShouldQueue
         $assigned = app(AchievementService::class)->assignee($this->user, $achievement);
 
         if ($assigned) {
-            Event::dispatch('NotifySubscriber@achievement', [$this->user, $achievement]);
+            Event::dispatch('NotifySubscriber@achievementWon', [$this->user, $achievement]);
         }
     }
 
@@ -111,7 +111,7 @@ class ProcessAchievements implements ShouldQueue
         $unassigned = app(AchievementService::class)->unassign($this->user, $achievement);
 
         if ($unassigned) {
-            Event::dispatch('NotifySubscriber@removeAchievement', [$this->user, $achievement]);
+            Event::dispatch('NotifySubscriber@achievementLost', [$this->user, $achievement]);
         }
     }
 

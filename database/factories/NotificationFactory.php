@@ -25,7 +25,7 @@ class NotificationFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'message' => $this->faker->words($nb = 6, $asText = true),
+            'content' => null,
             'readed_at' => null,
         ];
     }

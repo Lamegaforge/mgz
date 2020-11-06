@@ -71,7 +71,7 @@ class UserController extends Controller
 
         return View::make('users.notifications', [
             'user' => $user,
-            'notifications' => $notifications->toArray(),
+            'notifications' => $notifications,
         ]);
     }
 

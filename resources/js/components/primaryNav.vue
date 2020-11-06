@@ -37,11 +37,25 @@
             button-class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
           >
             <template #trigger>
-              <img
-                class="object-cover w-8 h-8 rounded-full"
-                :src="user?.profile_image_url"
-                alt=""
-              />
+              <div class="relative">
+                <img
+                  class="object-cover w-8 h-8 rounded-full"
+                  :src="user?.profile_image_url"
+                  alt=""
+                />
+                <span
+                  v-if="notifications"
+                  class="absolute top-0 right-0 block w-2 h-2 text-gray-900 bg-red-600 rounded-full shadow-solid"
+                ></span>
+                <span
+                  class="absolute top-0 right-0 flex w-2 h-2"
+                  v-if="notifications"
+                >
+                  <span
+                    class="absolute inline-flex w-full h-full bg-red-600 rounded-full opacity-75 animate-ping"
+                  ></span>
+                </span>
+              </div>
             </template>
             <template #content>
               <div
@@ -55,7 +69,21 @@
                   class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
                   role="menuitem"
                   >{{ profileLinks.profile.label }}</a
-                ><a
+                >
+                <a
+                  :href="profileLinks.notifications.url"
+                  class="flex items-center px-4 py-2 space-x-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
+                  role="menuitem"
+                >
+                  <span>{{ profileLinks.notifications.label }}</span>
+                  <span
+                    v-if="notifications"
+                    class="inline-flex items-center px-2 py-0 text-xs font-medium leading-4 text-red-100 bg-red-600 rounded-full"
+                  >
+                    {{ notifications > 9 ? "10+" : notifications }}
+                  </span>
+                </a>
+                <a
                   :href="profileLinks.settings.url"
                   class="block px-4 py-2 text-sm leading-5 text-gray-200 hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
                   role="menuitem"
@@ -159,6 +187,18 @@
             >{{ profileLinks.profile.label }}</a
           >
           <a
+            :href="profileLinks.notifications.url"
+            class="flex items-center px-4 py-2 mt-1 space-x-2 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800"
+          >
+            <span>{{ profileLinks.notifications.label }}</span>
+            <span
+              v-if="notifications"
+              class="inline-flex items-center px-2 py-0 text-xs font-medium leading-4 text-red-100 bg-red-600 rounded-full"
+            >
+              {{ notifications > 9 ? "10+" : notifications }}
+            </span>
+          </a>
+          <a
             :href="profileLinks.settings.url"
             class="block px-4 py-2 mt-1 text-base font-medium text-gray-400 transition duration-150 ease-in-out hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-800"
             >{{ profileLinks.settings.label }}</a
@@ -179,6 +219,7 @@ export default {
   props: {
     links: Array,
     user: Object,
+    notifications: Number,
   },
   setup() {
     const isMobileOpen = ref(false);
@@ -190,6 +231,10 @@ export default {
       profile: {
         label: "Mon profil",
         url: "/users/account",
+      },
+      notifications: {
+        label: "Notifications",
+        url: "/users/notifications",
       },
       settings: {
         label: "Paramètres",
