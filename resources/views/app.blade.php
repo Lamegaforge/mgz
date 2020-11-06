@@ -1,25 +1,25 @@
 @php
 $links = [
-[
-'Clips',
-'/clips',
-request()->routeIs('clips.index'),
-],
-[
-'Fiches',
-'/cards',
-request()->routeIs('cards.index'),
-],
-[
-'Classement',
-'/users',
-request()->routeIs('users.index'),
-],
-[
-'Aléatoire',
-'/clips/random',
-request()->routeIs('clips.random'),
-],
+    [
+        'Clips',
+        '/clips',
+        request()->routeIs('clips.index'),
+    ],
+    [
+        'Fiches',
+        '/cards',
+        request()->routeIs('cards.index'),
+    ],
+    [
+        'Classement',
+        '/users',
+        request()->routeIs('users.index'),
+    ],
+    [
+        'Aléatoire',
+        '/clips/random',
+        request()->routeIs('clips.random'),
+    ],
 ];
 @endphp
 <!DOCTYPE html>
