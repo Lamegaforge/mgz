@@ -2,10 +2,13 @@
 @section('content')
 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
     @include('layouts.breadcrumbs', [
-    'breadcrumbs' => [
-    ['Accueil', route('home')],
-    'Notifications'
-    ]
+        'breadcrumbs' => [
+            [
+                'Accueil', 
+                route('home'),
+            ],
+            'Notifications',
+        ],
     ])
 </div>
 <section class="-mt-6 section">
@@ -14,7 +17,7 @@
         @foreach($notifications as $notif)
         <li class="flex flex-col py-4">
             <p class="text-sm leading-5 text-gray-500">{{$notif->created_at->diffForHumans()}}</p>
-            <span class="text-gray-200">{{$notif->message}}</span>
+            <span class="text-gray-200">{{$notif->content['message'] ?? null}}</span>
         </li>
         @endforeach
     </ul>
