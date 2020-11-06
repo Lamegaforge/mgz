@@ -58,6 +58,37 @@ class ProcessAchievementsTest extends TestCase
         $this->assertContains('two_thousand_views_all_clips', $slugs);
         $this->assertContains('unloved', $slugs);
         $this->assertContains('i_am_an_idiot', $slugs);
+
+        $this->assertNotifications($user, $number = 15);
+
+        $this->assertRemoveAchievements($user);
+    }
+
+    protected function assertRemoveAchievements(User $user)
+    {
+        $user->clips()->delete();
+
+        ProcessAchievements::dispatchNow($user);
+
+        $user->refresh();
+
+        $slugs = $user->achievements->pluck('slug');
+
+        $this->assertNotContains('fifty_active_clips', $slugs);
+        $this->assertNotContains('hundred_active_clips', $slugs);
+        $this->assertNotContains('one_hundred_fifty_active_clips', $slugs);
+        $this->assertNotContains('seventy_active_clips', $slugs);
+        $this->assertNotContains('ten_active_clips', $slugs);
+        $this->assertNotContains('thirty_active_clips', $slugs);
+
+        $this->assertNotifications($user, $number = 21);
+    }
+
+    protected function assertNotifications(User $user, int $number)
+    {
+        $unreadNotifications = $user->unreadNotifications()->count();
+
+        $this->assertEquals($number, $unreadNotifications);
     }
 
     protected function addAchievementsRequirement(User $user): void

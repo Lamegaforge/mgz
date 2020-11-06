@@ -19,11 +19,12 @@ class AchievementServiceTest extends TestCase
     {
         list($user, $achievement) = $this->prerequisite();
 
-        app(AchievementService::class)->assignee($user, $achievement);
+        $assigned = app(AchievementService::class)->assignee($user, $achievement);
 
         $user->refresh();
 
         $this->assertEquals(1, $user->achievements->count());
+        $this->assertTrue($assigned);
     }
 
     /**
@@ -35,11 +36,12 @@ class AchievementServiceTest extends TestCase
 
         $user->achievements()->attach($achievement->id);
 
-        app(AchievementService::class)->assignee($user, $achievement);
+        $assigned = app(AchievementService::class)->assignee($user, $achievement);
 
         $user->refresh();
 
         $this->assertEquals(1, $user->achievements->count());
+        $this->assertFalse($assigned);
     }
 
 
