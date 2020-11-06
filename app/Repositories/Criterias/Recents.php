@@ -10,10 +10,10 @@ class Recents implements CriteriaInterface {
 
     public function apply($model, RepositoryInterface $repository)
     {
-        $threshold = Carbon::today()->subWeek();
+        $threshold = Carbon::today()->subDays(3);
 
         $model = $model->whereNull('readed_at')
-            ->orWhere('created_at', '>=', $threshold);
+            ->orWhere('readed_at', '>=', $threshold);
 
         return $model;
     }

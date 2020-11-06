@@ -17,7 +17,7 @@
         @foreach($notifications as $notif)
         <li class="flex flex-col py-4">
             <p class="text-sm leading-5 text-gray-500">{{$notif->created_at->diffForHumans()}}</p>
-            <span class="text-gray-200">{{$notif->content['message']}}</span>
+            <span class="text-gray-200">{{$notif->content['message'] ?? null}}</span>
         </li>
         @endforeach
     </ul>
