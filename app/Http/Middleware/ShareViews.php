@@ -27,6 +27,6 @@ class ShareViews
     {
         $count = app(NotificationService::class)->count();
 
-        View::share('notifications', $count);
+        View::share('notificationsCount', $count);
     }
 }
