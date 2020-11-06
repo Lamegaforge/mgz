@@ -23,6 +23,6 @@ class NotificationService
             return 0;
         }
 
-        return Auth::user()->notifications()->count();
+        return Auth::user()->notifications()->unread()->count();
     }
 }
