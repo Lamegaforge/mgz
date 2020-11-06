@@ -9,6 +9,8 @@ use App\Services\ScoringService;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use App\Services\NotificationService;
+use App\Repositories\Criterias\Limit;
+use App\Repositories\Criterias\Recents;
 use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereNull;
 use App\Repositories\NotificationRepository;
@@ -62,7 +64,8 @@ class UserController extends Controller
         $user = $request->user();
 
         $notifications = $this->notificationRepository
-            ->pushCriteria(new WhereNull('readed_at'))
+            ->pushCriteria(new Recents())
+            ->pushCriteria(new Limit(20))
             ->pushCriteria(new OrderBy('created_at', 'DESC'))
             ->where('user_id', $user->id)
             ->get();
