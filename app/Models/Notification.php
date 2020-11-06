@@ -16,7 +16,7 @@ class Notification extends Model
      */
     protected $fillable = [
         'user_id',
-        'message',
+        'content',
         'readed_at',
     ];
 
@@ -27,6 +27,7 @@ class Notification extends Model
      */
     protected $casts = [
         'user_id' => 'integer',
+        'content' => 'array',
     ];
 
     /**

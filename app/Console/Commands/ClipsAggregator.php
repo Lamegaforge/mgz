@@ -159,6 +159,6 @@ class ClipsAggregator extends Command
             return;
         }
 
-        Event::dispatch('NotifySubscriber@clip', [$user, $clip]);
+        Event::dispatch('NotifySubscriber@clipWon', [$user, $clip]);
     }
 }

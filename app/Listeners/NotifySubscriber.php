@@ -9,22 +9,32 @@ use App\Models\Notification;
 
 class NotifySubscriber
 {
-    public function achievement(User $user, Achievement $achievement): void
+    public function achievementWon(User $user, Achievement $achievement): void
     {   
         $format = 'Félicitations, tu viens de remporter le succes : %s';
 
         $message = sprintf($format, $achievement->title);
 
-        $this->store($user, $message);
+        $content = [
+            'type' => 'achievement',
+            'message' => $message,
+        ];
+
+        $this->store($user, $content);
     }
 
-    public function removeAchievement(User $user, Achievement $achievement): void
+    public function achievementLost(User $user, Achievement $achievement): void
     {   
         $format = "Désolé, tu ne réponds plus aux conditions du succès, on doit te retirer : %s";
 
         $message = sprintf($format, $achievement->title);
 
-        $this->store($user, $message);
+        $content = [
+            'type' => 'achievement',
+            'message' => $message,
+        ];
+
+        $this->store($user, $content);
     }
 
     public function clip(User $user, Clip $clip): void
@@ -33,14 +43,33 @@ class NotifySubscriber
 
         $message = sprintf($format, $clip->title);
 
-        $this->store($user, $message);
+        $content = [
+            'type' => 'clip',
+            'message' => $message,
+        ];
+
+        $this->store($user, $content);
     }
 
-    protected function store(User $user, string $message): void
+    public function removeclip(User $user, Clip $clip): void
+    {   
+        $format = "Désolé, le clip suivant est finalement rejeté : %s";
+
+        $message = sprintf($format, $clip->title);
+
+        $content = [
+            'type' => 'clip',
+            'message' => $message,
+        ];
+
+        $this->store($user, $content);
+    }
+
+    protected function store(User $user, array $content): void
     {
         Notification::create([
             'user_id' => $user->id,
-            'message' => $message,
+            'content' => $content,
         ]);
     }
 
@@ -53,18 +82,23 @@ class NotifySubscriber
     public function subscribe($events)
     {
         $events->listen(
-            'NotifySubscriber@achievement',
-            [NotifySubscriber::class, 'achievement']
+            'NotifySubscriber@achievementWon',
+            [NotifySubscriber::class, 'achievementWon']
         );
 
         $events->listen(
-            'NotifySubscriber@removeAchievement',
-            [NotifySubscriber::class, 'removeAchievement']
+            'NotifySubscriber@achievementLost',
+            [NotifySubscriber::class, 'achievementLost']
         );
 
         $events->listen(
-            'NotifySubscriber@clip',
-            [NotifySubscriber::class, 'clip']
+            'NotifySubscriber@clipWon',
+            [NotifySubscriber::class, 'clipWon']
+        );
+
+        $events->listen(
+            'NotifySubscriber@clipLost',
+            [NotifySubscriber::class, 'clipLost']
         );
     }
 }
