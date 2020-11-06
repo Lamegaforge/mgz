@@ -58,8 +58,9 @@ class ProcessAchievementsTest extends TestCase
         $this->assertContains('two_thousand_views_all_clips', $slugs);
         $this->assertContains('unloved', $slugs);
         $this->assertContains('i_am_an_idiot', $slugs);
+        $this->assertContains('old_man', $slugs);
 
-        $this->assertNotifications($user, $number = 15);
+        $this->assertNotifications($user, $number = 16);
 
         $this->assertRemoveAchievements($user);
     }
@@ -81,7 +82,7 @@ class ProcessAchievementsTest extends TestCase
         $this->assertNotContains('ten_active_clips', $slugs);
         $this->assertNotContains('thirty_active_clips', $slugs);
 
-        $this->assertNotifications($user, $number = 21);
+        $this->assertNotifications($user, $number = 22);
     }
 
     protected function assertNotifications(User $user, int $number)
@@ -118,11 +119,15 @@ class ProcessAchievementsTest extends TestCase
         ]);
     }
 
+    /**
+     * Egalement OldMan achievements
+     */
     protected function addFamousRequirement(User $user): void
     {
         Clip::factory()->create([
             'views' => 500,
             'user_id' => $user->id,
+            'created_at' => '1992-01-01',
         ]);
     }
 
