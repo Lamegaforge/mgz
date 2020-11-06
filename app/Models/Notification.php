@@ -28,4 +28,9 @@ class Notification extends Model
     protected $dates = [
         'readed_at',
     ];
+
+    public function scopeUnread($query)
+    {
+        return $query->whereNull('readed_at');
+    }
 }

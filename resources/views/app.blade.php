@@ -1,4 +1,3 @@
-@inject('notificationService', 'App\Services\NotificationService')
 @php
 $links = [
     [
