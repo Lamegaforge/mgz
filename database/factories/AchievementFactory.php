@@ -27,6 +27,7 @@ class AchievementFactory extends Factory
             'description' => 'blablabla',
             'secret' => false,
             'points' => 100,
+            'always' => true,
         ];
     }
 }

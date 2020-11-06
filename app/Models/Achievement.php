@@ -20,6 +20,7 @@ class Achievement extends Model
         'description',
         'secret',
         'points',
+        'always',
     ];
 
     /**
