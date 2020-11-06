@@ -11,14 +11,27 @@ class NotifySubscriber
 {
     public function achievement(User $user, Achievement $achievement): void
     {   
-        $message = 'Félicitations, tu viens de remporter le succes : ' . $achievement->title;
+        $format = 'Félicitations, tu viens de remporter le succes : %s';
+
+        $message = sprintf($format, $achievement->title);
+
+        $this->store($user, $message);
+    }
+
+    public function removeAchievement(User $user, Achievement $achievement): void
+    {   
+        $format = "Désolé, tu ne réponds plus aux conditions du succès, on doit te retirer : %s";
+
+        $message = sprintf($format, $achievement->title);
 
         $this->store($user, $message);
     }
 
     public function clip(User $user, Clip $clip): void
     {   
-        $message = "Félicitations, l'un de tes clips vient d'être validé : " . $clip->title;
+        $format = "Félicitations, l'un de tes clips vient d'être validé : %s";
+
+        $message = sprintf($format, $clip->title);
 
         $this->store($user, $message);
     }
@@ -42,6 +55,11 @@ class NotifySubscriber
         $events->listen(
             'NotifySubscriber@achievement',
             [NotifySubscriber::class, 'achievement']
+        );
+
+        $events->listen(
+            'NotifySubscriber@removeAchievement',
+            [NotifySubscriber::class, 'removeAchievement']
         );
 
         $events->listen(

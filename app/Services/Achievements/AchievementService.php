@@ -7,19 +7,34 @@ use App\Models\Achievement;
 
 class AchievementService 
 {
-    public function assignee(User $user, Achievement $achievement): void
+    public function assignee(User $user, Achievement $achievement): bool
     {
-        $exist = $user->achievements->contains($achievement->id);
+        $contains = $this->contains($user, $achievement);
 
-        if ($exist) {
-            return;
+        if ($contains) {
+            return false;
         }
 
         $user->achievements()->attach($achievement->id);
+
+        return true;
     }
 
-    public function unassign(User $user, Achievement $achievement): void
+    public function unassign(User $user, Achievement $achievement): bool
     {
+        $contains = $this->contains($user, $achievement);
+
+        if (! $contains) {
+            return false;
+        }
+
         $user->achievements()->detach($achievement->id);
+
+        return true;
+    }
+
+    protected function contains(User $user, Achievement $achievement): bool
+    {
+        return $user->achievements->contains($achievement->id);
     }
 }

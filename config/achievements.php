@@ -106,17 +106,20 @@ return [
         'points' => 500, 
         'title' => "1'000 vues !",
         'description' => "Avoir accumulé 1'000 vues. sur ses clips.",
+        'always' => false,
     ],
     [
         'slug' => 'two_thousand_views_all_clips',
         'points' => 500, 
         'title' => "2'000 vues !",
         'description' => "Avoir accumulé 2'000 vues. sur ses clips.",
+        'always' => false,
     ],
     [
         'slug' => 'three_thousand_views_all_clips',
         'points' => 500, 
         'title' => "3'000 vues !",
         'description' => "Avoir accumulé 3'000 vues sur ses clips.",
+        'always' => false,
     ],
 ];

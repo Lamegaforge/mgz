@@ -21,6 +21,15 @@ class Notification extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'integer',
+    ];
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
@@ -32,5 +41,10 @@ class Notification extends Model
     public function scopeUnread($query)
     {
         return $query->whereNull('readed_at');
+    }
+
+    public function scopeReaded($query)
+    {
+        return $query->whereNotNull('readed_at');
     }
 }
