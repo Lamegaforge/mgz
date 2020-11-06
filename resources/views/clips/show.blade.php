@@ -15,7 +15,7 @@
         @include('layouts.breadcrumbs', [
             'breadcrumbs' => [
                 [
-                    'Home', 
+                    'Accueil', 
                     route('home'),
                 ],
                 [
