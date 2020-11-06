@@ -12,7 +12,7 @@ class Recents implements CriteriaInterface {
     {
         $threshold = Carbon::today()->subDays(3);
 
-        $model = $model->where(function($query) {
+        $model = $model->where(function($query) use($threshold) {
                 $query->whereNull('readed_at')
                     ->orWhere('readed_at', '>=', $threshold);
             });
