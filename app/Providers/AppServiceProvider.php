@@ -7,7 +7,6 @@ use Carbon\Carbon;
 use App\View\Components;
 use App\Services\MediaService;
 use Illuminate\Support\Facades\Blade;
-use App\Services\NotificationService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,14 +35,5 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::component('meta', Components\Meta::class);
-
-        $this->shareNotifications();
-    }
-
-    protected function shareNotifications()
-    {
-        $count = app(NotificationService::class)->count();
-
-        View::share('notifications', $count);
     }
 }
