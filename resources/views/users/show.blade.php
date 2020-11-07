@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </tab>
-                <tab title="Favoris" :value="3">
+                <tab title="Favoris" :value="2">
                     <fetch-list grid-class="grid mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" fetch-url="{{route('api.favorites.search', $user->id)}}" type="clips" />
                 </tab>
             </tabs>
