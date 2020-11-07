@@ -32,6 +32,15 @@ $links = [
     <title>Megasaurus</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @stack('metas')
+    @env('production')
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJVZGDGDEY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YJVZGDGDEY');
+    </script>
+    @endenv
 </head>
 
 <body class="antialiased">
@@ -43,14 +52,5 @@ $links = [
         @include('parts.footer')
     </div>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-    @env('production')
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJVZGDGDEY"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YJVZGDGDEY');
-    </script>
-    @endenv
 </body>
 </html>
