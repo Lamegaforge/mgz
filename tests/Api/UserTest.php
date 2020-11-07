@@ -49,11 +49,11 @@ class UserTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonPath('users.data.0.clips_count', '5')
+            ->assertJsonPath('users.data.0.clips_count', 5)
             ->assertJsonPath('users.data.0.rank', 1)
-            ->assertJsonPath('users.data.1.clips_count', '4')
+            ->assertJsonPath('users.data.1.clips_count', 4)
             ->assertJsonPath('users.data.1.rank', 2)
-            ->assertJsonPath('users.data.2.clips_count', '3')
+            ->assertJsonPath('users.data.2.clips_count', 3)
             ->assertJsonPath('users.data.2.rank', 3);
     }
 
@@ -78,11 +78,11 @@ class UserTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonPath('users.data.0.achievements_count', '5')
+            ->assertJsonPath('users.data.0.achievements_count', 5)
             ->assertJsonPath('users.data.0.rank', 1)
-            ->assertJsonPath('users.data.1.achievements_count', '4')
+            ->assertJsonPath('users.data.1.achievements_count', 4)
             ->assertJsonPath('users.data.1.rank', 2)
-            ->assertJsonPath('users.data.2.achievements_count', '3')
+            ->assertJsonPath('users.data.2.achievements_count', 3)
             ->assertJsonPath('users.data.2.rank', 3);
     }
 

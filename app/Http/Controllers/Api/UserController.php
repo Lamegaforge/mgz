@@ -8,7 +8,6 @@ use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereLike;
-use App\Repositories\Criterias\WithCount;
 use App\Repositories\Criterias\WhereNotNull;
 use App\Http\Requests\Api\SearchUsersRequest;
 use App\Repositories\Criterias\OrderWithCount;
@@ -29,8 +28,6 @@ class UserController extends Controller
         $this->addOrderCriteria($request);
         $this->addDisplayNameCriteria($request);
 
-        $this->userRepository->pushCriteria(new WithCount('clips', 'DESC'));
-        $this->userRepository->pushCriteria(new WithCount('achievements', 'DESC'));
         $this->userRepository->pushCriteria(new WhereNotNull('display_name'));
 
         $paginator = $this->userRepository->paginate(self::PER_PAGE, $columns = ['*']);

@@ -14,6 +14,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $appends = [
+        'clips_count',
+        'achievements_count',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -86,5 +91,17 @@ class User extends Authenticatable
     public function unreadNotifications()
     {
         return $this->hasMany(Notification::class)->unread();
+    }
+
+    public function getClipsCountAttribute()
+    {
+        return $this->clips()->where(function ($query) {
+            $query->where('state', 'active');
+        })->count();
+    }
+
+    public function getAchievementsCountAttribute($query)
+    {
+        return $this->achievements()->count();
     }
 }

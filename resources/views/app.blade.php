@@ -36,7 +36,7 @@ $links = [
 
 <body class="antialiased">
     <div id="app" class="flex flex-col font-sans text-white bg-black">
-        <primary-nav :links="{{json_encode($links)}}" :user="{{json_encode(Auth::user())}}" :notifications="{{$notificationsCount}}"></primary-nav>
+        <primary-nav :links="{{json_encode($links)}}" :user="{{json_encode(Auth::user())}}" :notifications="{{$notificationsCount ?? 0}}"></primary-nav>
         <main class="min-h-screen">
             @yield('content')
         </main>
