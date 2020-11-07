@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Event;
 use Response;
 use DateTime;
 use App\Repositories\ClipRepository;
@@ -49,7 +50,11 @@ class ClipController extends Controller
             'approved_at' => null,
         ];
 
-        $this->clipRepository->update($attributes, $request->clip_id);
+        $clip = $this->clipRepository->find($request->clip_id);
+
+        $this->clipRepository->update($attributes, $clip->id);
+
+        Event::dispatch('NotifySubscriber@clipLost', [$clip]);
 
         return new GenericApiResponse();
     }

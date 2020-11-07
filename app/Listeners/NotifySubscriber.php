@@ -37,7 +37,7 @@ class NotifySubscriber
         $this->store($user, $content);
     }
 
-    public function clipWon(User $user, Clip $clip): void
+    public function clipWon(Clip $clip): void
     {   
         $format = "Félicitations, l'un de tes clips vient d'être validé : %s";
 
@@ -48,10 +48,10 @@ class NotifySubscriber
             'message' => $message,
         ];
 
-        $this->store($user, $content);
+        $this->store($clip->user, $content);
     }
 
-    public function clipLost(User $user, Clip $clip): void
+    public function clipLost(Clip $clip): void
     {   
         $format = "Désolé, le clip suivant est finalement rejeté : %s";
 
@@ -62,7 +62,7 @@ class NotifySubscriber
             'message' => $message,
         ];
 
-        $this->store($user, $content);
+        $this->store($clip->user, $content);
     }
 
     protected function store(User $user, array $content): void
