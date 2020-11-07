@@ -11,6 +11,7 @@ use App\Repositories\Criterias\WhereLike;
 use App\Repositories\Criterias\WhereNotNull;
 use App\Http\Requests\Api\SearchUsersRequest;
 use App\Repositories\Criterias\OrderWithCount;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator as Paginator;
 
 class UserController extends Controller
 {
@@ -34,7 +35,7 @@ class UserController extends Controller
 
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),
-            'users' => $this->present($paginator),
+            'users' => $this->present($paginator, $request),
         ], 200);
     }
 
@@ -69,20 +70,25 @@ class UserController extends Controller
         $this->userRepository->pushCriteria(new WhereLike('display_name', $displayName));
     }
 
-    protected function present($paginator): array
+    protected function present(Paginator $paginator, SearchUsersRequest $request): array
     {
         $attributes = $paginator->toArray();   
 
-        $attributes['data'] = $paginator->map(function ($card, $rank) use($paginator) {
+        $needRanking = $request->missing('display_name');
+
+        $attributes['data'] = $paginator->map(function ($card, $rank) use($paginator, $needRanking) {
+
+            $ranking = $needRanking ? $this->getRanking($paginator, $rank) : null;
+
             return $card->toArray() + [
-                'rank' => $this->getRanking($paginator, $rank),
+                'rank' => $ranking,
             ];
         })->toArray();
 
         return $attributes;
     }
 
-    protected function getRanking($paginator, $rank): int
+    protected function getRanking(Paginator $paginator, int $rank): int
     {
         $currentPage = $paginator->currentPage();
 
