@@ -58,7 +58,7 @@ class AchievementController extends Controller
             $achievement['unlocked_at'] = null;
 
             if ($unlockedAchievement) {
-                $achievement['unlocked_at'] = $unlockedAchievement->created_at->toDateTimeString();
+                $achievement['unlocked_at'] = $unlockedAchievement->pivot->created_at->toDateTimeString();
             }
 
             return $achievement;
