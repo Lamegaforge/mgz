@@ -34,12 +34,13 @@ $links = [
     @include('parts.favicons')
     @stack('metas')
     @env('production')
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJVZGDGDEY"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8TG7X9GVR"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-YJVZGDGDEY');
+
+      gtag('config', 'G-F8TG7X9GVR');
     </script>
     @endenv
 </head>
