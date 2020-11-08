@@ -1,11 +1,16 @@
 @extends('app')
+@section('title', '- Fiches')
 @section('content')
 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-    @include('layouts.breadcrumbs', [
-    'breadcrumbs' => [
-    ['Accueil', route('home')],
-    'Fiches']
-    ])
+@include('layouts.breadcrumbs', [
+	'breadcrumbs' => [
+		[
+			'Accueil', 
+			route('home')
+		],
+		'Fiches',
+	]
+])
 </div>
 <section class="-mt-6 section">
     <h1 class="text-3xl font-semibold leading-8 tracking-tight text-white md:text-4xl sm:text-3xl sm:leading-9">Toutes les fiches</h1>

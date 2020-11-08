@@ -1,5 +1,6 @@
 @inject('mediaService', 'App\Services\MediaService')
 
+@section('title', '- ' . $card->title)
 @extends('app')
 @section('content')
 <section class="relative overflow-hidden">
@@ -7,10 +8,17 @@
     <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25"></div>
     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         @include('layouts.breadcrumbs', [
-        'breadcrumbs' => [
-        ['Accueil', route('home')],
-        ['Fiches', route('cards.index')],
-        $card->title]
+            'breadcrumbs' => [
+                [
+                    'Accueil', 
+                    route('home'),
+                ],
+                [
+                    'Fiches', 
+                    route('cards.index'),
+                ],
+                $card->title,
+            ],
         ])
     </div>
     <div class="px-4 py-16 mx-auto -mt-6 max-w-7xl sm:px-6 lg:px-8 md:py-20 lg:py-24">
