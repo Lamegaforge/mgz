@@ -29,8 +29,9 @@ $links = [
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Megasaurus</title>
+    <title>Megasaurus @stack('title')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @include('parts.favicons')
     @stack('metas')
     @env('production')
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJVZGDGDEY"></script>
