@@ -11,7 +11,7 @@ class NotifySubscriber
 {
     public function achievementWon(User $user, Achievement $achievement): void
     {   
-        $format = 'Félicitations, tu viens de remporter le succes : %s';
+        $format = 'Félicitations, tu viens de remporter le succès : %s';
 
         $message = sprintf($format, $achievement->title);
 
