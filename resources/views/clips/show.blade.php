@@ -2,7 +2,7 @@
 @inject('iframeService', 'App\Services\IframeService')
 
 @extends('app')
-@section('title', '- ' . $clip->title)
+@section('title', $clip->title)
 @push('metas')
 <x-meta :clip="$clip"/>
 @endpush

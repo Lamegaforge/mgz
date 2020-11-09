@@ -1,6 +1,5 @@
 @extends('app')
-
-@section('title', '- Settings')
+@section('title', 'Settings')
 @section('content')
 <section>
     <banner-form banner="{{'/images/banners/' . ($user->banner_image_slug ? $user->banner_image_slug  : 'placeholder.jpg')}}"></banner-form>

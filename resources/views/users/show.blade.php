@@ -1,6 +1,5 @@
 @extends('app')
-
-@section('title', '- ' . $user->display_name)
+@section('title', $user->display_name)
 @section('content')
 <section>
     <div class="relative xl:pt-0 pt-3/1 xl:h-400px">
