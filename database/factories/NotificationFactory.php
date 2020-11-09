@@ -25,7 +25,10 @@ class NotificationFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'content' => null,
+            'content' => [
+                'type' => 'clip',
+                'message' => 'blablabla',
+            ],
             'readed_at' => null,
         ];
     }
