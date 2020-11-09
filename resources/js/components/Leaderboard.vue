@@ -2,10 +2,10 @@
   <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div
-        class="inline-block w-full min-w-full py-2 align-middle sm:px-6 lg:px-8"
+        class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
       >
         <div class="overflow-hidden shadow">
-          <table class="w-full min-w-full divide-y divide-gray-900">
+          <table class="min-w-full divide-y divide-gray-900">
             <thead>
               <tr>
                 <th
@@ -69,17 +69,17 @@
                   </div>
                 </td>
                 <td
-                  class="px-6 py-4 leading-5 text-gray-500 whitespace-no-wrap"
+                  class="px-6 py-4 leading-5 text-gray-400 whitespace-no-wrap"
                 >
                   {{ item.points }}
                 </td>
                 <td
-                  class="px-6 py-4 leading-5 text-gray-500 whitespace-no-wrap"
+                  class="px-6 py-4 leading-5 text-gray-400 whitespace-no-wrap"
                 >
                   {{ item.achievements_count }}
                 </td>
                 <td
-                  class="px-6 py-4 leading-5 text-gray-500 whitespace-no-wrap"
+                  class="px-6 py-4 leading-5 text-gray-400 whitespace-no-wrap"
                 >
                   {{ item.clips_count }}
                 </td>
