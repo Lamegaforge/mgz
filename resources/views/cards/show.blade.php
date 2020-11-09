@@ -1,6 +1,6 @@
 @inject('mediaService', 'App\Services\MediaService')
 
-@section('title', '- ' . $card->title)
+@section('title', $card->title)
 @extends('app')
 @section('content')
 <section class="relative overflow-hidden">
