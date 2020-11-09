@@ -20,7 +20,7 @@
         </div>
         <img
           class="w-12 h-12 rounded-sm"
-          src="https://cdn.discordapp.com/emojis/765870979921608725.png?v=1"
+          :src="`/images/achievements/${item.slug}.png`"
           alt=""
         />
       </div>
