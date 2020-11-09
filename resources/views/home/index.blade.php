@@ -1,5 +1,5 @@
 @extends('app')
-@section('title', 'Megasaurus')
+@section('title', 'Accueil')
 @section('content')
 <section class="relative overflow-hidden">
     @if (session()->has('info'))
