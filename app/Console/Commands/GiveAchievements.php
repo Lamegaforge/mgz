@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Event;
+use Exception;
 use App\Models\User;
 use App\Models\Achievement;
 use Illuminate\Console\Command;
@@ -54,6 +55,8 @@ class GiveAchievements extends Command
 
         $achievement = $lockedAchievements->get($choice);
 
+        $this->caution($user, $achievement);
+
         app(AchievementService::class)->assignee($user, $achievement);
 
         $this->notify($user, $achievement);
@@ -79,6 +82,25 @@ class GiveAchievements extends Command
         $lockedAchievements = Achievement::whereNotIn('id', $unlockedAchievements)->get();
 
         return $lockedAchievements->keyBy('slug');
+    }
+
+    protected function caution(User $user, Achievement $achievement): void
+    {
+        $format = 'Really give %s (%s points) to %s ?';
+
+        $parts = [
+            $achievement->title,
+            $achievement->points,
+            $user->display_name,
+        ];
+
+        $message = sprintf($format, ... $parts);
+
+        if ($this->confirm($message)) {
+            return;
+        }
+
+        throw new Exception('Rollback');
     }
 
     protected function notify(User $user, Achievement $achievement): void
