@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Clip;
+use App\Models\Count;
 use App\Models\Achievement;
 use App\Models\Notification;
 use Illuminate\Notifications\Notifiable;
@@ -86,6 +87,11 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class);
+    }
+
+    public function counts()
+    {
+        return $this->hasMany(Count::class);
     }
 
     public function unreadNotifications()
