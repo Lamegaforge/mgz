@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Count extends Model
 {
@@ -13,5 +14,15 @@ class Count extends Model
         'user_id',
         'slug',
         'values',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'int',
+        'values' => 'int',
     ];
 }

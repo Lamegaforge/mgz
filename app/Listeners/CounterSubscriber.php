@@ -9,7 +9,7 @@ class CounterSubscriber
 {
     public function banner(User $user) 
     {   
-        // app(CounterService::class)->increment($user, 'banner');
+        app(CounterService::class)->increment($user, 'banner');
     }
 
     /**

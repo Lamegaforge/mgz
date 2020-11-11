@@ -17,7 +17,7 @@ class CreateCountsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('slug');
-            $table->bigInteger('values');
+            $table->bigInteger('values')->default(1);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
