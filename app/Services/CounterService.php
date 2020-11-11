@@ -7,7 +7,7 @@ use App\Models\Count;
 
 class CounterService
 {
-    public function get(User $user, string $slug): int
+    public function count(User $user, string $slug): int
     {
         $count = $user->counts()->where('slug', $slug)->first();
 

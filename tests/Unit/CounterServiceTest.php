@@ -18,7 +18,7 @@ class CounterServiceTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $count = app(CounterService::class)->get($user, 'banner');
+        $count = app(CounterService::class)->count($user, 'banner');
 
         $this->assertEquals(0, $count);
     }
@@ -34,7 +34,7 @@ class CounterServiceTest extends TestCase
         app(CounterService::class)->increment($user, 'banner');
         app(CounterService::class)->increment($user, 'banner');
 
-        $count = app(CounterService::class)->get($user, 'banner');
+        $count = app(CounterService::class)->count($user, 'banner');
 
         $this->assertEquals(3, $count);
     }
