@@ -1,5 +1,5 @@
 <meta property='og:title' content='qsdqd {{$clip->title}}'>
-<meta property='og:description' content='{{$clip->slug}}'>
+<meta property='og:description' content='{{$description}}'>
 
 <meta property="og:url" content="{{route('clips.show', $clip)}}">
 <meta property="og:image" content="{{$clip->thumbnail}}">
