@@ -5,6 +5,7 @@ namespace App\Providers;
 use View;
 use Carbon\Carbon;
 use App\View\Components;
+use Illuminate\Http\Request;
 use App\Services\MediaService;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -35,5 +36,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::component('meta', Components\Meta::class);
+
+        Request::macro('auth', function () {
+            return (bool) $this->user();
+        });
     }
 }
