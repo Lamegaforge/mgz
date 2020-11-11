@@ -17,6 +17,16 @@ class CounterSubscriber
         app(CounterService::class)->increment($user, 'random');
     }
 
+    public function clipShow(User $user) 
+    {   
+        app(CounterService::class)->increment($user, 'clip_show');
+    }
+
+    public function seeOwnAccount(User $user) 
+    {   
+        app(CounterService::class)->increment($user, 'see_own_account');
+    }
+
     /**
      * Register the listeners for the subscriber.
      *
@@ -33,6 +43,16 @@ class CounterSubscriber
         $events->listen(
             'CounterSubscriber@random',
             [CounterSubscriber::class, 'random']
+        );
+
+        $events->listen(
+            'CounterSubscriber@clipShow',
+            [CounterSubscriber::class, 'clipShow']
+        );
+
+        $events->listen(
+            'CounterSubscriber@seeOwnAccount',
+            [CounterSubscriber::class, 'seeOwnAccount']
         );
     }
 }

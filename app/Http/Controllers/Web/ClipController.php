@@ -61,6 +61,10 @@ class ClipController extends Controller
 
         $isFavorite = $this->isFavorite($request, $clip);
 
+        if ($request->auth()) {
+            Event::dispatch('CounterSubscriber@clipShow', [$request->user()]);
+        }
+
         return View::make('clips.show', [
             'clip' => $clip,
             'comment_count' => $commentCount,
