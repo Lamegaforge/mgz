@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use View;
+use Event;
 use Redirect;
 use App\Models\Clip;
 use Illuminate\Http\Request;
@@ -37,6 +38,10 @@ class ClipController extends Controller
             ->pushCriteria(new Random())
             ->pushCriteria(new Active())
             ->first();
+
+        if ($request->auth()) {
+            Event::dispatch('CounterSubscriber@random', [$request->user()]);
+        }
 
         return Redirect::route('clips.show', $clip->slug);
     }
