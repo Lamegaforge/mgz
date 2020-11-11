@@ -25,11 +25,16 @@ class Meta extends Component
         return app(IframeService::class)->url($this->clip);
     }
 
-    public function description(): string
+    public function title(): string
     {
         $card = $this->clip->card;
 
         return $card->title . ' - ' . $this->clip->title;
+    }
+
+    public function description(): string
+    {
+        return $this->title();
     }
 
     /**
