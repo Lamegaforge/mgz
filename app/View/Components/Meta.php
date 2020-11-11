@@ -27,14 +27,14 @@ class Meta extends Component
 
     public function title(): string
     {
-        $card = $this->clip->card;
-
-        return $card->title . ' - ' . $this->clip->title;
+        return  'Megasaurus - ' . $this->clip->title;
     }
 
     public function description(): string
     {
-        return $this->title();
+        $card = $this->clip->card;
+
+        return $card->title;
     }
 
     /**
