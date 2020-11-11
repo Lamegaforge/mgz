@@ -1,4 +1,4 @@
-<meta property='og:title' content='{{$clip->title}}'>
+<meta property='og:title' content='qsdqd {{$clip->title}}'>
 <meta property='og:description' content='{{$clip->slug}}'>
 
 <meta property="og:url" content="{{route('clips.show', $clip)}}">
