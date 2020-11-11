@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use View;
+use Event;
 use App\Models\Achievement;
 use Illuminate\Http\Request;
 use App\Services\ScoringService;
@@ -33,13 +34,13 @@ class UserController extends Controller
 
     public function account(Request $request)
     {
-        $userId = $request->user()->id;
-
-        $user = $this->userRepository->find($userId);
+        $user = $request->user();
 
         $scores = app(ScoringService::class)->total($user);
 
         $maxAchievementsPoints = $this->getMaxAchievementsPoints();
+
+        Event::dispatch('CounterSubscriber@seeOwnAccount', [$user]);
 
         return View::make('users.show', [
             'user' => $user,
@@ -50,12 +51,8 @@ class UserController extends Controller
 
     public function settings(Request $request)
     {
-        $userId = $request->user()->id;
-
-        $user = $this->userRepository->find($userId);
-
         return View::make('users.settings', [
-            'user' => $user,
+            'user' => $request->user(),
         ]);
     }
 
