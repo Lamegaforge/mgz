@@ -11,7 +11,7 @@ class ValerieDamidot extends Triggers implements Trigger
 
     public function eligible(): bool
     {
-    	$count = app(CounterService::class)->count($this->user, 'banner');
+        $count = app(CounterService::class)->count($this->user, 'banner');
 
         return $count >= 5;
     }

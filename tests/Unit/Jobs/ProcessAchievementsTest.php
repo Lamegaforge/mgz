@@ -61,8 +61,9 @@ class ProcessAchievementsTest extends TestCase
         $this->assertContains('i_am_an_idiot', $slugs);
         $this->assertContains('old_man', $slugs);
         $this->assertContains('valerie_damidot', $slugs);
+        $this->assertContains('random', $slugs);
 
-        $this->assertNotifications($user, $number = 17);
+        $this->assertNotifications($user, $number = 18);
 
         $this->assertRemoveAchievements($user);
     }
@@ -84,7 +85,7 @@ class ProcessAchievementsTest extends TestCase
         $this->assertNotContains('ten_active_clips', $slugs);
         $this->assertNotContains('thirty_active_clips', $slugs);
 
-        $this->assertNotifications($user, $number = 23);
+        $this->assertNotifications($user, $number = 24);
     }
 
     protected function assertNotifications(User $user, int $number)
@@ -104,6 +105,7 @@ class ProcessAchievementsTest extends TestCase
         $this->addUnlovedRequirement($user);
         $this->addIAmAnIdiotRequirement($user);
         $this->addValerieDamidotRequirement($user);
+        $this->addRandomRequirement($user);
     }
 
     protected function addPharosRequirement(User $user): void
@@ -172,6 +174,15 @@ class ProcessAchievementsTest extends TestCase
             'user_id' => $user->id,
             'slug' => 'banner',
             'values' => 5,
+        ]);
+    }
+
+    protected function addRandomRequirement(User $user): void
+    {
+        DB::table('counts')->insert([
+            'user_id' => $user->id,
+            'slug' => 'random',
+            'values' => 100,
         ]);
     }
 }

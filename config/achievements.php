@@ -30,6 +30,13 @@ return [
         'description' => 'Avoir plus de 20 clips refusés... tu vas commencer à nous casser les couilles toi.',
     ],
     [
+        'slug' => 'random',
+        'points' => 500, 
+        'title' => 'Guide-moi',
+        'secret' => true,
+        'description' => 'Avoir regardé plus de 100 clips de manière aléatoire.',
+    ],
+    [
         'slug' => 'pharos',
         'points' => 750, 
         'title' => 'PHAROS',
