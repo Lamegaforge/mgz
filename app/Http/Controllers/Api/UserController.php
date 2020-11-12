@@ -15,7 +15,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator as Paginator;
 
 class UserController extends Controller
 {
-    protected const PER_PAGE = 12;
+    protected const PER_PAGE = 10;
 
     protected $userRepository;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use Auth;
+use Event;
 use App\Services\AccountService;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
@@ -24,7 +24,9 @@ class AccountController extends Controller
     {
         $slug = $request->file('banner')->store($path = null, $disk = 'banners');
 
-        app(AccountService::class)->refreshBanner(Auth::user(), $slug);
+        app(AccountService::class)->refreshBanner($request->user(), $slug);
+
+        Event::dispatch('CounterSubscriber@banner', [$request->user()]);
 
         return new GenericApiResponse();
     }
@@ -33,7 +35,7 @@ class AccountController extends Controller
     {
         $attributes = $request->validated();
 
-        $this->userRepository->update($attributes, Auth::id());
+        $this->userRepository->update($attributes, $request->user()->id);
 
         return new GenericApiResponse();
     }

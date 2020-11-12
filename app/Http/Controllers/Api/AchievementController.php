@@ -20,7 +20,9 @@ class AchievementController extends Controller
             ->where('id', $request->user_id)
             ->firstOrFail();
 
-        $attributes = Achievement::paginate(12)->toArray();
+        $attributes = Achievement::oldest()
+            ->paginate(12)
+            ->toArray();
 
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),

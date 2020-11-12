@@ -2,6 +2,7 @@
 
 namespace App\Services\Achievements\Triggers;
 
+use App\Services\CounterService;
 use App\Services\Achievements\Contracts\Trigger;
 
 class ValerieDamidot extends Triggers implements Trigger 
@@ -10,6 +11,8 @@ class ValerieDamidot extends Triggers implements Trigger
 
     public function eligible(): bool
     {
-        return false;
+        $count = app(CounterService::class)->count($this->user, 'banner');
+
+        return $count >= 5;
     }
 }

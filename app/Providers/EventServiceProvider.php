@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events;
 use App\Listeners;
 use App\Listeners\NotifySubscriber;
+use App\Listeners\CounterSubscriber;
 use App\Listeners\ScoringSubscriber;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -35,6 +36,7 @@ class EventServiceProvider extends ServiceProvider
     protected $subscribe = [
         ScoringSubscriber::class,
         NotifySubscriber::class,
+        CounterSubscriber::class,
     ];
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use View;
+use Event;
 use Redirect;
 use App\Models\Clip;
 use Illuminate\Http\Request;
@@ -38,6 +39,10 @@ class ClipController extends Controller
             ->pushCriteria(new Active())
             ->first();
 
+        if ($request->auth()) {
+            Event::dispatch('CounterSubscriber@random', [$request->user()]);
+        }
+
         return Redirect::route('clips.show', $clip->slug);
     }
 
@@ -52,9 +57,13 @@ class ClipController extends Controller
             
         $clips = $this->getOtherClips($clip);
 
-        $commentCount = $clip->comments->where('active', true)->count();
+        $commentCount = $clip->comments()->active()->count();
 
         $isFavorite = $this->isFavorite($request, $clip);
+
+        if ($request->auth()) {
+            Event::dispatch('CounterSubscriber@clipShow', [$request->user()]);
+        }
 
         return View::make('clips.show', [
             'clip' => $clip,
