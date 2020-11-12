@@ -20,9 +20,21 @@ class Meta extends Component
         $this->clip = $clip;
     }
 
-    public function embedUrl()
+    public function embedUrl(): string
     {
         return app(IframeService::class)->url($this->clip);
+    }
+
+    public function title(): string
+    {
+        return  'Megasaurus - ' . $this->clip->title;
+    }
+
+    public function description(): string
+    {
+        $card = $this->clip->card;
+
+        return $card->title;
     }
 
     /**

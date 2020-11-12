@@ -57,7 +57,7 @@ class ClipController extends Controller
             
         $clips = $this->getOtherClips($clip);
 
-        $commentCount = $clip->comments->where('active', true)->count();
+        $commentCount = $clip->comments()->active()->count();
 
         $isFavorite = $this->isFavorite($request, $clip);
 
