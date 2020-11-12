@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function () {
-	throw new Exception("Error Processing Request", 1);
-});
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('logout', 'HomeController@logout')->name('logout');
 
