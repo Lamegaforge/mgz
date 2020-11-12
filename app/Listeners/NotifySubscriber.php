@@ -54,7 +54,7 @@ class NotifySubscriber
             'message' => $message,
         ];
 
-        Log::info($user->display_name . ' add "' . Str::limit($clip->title) . '" clip.');
+        Log::info($clip->user->display_name . ' add "' . Str::limit($clip->title) . '" clip.');
 
         $this->store($clip->user, $content);
     }
@@ -70,7 +70,7 @@ class NotifySubscriber
             'message' => $message,
         ];
 
-        Log::info($user->display_name . ' lost "' . Str::limit($clip->title) . '" clip.');
+        Log::info($clip->user->display_name . ' lost "' . Str::limit($clip->title) . '" clip.');
 
         $this->store($clip->user, $content);
     }
