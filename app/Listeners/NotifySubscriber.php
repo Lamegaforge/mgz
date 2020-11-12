@@ -2,8 +2,10 @@
 
 namespace App\Listeners;
 
+use Log;
 use App\Models\Clip;
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Models\Achievement;
 use App\Models\Notification;
 
@@ -20,6 +22,8 @@ class NotifySubscriber
             'message' => $message,
         ];
 
+        Log::info($user->display_name . ' won ' . $achievement->slug . ' achievement.');
+
         $this->store($user, $content);
     }
 
@@ -33,6 +37,8 @@ class NotifySubscriber
             'type' => 'achievement',
             'message' => $message,
         ];
+
+        Log::info($user->display_name . ' lost ' . $achievement->slug . ' achievement.');
 
         $this->store($user, $content);
     }
@@ -48,6 +54,8 @@ class NotifySubscriber
             'message' => $message,
         ];
 
+        Log::info($user->display_name . ' add "' . Str::limit($clip->title) . '" clip.');
+
         $this->store($clip->user, $content);
     }
 
@@ -61,6 +69,8 @@ class NotifySubscriber
             'type' => 'clip',
             'message' => $message,
         ];
+
+        Log::info($user->display_name . ' lost "' . Str::limit($clip->title) . '" clip.');
 
         $this->store($clip->user, $content);
     }
