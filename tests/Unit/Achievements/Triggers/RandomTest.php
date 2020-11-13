@@ -34,9 +34,9 @@ class RandomTest extends TestCase
     public function dataProvider(): array
     {
         return [
-            [99, $expected = false],
-            [100, $expected = true],
-            [101, $expected = true],
+            [999, $expected = false],
+            [1000, $expected = true],
+            [1001, $expected = true],
         ];
     }
 }
