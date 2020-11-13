@@ -21,6 +21,7 @@ class Achievement extends Model
         'secret',
         'points',
         'always',
+        'displayable',
     ];
 
     /**
@@ -30,5 +31,7 @@ class Achievement extends Model
      */
     protected $casts = [
         'secret' => 'boolean',
+        'always' => 'boolean',
+        'displayable' => 'boolean',
     ];
 }
