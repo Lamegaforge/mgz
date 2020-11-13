@@ -31,7 +31,7 @@ class OauthController extends Controller
 
         Auth::login($user);
 
-        $request->session()->flash('info', 'welcome asshole');
+        $request->session()->flash('info', 'welcome');
 
         return Redirect::route('home');
     }
