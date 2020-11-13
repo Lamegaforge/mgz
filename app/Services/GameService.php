@@ -25,6 +25,6 @@ class GameService
     {
         return array_map(function ($offset) {
             return $this->twitchManager->getTopGames($limit = 100, $offset);
-        }, range(0, 3000, 100));
+        }, range(0, 10000, 100));
     }
 }

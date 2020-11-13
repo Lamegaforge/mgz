@@ -59,7 +59,7 @@ class Api implements Driver
 
         $response = $client->getTopGames($limit, $offset);
 
-        return $response['top'];
+        return $response['top'] ?? [];
     }
 
     public function get(string $slug): array

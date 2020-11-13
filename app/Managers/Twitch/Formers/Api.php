@@ -62,10 +62,15 @@ class Api implements Former
 
     public function game(array $game): array
     {
+        $template = $game['game']['box']['template'];
+
+        $template = str_replace('{width}', '384', $template);
+        $template = str_replace('{height}', '576', $template);
+
         return [
             'name' => $game['game']['name'],
             'slug' => Str::slug($game['game']['name'], '_'),
-            'thumbnail' => $game['game']['box']['large'],
+            'thumbnail' => $template,
         ];
     }
 }

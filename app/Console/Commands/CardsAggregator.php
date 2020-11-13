@@ -4,8 +4,7 @@ namespace App\Console\Commands;
 
 use Storage;
 use App\Models\Card;
-use Illuminate\Support\Str;
-use App\Services\VideoService;
+use App\Services\GameService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 
@@ -42,42 +41,46 @@ class CardsAggregator extends Command
      */
     public function handle()
     {
-        $games = $this->getLastGames();
+        $games = app(GameService::class)->get();
 
-        $games->map(function ($game) {
+        $cards = $this->getCards();
 
-            $slug = Str::slug($game, '_');
+        $games->map(function ($game) use($cards) {
 
-            $this->makeCard($game, $slug);
-            $this->makeCardDirectory($slug);
+            $card = $cards->get($game['slug']);
+
+            if (! $card) {
+                return;
+            }
+
+            $file = $this->download($game);
+
+            $this->store($card, $file);
         });
     }
 
-    protected function getLastGames(): Collection
+    protected function getCards(): Collection
     {
-        $games = app(VideoService::class)->getLastGames();
+        $cards = Card::get();
 
-        $cards = Card::all()->pluck('title')->toArray();
-
-        return (new Collection($games))
-            ->filter(function ($game) use($cards) {
-                return ! in_array($game, $cards, true);
-            })
-            ->values();
+        return $cards->keyBy('slug');
     }
 
-    protected function makeCard(string $game, string $slug)
+    protected function download(array $game): string
     {
-        $attributes = [
-            'title' => $game,
-            'slug' => $slug,
-        ];
-
-        Card::factory()->create($attributes);
+        return file_get_contents($game['thumbnail']);
     }
 
-    protected function makeCardDirectory(string $slug)
+    protected function store(Card $card, $file): void
     {
-        Storage::disk('cards')->makeDirectory($slug);
+        $path = $card->slug . '/vignette.jpg';
+
+        $exist = Storage::disk('cards')->has($path);
+
+        if ($exist) {
+            return;
+        }
+
+        Storage::disk('cards')->put($path, $file);
     }
 }
