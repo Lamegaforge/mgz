@@ -19,6 +19,7 @@ import RejectButton from "./components/RejectButton"
 import Tabs from "./components/Tabs"
 import Tab from "./components/Tab"
 import Leaderboard from "./components/Leaderboard"
+import CropModal from "./components/CropModal"
 import { createApp } from 'vue'
 
 const app = createApp({})
@@ -42,6 +43,7 @@ app.component('reject-button', RejectButton)
 app.component('tabs', Tabs)
 app.component('tab', Tab)
 app.component('leaderboard', Leaderboard)
+app.component('crop-modal', CropModal)
 
 app.directive('click-outside', {
     beforeMount(el, binding, vnode) {
