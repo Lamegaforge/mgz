@@ -23,7 +23,7 @@ class AchievementController extends Controller
         $attributes = Achievement::oldest()
             ->paginate(50)
             ->toArray();
-
+dd($this->present($user, $attributes));
         return Response::json([
             'timestamp' => (new DateTime())->getTimestamp(),
             'achievements' => $this->present($user, $attributes),
