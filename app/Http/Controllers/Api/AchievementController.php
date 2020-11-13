@@ -21,7 +21,7 @@ class AchievementController extends Controller
             ->firstOrFail();
 
         $attributes = Achievement::oldest()
-            ->paginate(12)
+            ->paginate(50)
             ->toArray();
 
         return Response::json([
@@ -36,6 +36,7 @@ class AchievementController extends Controller
 
         $achievements = new Collection($attributes['data']);
 
+        $achievements = $this->displayable($achievements, $unlockedAchievements);
         $achievements = $this->markUnlocked($achievements, $unlockedAchievements);
         $achievements = $this->hideDescription($achievements, $user);
 
@@ -49,6 +50,20 @@ class AchievementController extends Controller
        $unlockedAchievements = $user->achievements()->get(); 
 
        return $unlockedAchievements->keyBy('id');
+    }
+
+    protected function displayable(Collection $achievements, Collection $unlockedAchievements): Collection
+    {
+        return $achievements->filter(function ($achievement) use($unlockedAchievements) {
+
+            if ($achievement['displayable']) {
+                return true;
+            }
+
+            $unlockedAchievement = $unlockedAchievements->get($achievement['id']);
+
+            return (bool) $unlockedAchievement;
+        });
     }
 
     protected function markUnlocked(Collection $achievements, Collection $unlockedAchievements): Collection
