@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@tailwindcss/custom-forms": "^0.2.1",
+        "croppie": "^2.6.5",
         "tailwindcss": "^1.9.0",
         "vue": "^3.0.0"
     }
