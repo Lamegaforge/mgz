@@ -2,6 +2,13 @@
 
 return [
     [
+        'slug' => 'awards_clip_1_2020',
+        'points' => 1000, 
+        'title' => '2020 clip awards',
+        'displayable' => false,
+        'description' => "Félicitations, tu possèdes le clip le plus vu de 2020 !",
+    ],
+    [
         'slug' => 'i_am_an_idiot',
         'points' => 500, 
         'title' => 'I am an idiot',
