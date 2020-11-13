@@ -15,7 +15,7 @@ class CardsAggregator extends Command
      *
      * @var string
      */
-    protected $signature = 'cards:aggregate';
+    protected $signature = 'cards:aggregate {--force}';
 
     /**
      * The console command description.
@@ -77,7 +77,7 @@ class CardsAggregator extends Command
 
         $exist = Storage::disk('cards')->has($path);
 
-        if ($exist) {
+        if ($exist && ! $this->option('force')) {
             return;
         }
 
