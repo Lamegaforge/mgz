@@ -30,6 +30,13 @@ class Repository
         return $this->former->videos($videos);
     }
 
+    public function getTopGames(int $limit = 100, int $offset = 0): array
+    {
+        $games = $this->driver->getTopGames($limit, $offset);
+
+        return $this->former->games($games);
+    }
+
     public function get(string $slug): array
     {
         $clip = $this->driver->get($slug);
