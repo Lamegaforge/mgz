@@ -2,6 +2,7 @@
 
 namespace App\Managers\Twitch\Formers;
 
+use Illuminate\Support\Str;
 use App\Managers\Twitch\Entities\Clip;
 use App\Managers\Twitch\Contracts\Former;
 
@@ -49,6 +50,22 @@ class Api implements Former
             'title' => $video['title'],
             'game' => $video['game'],
             'created_at' => $video['created_at'],
+        ];
+    }
+
+    public function games(array $games) :array
+    {
+        return array_map(function($game) {
+            return $this->game($game);
+        }, $games);
+    }
+
+    public function game(array $game): array
+    {
+        return [
+            'name' => $game['game']['name'],
+            'slug' => Str::slug($game['game']['name'], '_'),
+            'thumbnail' => $game['game']['box']['large'],
         ];
     }
 }
