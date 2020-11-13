@@ -13,7 +13,7 @@ class Random extends Triggers implements Trigger
     {
         $count = app(CounterService::class)->count($this->user, 'random');
 
-        return $count >= 100;
+        return $count >= 1000;
 
     }
 }
