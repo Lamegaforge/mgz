@@ -63,7 +63,7 @@ class AchievementController extends Controller
             $unlockedAchievement = $unlockedAchievements->get($achievement['id']);
 
             return (bool) $unlockedAchievement;
-        });
+        })->values();
     }
 
     protected function markUnlocked(Collection $achievements, Collection $unlockedAchievements): Collection
