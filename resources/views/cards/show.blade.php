@@ -1,10 +1,11 @@
-@inject('mediaService', 'App\Services\MediaService')
+@inject('cardBackgroundService', 'App\Services\Medias\CardBackgroundService')
+@inject('cardVignetteService', 'App\Services\Medias\CardVignetteService')
 
 @section('title', $card->title)
 @extends('app')
 @section('content')
 <section class="relative overflow-hidden">
-    <img class="absolute top-0 left-0 object-cover object-center w-full h-full blur" src="{{$mediaService->background($card->slug)}}" />
+    <img class="absolute top-0 left-0 object-cover object-center w-full h-full blur" src="{{$cardBackgroundService->get($card)}}" />
     <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25"></div>
     <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         @include('layouts.breadcrumbs', [
@@ -25,7 +26,7 @@
         <div class="flex flex-col items-center space-y-6 md:flex-row md:space-y-0 md:space-x-12">
             <div class="w-full max-w-sm">
                 <div class="relative shadow-md pt-2/3">
-                    <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded-md" src="{{$mediaService->vignette($card->slug)}}" />
+                    <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded-md" src="{{$cardVignetteService->get($card)}}" />
                 </div>
             </div>
             <div class="relative flex-grow max-w-xl md:w-auto">
