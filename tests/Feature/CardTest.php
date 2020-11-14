@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Card;
+use App\Models\Clip;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CardTest extends TestCase
@@ -29,7 +30,10 @@ class CardTest extends TestCase
      */
     public function show_card()
     {
-        $cards = Card::factory()->count(10)->create();
+        $cards = Card::factory()
+            ->has(Clip::factory()->count(3))
+            ->count(10)
+            ->create();
 
         $response = $this->get('cards/' . $cards->first()->id);
 
