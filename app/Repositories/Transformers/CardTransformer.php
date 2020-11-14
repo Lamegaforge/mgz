@@ -5,6 +5,8 @@ namespace App\Repositories\Transformers;
 use App\Models\Card;
 use App\Services\MediaService;
 use League\Fractal\TransformerAbstract;
+use App\Services\Medias\CardVignetteService;
+use App\Services\Medias\CardBackgroundService;
 
 /**
  * Class CardTransformer.
@@ -23,7 +25,10 @@ class CardTransformer extends TransformerAbstract
     public function transform(Card $card): array
     {
         return $card->toArray() + [
-            'medias' => app(MediaService::class)->all($card->slug),
+            'medias' => [
+                'background' => app(CardBackgroundService::class)->get($card),
+                'vignette' => app(CardVignetteService::class)->get($card),
+            ],
         ];
     }
 }
