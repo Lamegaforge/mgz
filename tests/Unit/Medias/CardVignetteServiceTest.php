@@ -35,7 +35,7 @@ class CardVignetteServiceTest extends TestCase
     {
         return [
             ['stalker_2', 'vignette.jpg', '/storage/stalker_2/vignette.jpg'],
-            ['other_slug', 'vignette.jpg', '/storage//placeholders/vignette.jpg'],
+            ['other_slug', 'vignette.jpg', '/storage/placeholders/vignette.jpg'],
         ];
     }
 }

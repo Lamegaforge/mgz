@@ -16,7 +16,7 @@ class CardVignetteService
         return $this->getPlaceholderPath($card);
     }
 
-    public function haveCustomMedia(Card $card): string 
+    public function haveCustomMedia(Card $card): bool 
     {
         $path = $this->getCustomPath($card);
 
@@ -32,13 +32,13 @@ class CardVignetteService
 
     protected function getPlaceholderPath(Card $card): string 
     {
-        $path = 'placeholder.jpg';
+        $path = 'placeholders/vignette.jpg';
 
         return Storage::disk('cards')->url($path);
     }
 
     protected function getCustomPath(Card $card): string 
     {
-        return $card->slug . '/placeholders/vignette.jpg';
+        return $card->slug . '/vignette.jpg';
     }
 }
