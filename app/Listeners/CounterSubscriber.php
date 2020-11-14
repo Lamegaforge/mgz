@@ -27,6 +27,11 @@ class CounterSubscriber
         app(CounterService::class)->increment($user, 'see_own_account');
     }
 
+    public function seeAnotherAccount(User $user) 
+    {   
+        app(CounterService::class)->increment($user, 'see_another_account');
+    }
+
     /**
      * Register the listeners for the subscriber.
      *
@@ -53,6 +58,11 @@ class CounterSubscriber
         $events->listen(
             'CounterSubscriber@seeOwnAccount',
             [CounterSubscriber::class, 'seeOwnAccount']
+        );
+
+        $events->listen(
+            'CounterSubscriber@seeAnotherAccount',
+            [CounterSubscriber::class, 'seeAnotherAccount']
         );
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use View;
 use Event;
 use Redirect;
+use App\Models\User;
 use App\Models\Achievement;
 use Illuminate\Http\Request;
 use App\Services\ScoringService;
@@ -79,6 +80,10 @@ class UserController extends Controller
 
         $maxAchievementsPoints = $this->getMaxAchievementsPoints();
 
+        if ($this->userLookAnotherAccount($request, $user)) {
+            Event::dispatch('CounterSubscriber@seeAnotherAccount', [$request->user()]);
+        }
+
         return View::make('users.show', [
             'user' => $user,
             'scores' => $scores,
@@ -89,5 +94,14 @@ class UserController extends Controller
     protected function getMaxAchievementsPoints(): int
     {
         return Achievement::sum('points');
+    }
+
+    protected function userLookAnotherAccount(Request $request, User $user): bool
+    {
+        if (! $request->auth()) {
+            return false;
+        }
+
+        return $request->user()->id !== $user->id;
     }
 }
