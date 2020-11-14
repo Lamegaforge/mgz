@@ -35,4 +35,18 @@ class ClipTest extends TestCase
 
         $response->assertSee($clips->first()->title);
     }
+
+    /**
+     * @test
+     */
+    public function random()
+    {
+        $clip = Clip::factory()->create();
+
+        $response = $this->followingRedirects()->get('clips/random');
+
+        $response
+            ->assertStatus(200)
+            ->assertSee($clip->title);
+    }
 }
