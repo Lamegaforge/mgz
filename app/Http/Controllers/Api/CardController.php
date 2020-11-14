@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use Response;
 use DateTime;
-use App\Services\MediaService;
 use App\Repositories\CardRepository;
 use App\Http\Controllers\Controller;
 use App\Repositories\Criterias\OrderBy;
 use App\Repositories\Criterias\WhereLike;
+use App\Services\Medias\CardVignetteService;
 use App\Http\Requests\Api\SearchCardsRequest;
+use App\Services\Medias\CardBackgroundService;
 use App\Repositories\Criterias\OrderWithCount;
 use Illuminate\Contracts\Pagination\Paginator;
 
@@ -76,7 +77,10 @@ class CardController extends Controller
 
         $attributes['data'] = $paginator->map(function ($card) {
             return $card->toArray() + [
-                'medias' => app(MediaService::class)->all($card['slug']),
+                'medias' => [
+                    'background' => app(CardBackgroundService::class)->get($card),
+                    'vignette' => app(CardVignetteService::class)->get($card),
+                ],
             ];
         })->toArray();
 
