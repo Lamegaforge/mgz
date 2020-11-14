@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use View;
 use Event;
+use Redirect;
 use App\Models\Achievement;
 use Illuminate\Http\Request;
 use App\Services\ScoringService;
@@ -36,17 +37,9 @@ class UserController extends Controller
     {
         $user = $request->user();
 
-        $scores = app(ScoringService::class)->total($user);
-
-        $maxAchievementsPoints = $this->getMaxAchievementsPoints();
-
         Event::dispatch('CounterSubscriber@seeOwnAccount', [$user]);
 
-        return View::make('users.show', [
-            'user' => $user,
-            'scores' => $scores,
-            'max_achievements_points' => $maxAchievementsPoints,
-        ]);
+        return Redirect::route('users.show', [$user->login]);
     }
 
     public function settings(Request $request)
