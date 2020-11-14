@@ -142,4 +142,11 @@ return [
         'description' => "Avoir accumulé 3'000 vues sur ses clips.",
         'always' => false,
     ],
+    [
+        'slug' => 'four_thousand_views_all_clips',
+        'points' => 500, 
+        'title' => "4'000 vues !",
+        'description' => "Avoir accumulé 4'000 vues sur ses clips.",
+        'always' => false,
+    ],
 ];

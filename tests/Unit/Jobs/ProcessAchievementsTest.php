@@ -57,13 +57,14 @@ class ProcessAchievementsTest extends TestCase
         $this->assertContains('thousand_views_all_clips', $slugs);
         $this->assertContains('three_thousand_views_all_clips', $slugs);
         $this->assertContains('two_thousand_views_all_clips', $slugs);
+        $this->assertContains('four_thousand_views_all_clips', $slugs);
         $this->assertContains('unloved', $slugs);
         $this->assertContains('i_am_an_idiot', $slugs);
         $this->assertContains('old_man', $slugs);
         $this->assertContains('valerie_damidot', $slugs);
         $this->assertContains('random', $slugs);
 
-        $this->assertNotifications($user, $number = 18);
+        $this->assertNotifications($user, $number = 19);
 
         $this->assertRemoveAchievements($user);
     }
@@ -85,7 +86,7 @@ class ProcessAchievementsTest extends TestCase
         $this->assertNotContains('ten_active_clips', $slugs);
         $this->assertNotContains('thirty_active_clips', $slugs);
 
-        $this->assertNotifications($user, $number = 24);
+        $this->assertNotifications($user, $number = 25);
     }
 
     protected function assertNotifications(User $user, int $number)

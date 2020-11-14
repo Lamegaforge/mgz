@@ -6,9 +6,9 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Clip;
 use Illuminate\Foundation\Testing\DatabaseMigrations; 
-use App\Services\Achievements\Triggers\ViewsAllClips\ThreeThousand;
+use App\Services\Achievements\Triggers\ViewsAllClips\FourThousand;
 
-class ThreeThousandViewsAllClipsTest extends TestCase
+class FourThousandViewsAllClipsTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -20,14 +20,14 @@ class ThreeThousandViewsAllClipsTest extends TestCase
         $user = User::factory()->create();
 
         Clip::factory()
-            ->times(3)
+            ->times(4)
             ->active()
             ->create([
                 'user_id' => $user->id,
                 'views' => 1000,
             ]);
 
-        $achievement = new ThreeThousand($user);
+        $achievement = new FourThousand($user);
 
         $this->assertTrue($achievement->eligible());
     }
@@ -43,7 +43,7 @@ class ThreeThousandViewsAllClipsTest extends TestCase
             ->active()
             ->create([
                 'user_id' => $user->id,
-                'views' => 2000,
+                'views' => 3000,
             ]);
 
         Clip::factory()
@@ -53,7 +53,7 @@ class ThreeThousandViewsAllClipsTest extends TestCase
                 'views' => 1000,
             ]);
 
-        $achievement = new ThreeThousand($user);
+        $achievement = new FourThousand($user);
 
         $this->assertFalse($achievement->eligible());
     }
@@ -69,10 +69,10 @@ class ThreeThousandViewsAllClipsTest extends TestCase
             ->active()
             ->create([
                 'user_id' => $user->id,
-                'views' => 2000,
+                'views' => 3999,
             ]);
 
-        $achievement = new ThreeThousand($user);
+        $achievement = new FourThousand($user);
 
         $this->assertFalse($achievement->eligible());
     }

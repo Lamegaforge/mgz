@@ -91,6 +91,7 @@ class ProcessAchievements implements ShouldQueue
             new ViewsAllClips\Thousand($this->user),
             new ViewsAllClips\TwoThousand($this->user),
             new ViewsAllClips\ThreeThousand($this->user),
+            new ViewsAllClips\FourThousand($this->user),
         ];
     }
 
