@@ -32,7 +32,7 @@ class CardVignetteService
 
     protected function getPlaceholderPath(Card $card): string 
     {
-        $path = '/placeholders/placeholder.jpg';
+        $path = '/placeholders/vignette.jpg';
 
         return Storage::disk('cards')->url($path);
     }
