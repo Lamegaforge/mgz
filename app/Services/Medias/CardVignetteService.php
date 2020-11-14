@@ -39,6 +39,6 @@ class CardVignetteService
 
     protected function getCustomPath(Card $card): string 
     {
-        return $card->slug . '/vignette.jpg';
+        return $card->slug . '/placeholders/vignette.jpg';
     }
 }
