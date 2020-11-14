@@ -25,4 +25,19 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * @test
+     */
+    public function get_ranking()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('users');
+
+        $response
+            ->assertStatus(200)
+            ->assertSee('Classement')
+            ->assertSee($user->display_name);
+    }
 }
