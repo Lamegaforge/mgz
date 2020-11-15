@@ -42,7 +42,7 @@ class Achievements extends Command
         $users = app(UserRepository::class)->all();
 
         $users->map(function ($user) {
-            ProcessAchievements::dispatch($user);
+            dd(ProcessAchievements::dispatch($user));
         });
     }
 }
