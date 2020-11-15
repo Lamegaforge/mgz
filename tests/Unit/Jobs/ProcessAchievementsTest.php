@@ -194,7 +194,7 @@ class ProcessAchievementsTest extends TestCase
     {
         DB::table('counts')->insert([
             'user_id' => $user->id,
-            'slug' => 'stalker',
+            'slug' => 'see_another_account',
             'values' => 100,
         ]);
     }
@@ -203,7 +203,7 @@ class ProcessAchievementsTest extends TestCase
     {
         DB::table('counts')->insert([
             'user_id' => $user->id,
-            'slug' => 'narcissistic',
+            'slug' => 'see_own_account',
             'values' => 30,
         ]);
     }

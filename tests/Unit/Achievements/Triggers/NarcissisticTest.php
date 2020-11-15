@@ -22,7 +22,7 @@ class NarcissisticTest extends TestCase
 
         DB::table('counts')->insert([
             'user_id' => $user->id,
-            'slug' => 'narcissistic',
+            'slug' => 'see_own_account',
             'values' => $count,
         ]);
 

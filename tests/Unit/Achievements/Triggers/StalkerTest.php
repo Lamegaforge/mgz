@@ -22,7 +22,7 @@ class StalkerTest extends TestCase
 
         DB::table('counts')->insert([
             'user_id' => $user->id,
-            'slug' => 'stalker',
+            'slug' => 'see_another_account',
             'values' => $count,
         ]);
 
