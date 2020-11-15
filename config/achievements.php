@@ -51,6 +51,13 @@ return [
         'description' => "Avoir regardé 100 fois le compte d'autres utilisateurs.",
     ],
     [
+        'slug' => 'narcissistic',
+        'points' => 500, 
+        'title' => 'Narcissique',
+        'secret' => true,
+        'description' => "Avoir regardé plus de 30 fois son compte.",
+    ],
+    [
         'slug' => 'pharos',
         'points' => 750, 
         'title' => 'PHAROS',
