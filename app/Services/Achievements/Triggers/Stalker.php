@@ -11,7 +11,7 @@ class Stalker extends Triggers implements Trigger
 
     public function eligible(): bool
     {
-        $count = app(CounterService::class)->count($this->user, 'stalker');
+        $count = app(CounterService::class)->count($this->user, 'see_another_account');
 
         return $count >= 100;
     }

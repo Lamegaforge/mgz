@@ -11,7 +11,7 @@ class Narcissistic extends Triggers implements Trigger
 
     public function eligible(): bool
     {
-        $count = app(CounterService::class)->count($this->user, 'narcissistic');
+        $count = app(CounterService::class)->count($this->user, 'see_own_account');
 
         return $count >= 30;
     }
