@@ -72,6 +72,7 @@ class ClipsUpdater extends Command
         $views = $concret['views'] ?? 0;
 
         app(ClipRepository::class)->update([
+            'title' => $concret['title'],
             'state' => $state,
             'views' => $views,
         ], $clip->id);        
