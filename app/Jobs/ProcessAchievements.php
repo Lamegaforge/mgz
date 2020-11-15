@@ -43,6 +43,8 @@ class ProcessAchievements implements ShouldQueue
      */
     public function handle()
     {
+        dd($this->user, $this->triggers());
+
         $triggers = $this->triggers();
 
         $achievements = Achievement::all()->keyBy('slug');
@@ -61,6 +63,7 @@ class ProcessAchievements implements ShouldQueue
 
 
             } catch (Exception $e) {
+                dd($e);
                 Log::error($e->getMessage());
             }
         }
