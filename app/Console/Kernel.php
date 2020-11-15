@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('clips:aggregate')->dailyAt('12:00');
         $schedule->command('clips:aggregate')->dailyAt('16:00');
 
-        $schedule->command('clips:update')->daily();
+        $schedule->command('clips:update')->dailyAt('02:00');
 
         $schedule->command('cards:aggregate')->daily();
 
