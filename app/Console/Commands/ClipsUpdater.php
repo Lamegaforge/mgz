@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Event;
 use App\Models\Clip;
 use Illuminate\Console\Command;
 use App\Repositories\Criterias;
@@ -70,6 +71,10 @@ class ClipsUpdater extends Command
     {
         $state = $concret['slug'] ? 'active' : 'rejected';
         $views = $concret['views'] ?? 0;
+
+        if ($state == 'rejected') {
+            Event::dispatch('NotifySubscriber@clipDeath', [$clip]);
+        }
 
         app(ClipRepository::class)->update([
             'title' => $concret['title'],
