@@ -57,17 +57,14 @@
                         <div class="text-center">
                             <div class="px-3 py-2 border border-gray-900">
                                 <p>Succès</p>
-                                <x-achievements-progress 
-                                    :sumAchievements="$scores['sum_achievements']" 
-                                    :maxAchievementsPoints="$max_achievements_points"
-                                />
+                                <x-achievements-progress :sumAchievements="$scores['sum_achievements']" :maxAchievementsPoints="$max_achievements_points" />
                                 <p class="text-xs text-gray-400">{{$scores['sum_achievements']}}/{{$max_achievements_points}} points</p>
                                 <p class="mt-3">Clips</p>
-                                <p class="text-xs text-gray-400">Validés: {{$scores['sum_clips']}} points</p>
-                                <p class="text-xs text-gray-400">Vues total: {{$scores['sum_views']}} points</p>
-                                <p class="text-xs text-gray-400">En favoris: {{$scores['sum_favorites']}} points</p>
+                                <p class="text-xs text-gray-400">Validés: {{$scores['sum_clips']}} @choice('point|points', $scores['sum_clips'])</p>
+                                <p class="text-xs text-gray-400">Vues total: {{$scores['sum_views']}} @choice('point|points', $scores['sum_views'])</p>
+                                <p class="text-xs text-gray-400">En favoris: {{$scores['sum_favorites']}} @choice('point|points', $scores['sum_favorites'])</p>
                             </div>
-                            <p class="mt-4 text-lg">Total: {{$scores['sum']}} points</p>
+                            <p class="mt-4 text-lg">Total: {{$scores['sum']}} @choice('point|points', $scores['sum'])</p>
                         </div>
                         <div>
                             <fetch-list fetch-url="{{route('api.achievement.search', $user->id)}}" type="achievements" />

@@ -50,8 +50,8 @@
                 <div class="flex items-start justify-start mt-3 md:mt-4">
                     <div>
                         <p class="text-sm text-gray-300">Publié le @datetime($clip->approved_at)</p>
-                        <p class="text-sm text-gray-300">{{$comment_count}} commentaires</p>
-                        <p class="text-sm text-gray-300">{{$clip->views}} vues</p>
+                        <p class="text-sm text-gray-300">{{$comment_count}}  @choice('commentaire|commentaires', $comment_count)</p>
+                        <p class="text-sm text-gray-300">{{$clip->views}}  @choice('vue|vues', $clip->views)</p>
                         <a href="{{route('cards.show', $clip->card->slug)}}" class="font-semibold text-white hover:text-indigo-400">{{$clip->card->title}}</a>
                     </div>
                     <a href="{{route('cards.show', $clip->card->slug)}}" class="w-16 ml-auto">
