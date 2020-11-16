@@ -31,7 +31,7 @@
             </div>
             <div class="relative flex-grow max-w-xl md:w-auto">
                 <h1 class="text-4xl font-extrabold leading-10 text-white">{{$card->title}}</h1>
-                <p class="font-semibold">{{$countClips}} clips</p>
+                <p class="font-semibold">{{$countClips}} @choice('clip|clips', $countClips)</p>
                 <p class="mt-3 text-gray-400 md:text-lg">{{$card->description}}</p>
             </div>
         </div>
