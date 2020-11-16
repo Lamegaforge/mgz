@@ -75,6 +75,22 @@ class NotifySubscriber
         $this->store($clip->user, $content);
     }
 
+    public function clipDeath(Clip $clip): void
+    {   
+        $format = "Désolé, le clip suivant n'existe plus Twitch, putain de DMCA : %s";
+
+        $message = sprintf($format, $clip->title);
+
+        $content = [
+            'type' => 'clip',
+            'message' => $message,
+        ];
+
+        Log::info($clip->user->display_name . ' death "' . Str::limit($clip->title) . '" clip.');
+
+        $this->store($clip->user, $content);
+    }
+
     protected function store(User $user, array $content): void
     {
         Notification::create([
@@ -109,6 +125,11 @@ class NotifySubscriber
         $events->listen(
             'NotifySubscriber@clipLost',
             [NotifySubscriber::class, 'clipLost']
+        );
+
+        $events->listen(
+            'NotifySubscriber@clipDeath',
+            [NotifySubscriber::class, 'clipDeath']
         );
     }
 }
