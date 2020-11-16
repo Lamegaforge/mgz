@@ -37,7 +37,7 @@
         @endforeach
     </ul>
     @if (!count($notifications))
-    <p class="py-16 text-center">Rien à afficher, t'es à jour.</p>
+    <p class="py-16 text-center">Rien à afficher, t'es à jour 🦕</p>
     @endif
 </section>
 @endsection
