@@ -1,4 +1,4 @@
-@inject('mediaService', 'App\Services\MediaService')
+@inject('cardVignetteService', 'App\Services\Medias\CardVignetteService')
 @inject('iframeService', 'App\Services\IframeService')
 
 @extends('app')
@@ -56,7 +56,7 @@
                     </div>
                     <a href="{{route('cards.show', $clip->card->slug)}}" class="w-16 ml-auto">
                         <div class="relative shadow-md pt-2/3">
-                            <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded" src="{{$mediaService->vignette($clip->card->slug)}}" />
+                            <img class="absolute top-0 left-0 object-cover object-center w-full h-full rounded" src="{{$cardVignetteService->get($clip->card)}}" />
                         </div>
                     </a>
                 </div>

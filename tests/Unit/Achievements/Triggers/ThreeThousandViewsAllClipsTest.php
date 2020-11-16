@@ -20,7 +20,7 @@ class ThreeThousandViewsAllClipsTest extends TestCase
         $user = User::factory()->create();
 
         Clip::factory()
-            ->times(4)
+            ->times(3)
             ->active()
             ->create([
                 'user_id' => $user->id,

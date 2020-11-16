@@ -57,13 +57,15 @@ class ProcessAchievementsTest extends TestCase
         $this->assertContains('thousand_views_all_clips', $slugs);
         $this->assertContains('three_thousand_views_all_clips', $slugs);
         $this->assertContains('two_thousand_views_all_clips', $slugs);
+        $this->assertContains('four_thousand_views_all_clips', $slugs);
         $this->assertContains('unloved', $slugs);
         $this->assertContains('i_am_an_idiot', $slugs);
         $this->assertContains('old_man', $slugs);
         $this->assertContains('valerie_damidot', $slugs);
         $this->assertContains('random', $slugs);
+        $this->assertContains('stalker', $slugs);
 
-        $this->assertNotifications($user, $number = 18);
+        $this->assertNotifications($user, $number = 21);
 
         $this->assertRemoveAchievements($user);
     }
@@ -85,7 +87,7 @@ class ProcessAchievementsTest extends TestCase
         $this->assertNotContains('ten_active_clips', $slugs);
         $this->assertNotContains('thirty_active_clips', $slugs);
 
-        $this->assertNotifications($user, $number = 24);
+        $this->assertNotifications($user, $number = 27);
     }
 
     protected function assertNotifications(User $user, int $number)
@@ -106,6 +108,8 @@ class ProcessAchievementsTest extends TestCase
         $this->addIAmAnIdiotRequirement($user);
         $this->addValerieDamidotRequirement($user);
         $this->addRandomRequirement($user);
+        $this->addStalkerRequirement($user);
+        $this->addNarcissisticRequirement($user);
     }
 
     protected function addPharosRequirement(User $user): void
@@ -183,6 +187,24 @@ class ProcessAchievementsTest extends TestCase
             'user_id' => $user->id,
             'slug' => 'random',
             'values' => 1000,
+        ]);
+    }
+
+    protected function addStalkerRequirement(User $user): void
+    {
+        DB::table('counts')->insert([
+            'user_id' => $user->id,
+            'slug' => 'see_another_account',
+            'values' => 100,
+        ]);
+    }
+
+    protected function addNarcissisticRequirement(User $user): void
+    {
+        DB::table('counts')->insert([
+            'user_id' => $user->id,
+            'slug' => 'see_own_account',
+            'values' => 30,
         ]);
     }
 }

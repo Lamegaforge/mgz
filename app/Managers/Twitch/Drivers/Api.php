@@ -53,6 +53,15 @@ class Api implements Driver
         return $response['videos'];
     }
 
+    public function getTopGames(int $limit = 100, int $offset = 0): array
+    {
+        $client = $this->getClient();
+
+        $response = $client->getTopGames($limit, $offset);
+
+        return $response['top'] ?? [];
+    }
+
     public function get(string $slug): array
     {
         $client = $this->getClient();

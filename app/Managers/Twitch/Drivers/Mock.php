@@ -61,5 +61,19 @@ class Mock implements Driver
                 'logo' => '', 
             ],
         ];
-    }    
+    } 
+
+    public function getTopGames(int $limit = 100, int $offset = 0): array
+    {
+        return [
+            [
+                'game' => [
+                    'name' => 'S.T.A.L.K.E.R.',
+                    'box' => [
+                        'template' => 'thumbnail',
+                    ],
+                ],
+            ],
+        ];
+    }
 }

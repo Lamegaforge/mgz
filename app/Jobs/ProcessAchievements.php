@@ -80,6 +80,8 @@ class ProcessAchievements implements ShouldQueue
             new Triggers\IAmAnIdiot($this->user),
             new Triggers\OldMan($this->user),
             new Triggers\Random($this->user),
+            new Triggers\Stalker($this->user),
+            new Triggers\Narcissistic($this->user),
 
             new ActiveClips\Fifty($this->user),
             new ActiveClips\Hundred($this->user),
@@ -91,6 +93,7 @@ class ProcessAchievements implements ShouldQueue
             new ViewsAllClips\Thousand($this->user),
             new ViewsAllClips\TwoThousand($this->user),
             new ViewsAllClips\ThreeThousand($this->user),
+            new ViewsAllClips\FourThousand($this->user),
         ];
     }
 

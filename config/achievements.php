@@ -44,6 +44,20 @@ return [
         'description' => 'Avoir regardé plus de 1000 clips de manière aléatoire.',
     ],
     [
+        'slug' => 'stalker',
+        'points' => 500, 
+        'title' => 'Stalker',
+        'secret' => true,
+        'description' => "Avoir regardé 100 fois le compte d'autres utilisateurs.",
+    ],
+    [
+        'slug' => 'narcissistic',
+        'points' => 500, 
+        'title' => 'Narcissique',
+        'secret' => true,
+        'description' => "Avoir regardé plus de 30 fois son compte.",
+    ],
+    [
         'slug' => 'pharos',
         'points' => 750, 
         'title' => 'PHAROS',
@@ -140,6 +154,13 @@ return [
         'points' => 500, 
         'title' => "3'000 vues !",
         'description' => "Avoir accumulé 3'000 vues sur ses clips.",
+        'always' => false,
+    ],
+    [
+        'slug' => 'four_thousand_views_all_clips',
+        'points' => 500, 
+        'title' => "4'000 vues !",
+        'description' => "Avoir accumulé 4'000 vues sur ses clips.",
         'always' => false,
     ],
 ];
