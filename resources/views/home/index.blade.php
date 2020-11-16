@@ -1,6 +1,7 @@
 @extends('app')
 @section('title', 'Accueil')
 @push('metas')
+<meta property='og:title' content="MEGASAURUS - Vos funambules de l'éthique depuis 2012.">
 <meta property='og:description' content="Si un fou-rire est égal à un bon steak, alors v'la l'abattoir.">
 @endpush
 @section('content')
