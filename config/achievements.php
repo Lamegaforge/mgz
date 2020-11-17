@@ -41,7 +41,7 @@ return [
         'points' => 500, 
         'title' => 'Guide-moi',
         'secret' => true,
-        'description' => 'Avoir regardé plus de 1000 clips de manière aléatoire.',
+        'description' => 'Avoir regardé plus de 500 clips de manière aléatoire.',
     ],
     [
         'slug' => 'stalker',
