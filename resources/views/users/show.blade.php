@@ -1,5 +1,10 @@
 @extends('app')
 @section('title', $user->display_name)
+@push('metas')
+<meta property='og:title' content="{{$user->display_name ?? 'Anonyme'}} - Megasaurus">
+<meta property='og:description' content="{{$user->description}}">
+<meta property="og:image" content="{{$user->profile_image_url ?? '/images/profile_placeholder.jpg'}}">
+@endpush
 @section('content')
 <section>
     <div class="relative xl:pt-0 pt-3/1 xl:h-400px">
