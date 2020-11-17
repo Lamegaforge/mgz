@@ -186,7 +186,7 @@ class ProcessAchievementsTest extends TestCase
         DB::table('counts')->insert([
             'user_id' => $user->id,
             'slug' => 'random',
-            'values' => 1000,
+            'values' => 500,
         ]);
     }
 
