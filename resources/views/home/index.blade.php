@@ -3,7 +3,7 @@
 @push('metas')
 <meta property='og:title' content="MEGASAURUS - Vos funambules de l'éthique depuis 2012.">
 <meta property='og:description' content="Si un fou-rire est égal à un bon steak, alors v'la l'abattoir.">
-<meta property="og:image" content="/images/favicons/android-icon-96x96.png">
+<meta property="og:image" content="/images/logo.png">
 @endpush
 @section('content')
 <section class="relative overflow-hidden">
