@@ -74,7 +74,7 @@ class UserController extends Controller
         $user = $this->userRepository
             ->where('login', $request->hook)
             ->orWhere('id', $request->hook)
-            ->first();
+            ->firstOrFail();
 
         $scores = app(ScoringService::class)->total($user);
 
