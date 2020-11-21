@@ -21,4 +21,9 @@ class Card extends Model
     {
         return $this->hasMany(Clip::class);
     }
+
+    public function activeClips()
+    {
+        return $this->hasMany(Clip::class)->where('state', 'active');
+    }
 }

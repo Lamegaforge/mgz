@@ -35,9 +35,9 @@ class HomeController extends Controller
             ->all();
 
         $cards = app(CardRepository::class)
-            ->withCount(['clips'])
+            ->withCount(['activeClips'])
             ->pushCriteria(new Limit(30))
-            ->pushCriteria(new OrderBy('clips_count', 'DESC'))
+            ->pushCriteria(new OrderBy('active_clips_count', 'DESC'))
             ->setPresenter(Presenters\CardWithMedia::class)
             ->all();
 
