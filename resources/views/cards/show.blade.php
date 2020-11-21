@@ -3,6 +3,9 @@
 
 @section('title', $card->title)
 @extends('app')
+@push('metas')
+<meta property="og:image" content="{{$cardVignetteService->get($card)}}">
+@endpush
 @section('content')
 <section class="relative overflow-hidden">
     <img class="absolute top-0 left-0 object-cover object-center w-full h-full blur" src="{{$cardBackgroundService->get($card)}}" />
