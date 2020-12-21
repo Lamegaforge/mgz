@@ -23,7 +23,7 @@ class VideoSuspector
             return true;
         }
 
-        $video = $this->retrieveVideo($clip['vod']['id']);
+        $video = $this->retrieveVideo($id);
 
         return $video['title'] !== $clip['title'];
     }
