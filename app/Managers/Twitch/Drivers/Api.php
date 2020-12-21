@@ -30,7 +30,7 @@ class Api implements Driver
 
         $response = $client->getTopClips(... $parameters);
 
-        // Log::info($response['_cursor']);
+        Log::info($response['_cursor']);
 
         return $response['clips'];
     }
