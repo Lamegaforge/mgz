@@ -27,6 +27,9 @@ class Api implements Former
             'duration' => $clip['duration'] ?? null,
             'thumbnail' => $clip['thumbnails']['medium'] ?? null,
             'created_at' => $clip['created_at'] ?? null,
+            'vod' => [
+                'id' => $clip['vod']['id'] ?? null,    
+            ],
             'curator' => [
                 'tracking_id' => $clip['curator']['id'] ?? null,    
                 'name' => $clip['curator']['name'] ?? null,
