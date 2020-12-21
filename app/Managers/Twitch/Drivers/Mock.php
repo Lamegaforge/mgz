@@ -39,6 +39,13 @@ class Mock implements Driver
         ];
     }
 
+    public function getVideo(int $id): array
+    {
+        $videos = $this->getLastVideos();
+
+        return $videos[0];
+    }
+
     public function get(string $slug): array
     {
         return [

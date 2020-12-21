@@ -62,6 +62,15 @@ class Api implements Driver
         return $response['top'] ?? [];
     }
 
+    public function getVideo(int $id): array
+    {
+        $client = $this->getClient();
+
+        $response = $client->getVideo($id);
+
+        return $response;
+    }
+
     public function get(string $slug): array
     {
         $client = $this->getClient();
