@@ -91,10 +91,6 @@ class ClipsAggregator extends Command
 
     protected function isSuspect(array $clip): bool
     {
-        if (! isset($clip['vod']['id'])) {
-            dd($clip);
-        }
-
         $isClean = app(VideoSuspector::class)->isClean($clip);
 
         return ! $isClean;
