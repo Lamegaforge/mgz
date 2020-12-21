@@ -7,8 +7,10 @@ use Carbon\Carbon;
 use App\View\Components;
 use Illuminate\Http\Request;
 use App\Services\MediaService;
+use App\Services\VideoSupector;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use App\Managers\Twitch\TwitchManager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +41,10 @@ class AppServiceProvider extends ServiceProvider
 
         Request::macro('auth', function () {
             return (bool) $this->user();
+        });
+
+        $this->app->singleton(VideoSupector::class, function ($app) {
+            return new VideoSupector($app[TwitchManager::class]);
         });
     }
 }
