@@ -4,10 +4,10 @@ namespace Tests\Unit;
 
 use Config;
 use Tests\TestCase;
-use App\Services\VideoSupector;
+use App\Services\VideoSuspector;
 use Illuminate\Foundation\Testing\DatabaseMigrations; 
 
-class VideoSupectorTest extends TestCase
+class VideoSuspectorTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -26,7 +26,7 @@ class VideoSupectorTest extends TestCase
             ],
         ];
 
-        $isClean = app(VideoSupector::class)->isClean($clip);
+        $isClean = app(VideoSuspector::class)->isClean($clip);
 
         $this->assertEquals($expected, $isClean);
     }

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Managers\Twitch\TwitchManager;
 
-class VideoSupector
+class VideoSuspector
 {
     protected $twitchManager;
     protected $videos;

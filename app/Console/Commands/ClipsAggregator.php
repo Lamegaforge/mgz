@@ -12,6 +12,7 @@ use App\Services\UserService;
 use App\Services\CardSniffer;
 use App\Services\CardService;
 use Illuminate\Console\Command;
+use App\Services\VideoSuspector;
 use Illuminate\Support\Collection;
 use App\Repositories\CardRepository;
 use App\Repositories\ClipRepository;
@@ -58,6 +59,10 @@ class ClipsAggregator extends Command
                 continue;
             }
 
+            if ($this->isSuspect($clip)) {
+                continue;
+            }
+
             $user = $this->retrieveUser($clip['curator']);
             $card = $this->retrieveCard($clip);
           
@@ -82,6 +87,13 @@ class ClipsAggregator extends Command
         $found = app(ClipRepository::class)->findByField('tracking_id', $clip['tracking_id']);
 
         return ! $found->isEmpty();
+    }
+
+    protected function isSuspect(array $clip): bool
+    {
+        $isClean = app(VideoSuspector::class)->isClean($clip);
+
+        return ! $isClean;
     }
 
     protected function retrieveUser(array $curator): User

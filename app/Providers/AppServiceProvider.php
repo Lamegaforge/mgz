@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use App\View\Components;
 use Illuminate\Http\Request;
 use App\Services\MediaService;
-use App\Services\VideoSupector;
+use App\Services\VideoSuspector;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use App\Managers\Twitch\TwitchManager;
@@ -43,8 +43,8 @@ class AppServiceProvider extends ServiceProvider
             return (bool) $this->user();
         });
 
-        $this->app->singleton(VideoSupector::class, function ($app) {
-            return new VideoSupector($app[TwitchManager::class]);
+        $this->app->singleton(VideoSuspector::class, function ($app) {
+            return new VideoSuspector($app[TwitchManager::class]);
         });
     }
 }
