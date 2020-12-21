@@ -17,6 +17,12 @@ class VideoSuspector
 
     public function isClean(array $clip): bool
     {
+        $id = $clip['vod']['id'];
+
+        if (is_null($id)) {
+            return true;
+        }
+
         $video = $this->retrieveVideo($clip['vod']['id']);
 
         return $video['title'] !== $clip['title'];
