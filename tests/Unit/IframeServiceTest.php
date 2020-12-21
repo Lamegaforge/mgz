@@ -25,6 +25,7 @@ class IframeServiceTest extends TestCase
             '?clip=' . $clip->slug . 
             '&parent=megasaurus.fr' .
             '&parent=staging.megasaurus.fr' .
+            '&parent=demo.megasaurus.fr' .
             '&allowfullscreen=true' .
             '&autoplay=false';
 
@@ -49,6 +50,7 @@ class IframeServiceTest extends TestCase
             '?clip=' . $clip->slug . 
             '&parent=megasaurus.fr' .
             '&parent=staging.megasaurus.fr' .
+            '&parent=demo.megasaurus.fr' .
             '&allowfullscreen=true' .
             '&autoplay=true';
 
@@ -68,11 +70,12 @@ class IframeServiceTest extends TestCase
         $this->actingAs($user, 'web');
 
         $url = app(IframeService::class)->url($clip);
-
+        
         $expected = 'https://clips.twitch.tv/embed' .
             '?clip=' . $clip->slug . 
             '&parent=megasaurus.fr' .
             '&parent=staging.megasaurus.fr' .
+            '&parent=demo.megasaurus.fr' .
             '&allowfullscreen=true' .
             '&autoplay=false';
 
