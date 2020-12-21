@@ -6,8 +6,8 @@ return [
         'drivers' => [
             'api' => [
                 'client_id' => env('HELIX_CLIENT_ID'),
-                'channel' => 'lamegaforgelive',
-                'channel_id' => '50119422',
+                'channel' => env('TWITCH_CHANNEL_NAME', 'lamegaforgelive'),
+                'channel_id' => env('TWITCH_CHANNEL_ID', '50119422'),
             ],
         ],
     ],
