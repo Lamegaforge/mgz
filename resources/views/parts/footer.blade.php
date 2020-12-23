@@ -34,7 +34,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:order-1">
             <p class="text-base leading-6 text-center text-gray-400">
-                &copy; 2020 LaMegaforge. All rights reserved.
+                &copy; 2020 LaMegaforge. All rights reserved. Made with 💕 by <a href="https://ubermeows.com/" class="font-bold">übermeows.</a>
             </p>
         </div>
     </div>
