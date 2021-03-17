@@ -38,7 +38,7 @@ class SearchClipsRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        $valid = in_array($this->order, ['approved_at', 'views'], true);
+        $valid = in_array($this->order, ['approved_at', 'views', 'favorites'], true);
 
         $this->merge([
             'order' => $valid ? $this->order : 'approved_at',

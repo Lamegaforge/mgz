@@ -14,6 +14,7 @@ use App\Repositories\Criterias\WhereLike;
 use App\Http\Responses\GenericApiResponse;
 use App\Http\Requests\Api\RejectClipRequest;
 use App\Http\Requests\Api\SearchClipsRequest;
+use App\Repositories\Criterias\OrderWithCount;
 
 class ClipController extends Controller
 {
@@ -62,8 +63,17 @@ class ClipController extends Controller
     protected function addOrderCriteria(SearchClipsRequest $request)
     {
         $order = $request->get('order');
-        
-        $this->clipRepository->pushCriteria(new OrderBy($order, 'DESC'));
+
+        switch ($order) {
+            case 'favorites':
+                $criteria = new OrderWithCount('favorites', 'DESC');
+                break;
+            default:
+                $criteria = new OrderBy($order, 'DESC');
+                break;
+        }
+
+        $this->clipRepository->pushCriteria($criteria);
     }
 
     protected function addCardCriteria(SearchClipsRequest $request)
