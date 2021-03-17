@@ -133,6 +133,10 @@ const sorts = {
       label: "Nombre de vues",
       value: "views",
     },
+    {
+      label: "Nombre de favories",
+      value: "favorites",
+    },
   ],
   cards: [
     {
