@@ -134,7 +134,7 @@ const sorts = {
       value: "views",
     },
     {
-      label: "Nombre de favories",
+      label: "Nombre de favoris",
       value: "favorites",
     },
   ],
