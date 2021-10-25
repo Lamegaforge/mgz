@@ -1,7 +1,7 @@
 name: Run test when commit on staging.
 
 on:
-  commit:
+  push:
     branches:
       - staging
 
