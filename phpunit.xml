@@ -22,7 +22,7 @@
     </coverage>
     <php>
         <server name="APP_ENV" value="testing"/>
-        <server name="APP_TOKEN" value="testing_token"/>
+        <server name="APP_KEY" value="base64:pCU52+hNNJNELMz+fklPNHW0qxXS3DUJ4oql4MNgC9U="/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
         <server name="DB_CONNECTION" value="sqlite"/>
