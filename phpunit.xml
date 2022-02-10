@@ -32,7 +32,6 @@
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
-        <server name="INSPECTOR_ENABLE" value="false"/>
-        <server name="INSPECTOR_INGESTION_KEY" value="qsdqsd"/>
+        <server name="TWITCH_BEARER_TOKEN" value=""/>
     </php>
 </phpunit>

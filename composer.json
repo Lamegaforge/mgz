@@ -8,27 +8,20 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.3|^8.0",
         "degraciamathieu/manager": "1.2.1",
         "doctrine/dbal": "^2.12",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "inspector-apm/inspector-laravel": "^4.6",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "league/fractal": "^0.19.2",
         "league/oauth2-client": "^2.5 ",
-        "nicklaw5/twitch-api-php": "*",
         "prettus/l5-repository": "^2.7",
+        "spatie/data-transfer-object": "^3.7",
         "vertisan/oauth2-twitch-helix": "^1.0"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:Lamegaforge/twitch-api-php.git"
-        }
-    ],
     "require-dev": {
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",
