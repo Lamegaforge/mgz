@@ -2,13 +2,22 @@
 
 return [
     'twitch' => [
-        'default_driver' => 'api',
+        'default_driver' => 'rawapi',
         'drivers' => [
             'api' => [
                 'client_id' => env('HELIX_CLIENT_ID'),
                 'channel' => env('TWITCH_CHANNEL_NAME', 'lamegaforgelive'),
                 'channel_id' => env('TWITCH_CHANNEL_ID', '50119422'),
             ],
+            'rawapi' => [
+                'client_id' => env('TWITCH_RAWAPI_CLIENT_ID'),
+                'client_secret' => env('TWITCH_RAWAPI_CLIENT_SECRET'),
+                'endpoints' => [
+                    'oauth2' => 'https://id.twitch.tv/oauth2/token',
+                    'user' => 'https://api.twitch.tv/helix/users',
+                    'clips' => 'https://api.twitch.tv/kraken/clips/top',
+                ],
+            ]
         ],
     ],
     'oauth' => [

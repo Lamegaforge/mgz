@@ -5,6 +5,9 @@ namespace App\Managers\Twitch;
 use App\Managers\Twitch\Contracts\Driver;
 use App\Managers\Twitch\Contracts\Former;
 
+use Http;
+use App\Dtos\BearerToken;
+
 class Repository
 {
     protected $driver;
@@ -14,6 +17,11 @@ class Repository
     {
         $this->driver = $driver;
         $this->former = $former;
+    }
+
+    public function getBearerToken(): BearerToken
+    {
+        return $this->driver->getBearerToken();
     }
 
     public function getLastClips(string $period, ?string $cursor = null): array
